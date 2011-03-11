@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>tools.logging</artifactId>
   <version>0.1.0-SNAPSHOT</version>
-  <name>logging</name>
+  <name>${artifactId}</name>
 
   <parent>
     <groupId>org.clojure</groupId>
@@ -21,41 +21,4 @@
     <developerConnection>scm:git:git@github.com:clojure/tools.logging.git</developerConnection>
     <url>git@github.com:clojure/tools.logging.git</url>
   </scm>
-
-  <repositories>
-    <!-- if our parent pom were a release (and in central), then this would be unnecessary -->
-    <repository>
-      <id>sonatype-oss-snapshots</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </repository>
-  </repositories>
-
-  <properties>
-    <clojure.version>1.2.0</clojure.version>
-  </properties>
-
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-invoker-plugin</artifactId>
-        <version>1.5</version>
-        <configuration>
-          <pomIncludes>
-            <pomInclude>*/pom.xml</pomInclude>
-          </pomIncludes>
-          <streamLogs>true</streamLogs>
-          <goals><goal>clojure:test</goal></goals>
-          <mavenOpts>-Duser.dir=${basedir}</mavenOpts>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>install</goal>
-              <goal>run</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
 </project>
