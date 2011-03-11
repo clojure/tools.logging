@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>tools.logging</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <name>logging</name>
+
+  <parent>
+    <groupId>org.clojure</groupId>
+    <artifactId>pom.contrib</artifactId>
+    <version>0.0.20</version>
+  </parent>
+
+  <developers>
+    <developer>
+      <name>Alex Taggart</name>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:git@github.com:clojure/tools.logging.git</connection>
+    <developerConnection>scm:git:git@github.com:clojure/tools.logging.git</developerConnection>
+    <url>git@github.com:clojure/tools.logging.git</url>
+  </scm>
+
+  <repositories>
+    <!-- if our parent pom were a release (and in central), then this would be unnecessary -->
+    <repository>
+      <id>sonatype-oss-snapshots</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </repository>
+  </repositories>
+
+  <properties>
+    <clojure.version>1.2.0</clojure.version>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-invoker-plugin</artifactId>
+        <version>1.5</version>
+        <configuration>
+          <pomIncludes>
+            <pomInclude>*/pom.xml</pomInclude>
+          </pomIncludes>
+          <streamLogs>true</streamLogs>
+          <goals><goal>clojure:test</goal></goals>
+          <mavenOpts>-Duser.dir=${basedir}</mavenOpts>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>install</goal>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
