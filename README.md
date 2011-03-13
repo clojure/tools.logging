@@ -8,6 +8,17 @@ Logging occurs with the log macro, or the level-specific convenience macros, whi
 
 ## Usage
 
+The following short example should give you what you need to get started:
+
+    (ns example.core
+      (:use [clojure.tools.logging :only (info error)]))
+
+    (defn divide [one two]
+      (try
+        (info "Calculated" (/ one two))
+	(catch Exception ex
+	  (error "There was an error in caculation" ex))))
+
 For those new to using a java logging library, the following is a very basic configuration for log4j. Place it in a file called \"log4j.properties\" and place that file (and the log4j JAR) on the classpath.
 
     log4j.rootLogger=WARN, A1
