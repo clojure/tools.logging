@@ -16,8 +16,8 @@ The following short example should give you what you need to get started:
     (defn divide [one two]
       (try
         (info "Calculated" (/ one two))
-	(catch Exception ex
-	  (error "There was an error in caculation" ex))))
+          (catch Exception ex
+          (error "There was an error in caculation" ex))))
 
 For those new to using a java logging library, the following is a very basic configuration for log4j. Place it in a file called \"log4j.properties\" and place that file (and the log4j JAR) on the classpath.
 
