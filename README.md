@@ -50,11 +50,9 @@ Please note the changelog below.
 0. Clone the repo
 1. Make sure you have maven installed
 2. Run the maven build; run either:
-    1. `mvn package`: This will produce a logging jar file in the `target`
+    1. `mvn install`: This will produce a logging jar file in the `target`
 directory, and run all tests with the most recently-released build
-of Clojure (currently 1.2.0). Or,
-    2. `mvn verify`: This does the same, but also runs the tests with
-other Clojure "profiles" (currently v1.1.0 and v1.1.0 + clojure-contrib). 
+of Clojure (currently 1.2.0).
 
 ## Thanks
 
