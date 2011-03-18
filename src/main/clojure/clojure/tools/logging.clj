@@ -41,17 +41,17 @@
 
 (def ^{:doc
   "The default agent used for performing logging when direct logging is
-  disabled. See log* for details."}
+  disabled. See log* for details." :dynamic true}
   *logging-agent* (agent nil :error-mode :continue))
 
 (def ^{:doc
   "The set of levels that will require using an agent when logging from within a
-  running transaction. Defaults to #{:info :warn}. See log* for details."}
+  running transaction. Defaults to #{:info :warn}. See log* for details." :dynamic true}
   *tx-agent-levels* #{:info :warn})
 
 (def ^{:doc
   "Overrides the default rules for choosing between logging directly or via an
-  agent. Defaults to nil. See log* for details."}
+  agent. Defaults to nil. See log* for details." :dynamic true}
   *force* nil)
 
 (defn log*
@@ -447,6 +447,6 @@
   "An instance satisfying the LogFactory protocol. Used internally when needing
   to obtain an instance satisfying the Log protocol. Defaults to the value
   returned from find-factory. Can be rebound to provide alternate logging
-  implementations"}
+  implementations" :dynamic true}
   *log-factory*
   (find-factory))
