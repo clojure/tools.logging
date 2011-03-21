@@ -1,0 +1,104 @@
+<html>
+  <head>
+    <title>Overview - Logging Tools 0.1.2 API documentation</title>
+    <link href="static/favicon.png" rel="icon" />
+    <link href="static/favicon.png" rel="shortcut icon" />
+    <link media="all" type="text/css" href="static/clojure.css" rel="stylesheet" />
+    <link media="all" type="text/css" href="static/wiki.css" rel="stylesheet" />
+    <link media="all" type="text/css" href="static/internal.css" rel="stylesheet" />
+    <style>.menuWrapper{height: 36px;}</style>
+    <!--[if lte IE 6]>
+    <link rel="stylesheet" href="http://www.wikispaces.com/_/2009051601/s/internal_ie.css" type="text/css" />
+    <![endif]-->
+  </head>
+<!--
+This document was auto-generated from the source by the clojure autodoc system.
+To report errors or ask questions about the overall documentation structure, formatting,
+etc., contact Tom Faulhaber (google mail name: tomfaulhaber).
+For errors in the documentation of a particular namespace, contact the author of that
+namespace.
+-->
+  <body>
+    <div id="AllContentContainer">
+      <div id="Header">
+	<a id="Logo" href="index.html"><img alt="Clojure" height="100" width="100" src="static/clojure-icon.gif" /></a>
+	<h1><a title="page header title" id="page-header" href="index.html">Logging Tools</a></h1>
+      </div>
+      <div id="leftcolumn"><div style="text-align: center;"></div>
+<div class="menu">
+  <div class="WikiCustomNav WikiElement wiki">
+    <span class="toc-header"><span id="project-name">Logging Tools</span> <span id="version">0.1.2</span> API</span><br />
+    <ul>
+      <li><a class="wiki_link" href="index.html">Overview</a></li>
+      <li><a class="wiki_link" href="api-index.html">API Index</a></li>
+    </ul>
+    <span class="toc-header">Namespaces</span>
+    <ul id="left-sidebar-list">
+      <li><a href="logging-api.html" class="wiki_link">logging</a></li>
+    </ul>
+    <div class="BranchTOC">
+      <span class="toc-header">Other Versions</span>
+      <ul id="left-sidebar-branch-list">
+        
+      </ul>
+    </div>
+    <a href="http://clojure.org" class="wiki_link">Clojure Home</a>
+  </div>
+</div>
+</div>
+      <div id="rightcolumn">
+	<div id="Content">
+	  <div class="contentBox"><div class="innerContentBox">
+              <div id="content_view" class="wiki wikiPage">
+                <div id="right-sidebar"><div id="toc">
+  <h1 class="nopad">Table of Contents</h1>
+  <div style="margin-left: 1em;" class="toc-section">
+    <a href="#logging">logging</a>
+    
+    <br />
+  </div>
+</div>
+</div>
+                <div id="content-tag"><h1 id="toc0">API Overview - <span id="header-project">Logging Tools</span> <span id="header-version">0.1.2</span> (<span id="header-status">in development</span>)</h1>
+<br />
+<div id="project-description">The logging library supports an interface to standard Java logging tools from Clojure.
+<p>
+This library is a contributed library to Clojure and can be found at
+<a href="https://github.com/clojure/tools.logging">https://github.com/clojure/tools.logging</a>.
+</p><p>
+Like all of Clojure and its contributed libraries, the logging library is licensed under the 
+<a href="http://opensource.org/licenses/eclipse-1.0.php">Eclipse Public License (EPL)</a>. 
+</p></div>
+<br />
+<div id="namespace-entry">
+  <br />
+  <hr />
+  <h2 id="logging">logging</h2>
+  <span id="author-line">by <span id="author-name">Alex Taggart</span><br /></span>
+  <a href="logging-api.html" id="api-link">Detailed API documentation</a><br />
+  <pre id="namespace-docstr">Logging macros which delegate to a specific logging implementation. At
+runtime a specific implementation is selected from, in order, Apache
+commons-logging, slf4j, log4j, and finally java.util.logging.</pre>
+  
+  
+  
+  Public variables and functions:
+  <span id="var-link"><a href="logging-api.html#clojure.tools.logging/*force*" id="var-tag">*force*</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/*log-factory*" id="var-tag">*log-factory*</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/*logging-agent*" id="var-tag">*logging-agent*</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/*tx-agent-levels*" id="var-tag">*tx-agent-levels*</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/Log" id="var-tag">Log</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/LogFactory" id="var-tag">LogFactory</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/commons-logging" id="var-tag">commons-logging</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/debug" id="var-tag">debug</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/debugf" id="var-tag">debugf</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/enabled?" id="var-tag">enabled?</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/error" id="var-tag">error</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/errorf" id="var-tag">errorf</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/fatal" id="var-tag">fatal</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/fatalf" id="var-tag">fatalf</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/find-factory" id="var-tag">find-factory</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/impl-enabled?" id="var-tag">impl-enabled?</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/impl-get-log" id="var-tag">impl-get-log</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/impl-name" id="var-tag">impl-name</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/impl-write!" id="var-tag">impl-write!</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/info" id="var-tag">info</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/infof" id="var-tag">infof</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/java-util-logging" id="var-tag">java-util-logging</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/log" id="var-tag">log</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/log*" id="var-tag">log*</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/log-capture!" id="var-tag">log-capture!</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/log-stream" id="var-tag">log-stream</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/log-uncapture!" id="var-tag">log-uncapture!</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/log4j-logging" id="var-tag">log4j-logging</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/logf" id="var-tag">logf</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/logp" id="var-tag">logp</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/slf4j-logging" id="var-tag">slf4j-logging</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/spy" id="var-tag">spy</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/trace" id="var-tag">trace</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/tracef" id="var-tag">tracef</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/warn" id="var-tag">warn</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/warnf" id="var-tag">warnf</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/with-logs" id="var-tag">with-logs</a> </span><br />
+  
+</div>
+</div>
+              </div>
+            </div>
+          </div>
+	</div>
+	<div id="foot">
+	  <div style="text-align: center;" id="copyright">No copyright info </div>
+	</div>
+      </div>
+      <div id="DesignedBy">Logo &amp; site design by <a title="Visit Tom Hickey's website." href="http://www.tomhickey.com">Tom Hickey</a>.<br />
+      Clojure auto-documentation system by Tom Faulhaber.</div>
+    </div>
+    <!-- /AllContentContainer -->
+  </body>
+
+</html>
