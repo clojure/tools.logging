@@ -77,7 +77,7 @@
       (fn [_#] (impl-write! log level throwable message)))
     (impl-write! log level throwable message)))
 
-(declare *log-factory*) ; default LogFactory instance for calling impl-get-log
+(declare ^{:dynamic true} *log-factory*) ; default LogFactory instance for calling impl-get-log
 
 (defmacro log
   "Evaluates and logs a message only if the specified level is enabled. See log*
