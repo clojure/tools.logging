@@ -1,10 +1,18 @@
 # Logging
 
-Logging macros which delegate to a specific logging implementation. At runtime a specific implementation is selected from, in order, Apache commons-logging, slf4j, log4j, and finally java.util.logging.  Logging levels are specified by clojure keywords corresponding to the values used in log4j and commons-logging:
+Logging macros which delegate to a specific logging implementation. At runtime a specific implementation is selected from, in order, Apache commons-logging, slf4j, log4j, and finally java.util.logging.
+
+Logging levels are specified by clojure keywords corresponding to the values used in log4j and commons-logging:
 
     :trace, :debug, :info, :warn, :error, :fatal
 
-Logging occurs with the log macro, or the level-specific convenience macros, which write either directly or via an agent.  The log macros will not evaluate their 'message' unless the specific logging level is in effect. Alternately, you can use the spy macro when you have code that needs to be evaluated, and also want to output the code and its result to the log.  Unless otherwise specified, the current namespace (as identified by *ns*) will be used as the log-ns (similar to how the java class name is usually used).  Note: your log configuration should display the name that was passed to the logging implementation, and not perform stack-inspection, otherwise you'll see some ugly and unhelpful text in your logs.  Use the enabled? macro to write conditional code against the logging level (beyond simply whether or not to call log, which is handled automatically).  You can redirect all java writes of System.out and System.err to the log system by calling log-capture!.  To bind *out* and *err* to the log system invoke with-logs.  In both cases a log-ns (e.g., \"com.example.captured\") must be specified in order to namespace the output.
+Logging occurs with the log macro, or the level-specific convenience macros, which write either directly or via an agent.  The log macros will not evaluate their 'message' unless the specific logging level is in effect. Alternately, you can use the spy macro when you have code that needs to be evaluated, and also want to output the code and its result to the log.
+
+Unless otherwise specified, the current namespace (as identified by *ns*) will be used as the log-ns (similar to how the java class name is usually used).  Note: your log configuration should display the name that was passed to the logging implementation, and not perform stack-inspection, otherwise you'll see some ugly and unhelpful text in your logs.
+
+Use the enabled? macro to write conditional code against the logging level (beyond simply whether or not to call log, which is handled automatically).
+
+You can redirect all java writes of System.out and System.err to the log system by calling log-capture!.  To bind *out* and *err* to the log system invoke with-logs.  In both cases a log-ns (e.g., \"com.example.captured\") must be specified in order to namespace the output.
 
 ## Usage
 
@@ -17,7 +25,7 @@ The following short example should give you what you need to get started:
       (try
         (info "Calculated" (/ one two))
         (catch Exception ex
-          (error "There was an error in caculation" ex))))
+          (error ex "There was an error in calculation"))))
 
 For those new to using a java logging library, the following is a very basic configuration for log4j. Place it in a file called \"log4j.properties\" and place that file (and the log4j JAR) on the classpath.
 
