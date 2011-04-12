@@ -2,7 +2,7 @@
   [:use clojure.test]
   [:require [clojure.tools.logging :as log]])
 
-(def *entries* (atom []))
+(def ^{:dynamic true} *entries* (atom []))
 
 (defn test-factory [enabled-set]
   (reify log/LogFactory
