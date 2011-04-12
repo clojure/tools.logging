@@ -116,7 +116,7 @@
     `(let [log# (impl-get-log *log-factory* ~*ns*)]
        (if (impl-enabled? log# ~level)
          (if (instance? Throwable ~x) ; type check only when enabled
-           (log* log# ~level ~x (format ~(first more) ~@(next more)))
+           (log* log# ~level ~x (format ~@more))
            (log* log# ~level (format ~x ~@more)))))))
 
 (defmacro enabled?
