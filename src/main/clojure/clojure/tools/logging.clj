@@ -15,7 +15,9 @@
             runtime a specific implementation is selected from, in order, Apache
             commons-logging, slf4j, log4j, and finally java.util.logging."}
   clojure.tools.logging
-  [:use [clojure.pprint :only [code-dispatch pprint with-pprint-dispatch]]])
+  [:use
+   [clojure.string :only [trim-newline]]
+   [clojure.pprint :only [code-dispatch pprint with-pprint-dispatch]]])
 
 (defprotocol Log
   "The protocol through which macros will interact with an underlying logging
@@ -141,7 +143,7 @@
                       (pprint '~expr)
                       (print "=> ")
                       (pprint a#)))]
-           (.substring s# 0 (dec (count s#))))) ; trim off the trailing newline
+           (trim-newline s#)))
        a#)))
 
 (defn log-stream
