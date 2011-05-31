@@ -1,21 +1,21 @@
 (ns clojure.tools.test-logging
   [:use clojure.test]
-  [:require [clojure.tools.logging :as log]])
+  [:require [clojure.tools.logging :as logger]])
 
 (def ^{:dynamic true} *entries* (atom []))
 
 (defn test-factory [enabled-set]
-  (reify log/LogFactory
+  (reify logger/LoggerFactory
     (impl-name [_] "test factory")
-    (impl-get-log [_ log-ns]
-      (reify log/Log
+    (impl-get-logger [_ log-ns]
+      (reify logger/Logger
         (impl-enabled? [_ level] (contains? enabled-set level))
         (impl-write! [_ lvl ex msg]
           (swap! *entries* conj [(str log-ns) lvl ex msg]))))))
 
 (use-fixtures :once
   (fn [f]
-    (binding [log/*log-factory*
+    (binding [logger/*logger-factory*
               (test-factory #{:trace :debug :info :warn :error :fatal})]
       (f))))
 
@@ -26,7 +26,7 @@
 
 
 (deftest log-msg
-  (log/log :debug "foo")
+  (logger/log :debug "foo")
   (is (= ["clojure.tools.test-logging"
           :debug
           nil
@@ -35,7 +35,7 @@
 
 (deftest log-ex
   (let [e (Exception.)]
-    (log/log :debug e "foo")
+    (logger/log :debug e "foo")
     (is (= ["clojure.tools.test-logging"
             :debug
             e
@@ -44,7 +44,7 @@
 
 (deftest log-custom-ns
   (let [e (Exception.)]
-    (log/log "other.ns" :debug e "foo")
+    (logger/log "other.ns" :debug e "foo")
     (is (= ["other.ns"
             :debug
             e
@@ -60,8 +60,8 @@
                          (compare-and-set! flag false true)
                          (apply so a f args))]
       (dosync
-        (log/log :info "foo")))
-    (await log/*logging-agent*)
+        (logger/log :info "foo")))
+    (await logger/*logging-agent*)
     (is (= ["clojure.tools.test-logging"
             :info
             nil
@@ -76,8 +76,8 @@
                          (compare-and-set! flag false true)
                          (apply so a f args))]
       (dosync
-        (log/log :error "foo")))
-    (await log/*logging-agent*)
+        (logger/log :error "foo")))
+    (await logger/*logging-agent*)
     (is (= ["clojure.tools.test-logging"
             :error
             nil
@@ -91,10 +91,10 @@
     (binding [send-off (fn [a f & args]
                          (compare-and-set! flag false true)
                          (apply so a f args))
-              log/*tx-agent-levels* #{:error}]
+              logger/*tx-agent-levels* #{:error}]
       (dosync
-        (log/log :error "foo")))
-    (await log/*logging-agent*)
+        (logger/log :error "foo")))
+    (await logger/*logging-agent*)
     (is (= ["clojure.tools.test-logging"
             :error
             nil
@@ -108,9 +108,9 @@
     (binding [send-off (fn [a f & args]
                          (compare-and-set! flag false true)
                          (apply so a f args))
-              log/*force* :agent]
-      (log/log :debug "foo"))
-    (await log/*logging-agent*)
+              logger/*force* :agent]
+      (logger/log :debug "foo"))
+    (await logger/*logging-agent*)
     (is (= ["clojure.tools.test-logging"
             :debug
             nil
@@ -124,10 +124,10 @@
     (binding [send-off (fn [a f & args]
                          (compare-and-set! flag false true)
                          (apply so a f args))
-              log/*force* :direct]
+              logger/*force* :direct]
       (dosync
-        (log/log :info "foo")))
-    (await log/*logging-agent*)
+        (logger/log :info "foo")))
+    (await logger/*logging-agent*)
     (is (= ["clojure.tools.test-logging"
             :info
             nil
@@ -139,7 +139,7 @@
 (deftest logp-msg-no-optimize
   (let [a "foo"
         b "bar"]
-    (log/logp :debug a b))
+    (logger/logp :debug a b))
   (is (= ["clojure.tools.test-logging"
           :debug
           nil
@@ -147,7 +147,7 @@
         (peek @*entries*))))
 
 (deftest logp-msg1
-  (log/logp :debug "hello")
+  (logger/logp :debug "hello")
   (is (= ["clojure.tools.test-logging"
           :debug
           nil
@@ -155,7 +155,7 @@
         (peek @*entries*))))
 
 (deftest logp-msg2
-  (log/logp :debug "hello" "world")
+  (logger/logp :debug "hello" "world")
   (is (= ["clojure.tools.test-logging"
           :debug
           nil
@@ -164,7 +164,7 @@
 
 (deftest logp-ex0
   (let [e (Exception.)]
-    (log/logp :debug e)
+    (logger/logp :debug e)
     (is (= ["clojure.tools.test-logging"
             :debug
             nil
@@ -173,7 +173,7 @@
 
 (deftest logp-ex1
   (let [e (Exception.)]
-    (log/logp :debug e "hello")
+    (logger/logp :debug e "hello")
     (is (= ["clojure.tools.test-logging"
             :debug
             e
@@ -182,7 +182,7 @@
 
 (deftest logp-ex2
   (let [e (Exception.)]
-    (log/logp :debug e "hello" "world")
+    (logger/logp :debug e "hello" "world")
     (is (= ["clojure.tools.test-logging"
             :debug
             e
@@ -190,7 +190,7 @@
           (peek @*entries*)))))
 
 (deftest logf-msg1
-  (log/logf :debug "hello")
+  (logger/logf :debug "hello")
   (is (= ["clojure.tools.test-logging"
           :debug
           nil
@@ -198,7 +198,7 @@
         (peek @*entries*))))
 
 (deftest logf-msg3
-  (log/logf :debug "%s %s" "hello" "world")
+  (logger/logf :debug "%s %s" "hello" "world")
   (is (= ["clojure.tools.test-logging"
           :debug
           nil
@@ -206,11 +206,11 @@
         (peek @*entries*))))
 
 (deftest logf-ex0
-  (is (thrown? Exception (log/logf :debug (Exception.)))))
+  (is (thrown? Exception (logger/logf :debug (Exception.)))))
 
 (deftest logf-ex3
   (let [e (Exception.)]
-    (log/logf :debug e "%s %s" "hello" "world")
+    (logger/logf :debug e "%s %s" "hello" "world")
     (is (= ["clojure.tools.test-logging"
             :debug
             e
@@ -218,14 +218,14 @@
           (peek @*entries*)))))
 
 (deftest enabled-true
-  (is (= true (log/enabled? :fatal))))
+  (is (= true (logger/enabled? :fatal))))
 
 (deftest enabled-false
-  (binding [log/*log-factory* (test-factory #{})]
-    (is (= false (log/enabled? :fatal)))))
+  (binding [logger/*logger-factory* (test-factory #{})]
+    (is (= false (logger/enabled? :fatal)))))
 
 (deftest spy-default
-  (log/spy (+ 4 5))
+  (logger/spy (+ 4 5))
   (is (= ["clojure.tools.test-logging"
           :debug
           nil
@@ -233,7 +233,7 @@
         (peek @*entries*))))
 
 (deftest spy-level
-  (log/spy :fatal (+ 4 5))
+  (logger/spy :fatal (+ 4 5))
   (is (= ["clojure.tools.test-logging"
           :fatal
           nil
@@ -242,7 +242,7 @@
 
 (comment
 (deftest capturing
-  (log/log-capture! "foobar")
+  (logger/log-capture! "foobar")
   (.println System/out "hello world")
   (is (= ["foobar"
           :info
@@ -255,10 +255,10 @@
           nil
           "oh noes"]
         (peek @*entries*)))
-  (log/log-uncapture!))
+  (logger/log-uncapture!))
 
 (deftest capturing-level
-  (log/log-capture! "foobar" :error :fatal)
+  (logger/log-capture! "foobar" :error :fatal)
   (.println System/out "hello world")
   (is (= ["foobar"
           :error
@@ -271,10 +271,10 @@
           nil
           "oh noes"]
         (peek @*entries*)))
-  (log/log-uncapture!))
+  (logger/log-uncapture!))
 
 (deftest with-logs-default
-  (log/with-logs "foobar" (println "hello world"))
+  (logger/with-logs "foobar" (println "hello world"))
   (is (= ["foobar"
           :info
           nil
@@ -282,7 +282,7 @@
         (peek @*entries*))))
 
 (deftest with-logs-level
-  (log/with-logs ["foobar" :fatal :fatal] (println "hello world"))
+  (logger/with-logs ["foobar" :fatal :fatal] (println "hello world"))
   (is (= ["foobar"
           :fatal
           nil
@@ -299,12 +299,12 @@
       (do
         (f "hello" "world")
         (peek @*entries*)))
-    log/trace :trace
-    log/debug :debug
-    log/info :info
-    log/warn :warn
-    log/error :error
-    log/fatal :fatal))
+    logger/trace :trace
+    logger/debug :debug
+    logger/info :info
+    logger/warn :warn
+    logger/error :error
+    logger/fatal :fatal))
 
 (deftest println-style-ex
   (let [e (Exception.)]
@@ -316,12 +316,12 @@
         (do
           (f e "hello" "world")
           (peek @*entries*)))
-      log/trace :trace
-      log/debug :debug
-      log/info :info
-      log/warn :warn
-      log/error :error
-      log/fatal :fatal)))
+      logger/trace :trace
+      logger/debug :debug
+      logger/info :info
+      logger/warn :warn
+      logger/error :error
+      logger/fatal :fatal)))
 
 (deftest format-style
   (are [f kw]
@@ -332,12 +332,12 @@
       (do
         (f "%s %s" "hello" "world")
         (peek @*entries*)))
-    log/tracef :trace
-    log/debugf :debug
-    log/infof :info
-    log/warnf :warn
-    log/errorf :error
-    log/fatalf :fatal))
+    logger/tracef :trace
+    logger/debugf :debug
+    logger/infof :info
+    logger/warnf :warn
+    logger/errorf :error
+    logger/fatalf :fatal))
 
 (deftest format-style-ex
   (let [e (Exception.)]
@@ -349,9 +349,9 @@
         (do
           (f e "%s %s" "hello" "world")
           (peek @*entries*)))
-      log/tracef :trace
-      log/debugf :debug
-      log/infof :info
-      log/warnf :warn
-      log/errorf :error
-      log/fatalf :fatal)))
+      logger/tracef :trace
+      logger/debugf :debug
+      logger/infof :info
+      logger/warnf :warn
+      logger/errorf :error
+      logger/fatalf :fatal)))
