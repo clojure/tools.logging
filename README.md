@@ -8,7 +8,7 @@ Logging levels are specified by clojure keywords corresponding to the values use
 
 Logging occurs with the log macro, or the level-specific convenience macros, which write either directly or via an agent.  The log macros will not evaluate their 'message' unless the specific logging level is in effect. Alternately, you can use the spy macro when you have code that needs to be evaluated, and also want to output the code and its result to the log.
 
-Unless otherwise specified, the current namespace (as identified by *ns*) will be used as the log-ns (similar to how the java class name is usually used).  Note: your log configuration should display the name that was passed to the logging implementation, and not perform stack-inspection, otherwise you'll see some ugly and unhelpful text in your logs.
+Unless otherwise specified, the current namespace (as identified by *ns*) will be used as the log-ns (similar to how the java class name is usually used).  Note: your logger configuration should display the name that was passed to the logging implementation, and not perform stack-inspection, otherwise you'll see some ugly and unhelpful text in your logs.
 
 Use the enabled? macro to write conditional code against the logging level (beyond simply whether or not to call log, which is handled automatically).
 
