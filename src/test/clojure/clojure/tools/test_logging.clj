@@ -136,6 +136,15 @@
     (is (false? @flag))))
 )
 
+(deftest logp-msg-no-optimize
+  (let [a "foo"
+        b "bar"]
+    (log/logp :debug a b))
+  (is (= ["clojure.tools.test-logging"
+          :debug
+          nil
+          "foo bar"]
+        (peek @*entries*))))
 
 (deftest logp-msg1
   (log/logp :debug "hello")

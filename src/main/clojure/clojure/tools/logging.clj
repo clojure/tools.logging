@@ -106,7 +106,7 @@
        (if (impl-enabled? log# ~level)
          (if (instance? Throwable ~x) ; type check only when enabled
            (log* log# ~level ~x (print-str ~@more))
-           (log* log# ~level (print-str ~x ~@more)))))))
+           (log* log# ~level nil (print-str ~x ~@more)))))))
 
 (defmacro logf
   "Logs a message using a format string and args. Can optionally take a
