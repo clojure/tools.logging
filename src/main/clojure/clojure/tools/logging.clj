@@ -26,7 +26,7 @@
   (impl-enabled? [log level]
     "Implementation-specific check if a particular level is enabled. End-users
     should not need to call this.")
-  (impl-write! [log level throwable message]
+  (impl-write! [log level throwable marker message]
     "Implementation-specific write of a log message. End-users should not need
     to call this."))
 
@@ -69,15 +69,15 @@
 
   One can override the above by setting *force* to :direct or :agent; all
   subsequent writes will be direct or via an agent, respectively."
-  [log level throwable message]
+  [log level throwable marker message]
   (if (cond
         (nil? *force*) (and (clojure.lang.LockingTransaction/isRunning)
                          (*tx-agent-levels* level))
         (= *force* :agent) true
         (= *force* :direct) false)
     (send-off *logging-agent*
-      (fn [_#] (impl-write! log level throwable message)))
-    (impl-write! log level throwable message)))
+      (fn [_#] (impl-write! log level throwable marker message)))
+    (impl-write! log level throwable marker message)))
 
 (declare ^{:dynamic true} *log-factory*) ; default LogFactory instance for calling impl-get-log
 
@@ -93,7 +93,21 @@
   ([log-factory log-ns level throwable message]
     `(let [log# (impl-get-log ~log-factory ~log-ns)]
        (if (impl-enabled? log# ~level)
-         (log* log# ~level ~throwable ~message)))))
+         (log* log# ~level ~throwable nil ~message)))))
+
+(defmacro logm
+  "Evaluates and logs a message with a marker only if the specified level is enabled. See log*
+  for more details."
+  ([level marker message]
+    `(logm ~level ~marker nil ~message))
+  ([level marker throwable message]
+    `(logm ~*ns* ~level ~marker ~throwable ~message))
+  ([log-ns level marker throwable message]
+    `(logm *log-factory* ~log-ns ~level ~marker ~throwable ~message))
+  ([log-factory log-ns level marker throwable message]
+    `(let [log# (impl-get-log ~log-factory ~log-ns)]
+       (if (impl-enabled? log# ~level)
+         (log* log# ~level ~throwable ~marker ~message)))))
 
 (defmacro logp
   "Logs a message using print style args. Can optionally take a throwable as its
@@ -105,8 +119,8 @@
     `(let [log# (impl-get-log *log-factory* ~*ns*)]
        (if (impl-enabled? log# ~level)
          (if (instance? Throwable ~x) ; type check only when enabled
-           (log* log# ~level ~x (print-str ~@more))
-           (log* log# ~level nil (print-str ~x ~@more)))))))
+           (log* log# ~level ~x nil (print-str ~@more))
+           (log* log# ~level nil nil (print-str ~x ~@more)))))))
 
 (defmacro logf
   "Logs a message using a format string and args. Can optionally take a
@@ -118,8 +132,8 @@
     `(let [log# (impl-get-log *log-factory* ~*ns*)]
        (if (impl-enabled? log# ~level)
          (if (instance? Throwable ~x) ; type check only when enabled
-           (log* log# ~level ~x (format ~@more))
-           (log* log# ~level (format ~x ~@more)))))))
+           (log* log# ~level ~x nil (format ~@more))
+           (log* log# ~level nil nil (format ~x ~@more)))))))
 
 (defmacro enabled?
   "Returns true if the specific logging level is enabled.  Use of this function
@@ -252,6 +266,42 @@
   [& args]
   `(logp :fatal ~@args))
 
+(defmacro tracem
+  "Trace level logging taking a Marker as the first argument."
+  {:arglists '([marker message] [marker throwable message])}
+  [& args]
+  `(logm :trace ~@args))
+
+(defmacro debugm
+  "Debug level logging taking a Marker as the first argument."
+  {:arglists '([marker message] [marker throwable message])}
+  [& args]
+  `(logm :debug ~@args))
+
+(defmacro infom
+  "Info level logging taking a Marker as the first argument."
+  {:arglists '([marker message] [marker throwable message])}
+  [& args]
+  `(logm :info ~@args))
+
+(defmacro warnm
+  "Warn level logging taking a Marker as the first argument."
+  {:arglists '([marker message] [marker throwable message])}
+  [& args]
+  `(logm :warn ~@args))
+
+(defmacro errorm
+  "Error level logging taking a Marker as the first argument."
+  {:arglists '([marker message] [marker throwable message])}
+  [& args]
+  `(logm :error ~@args))
+
+(defmacro fatalm
+  "Fatal level logging taking a Marker as the first argument."
+  {:arglists '([marker message] [marker throwable message])}
+  [& args]
+  `(logm :fatal ~@args))
+
 (defmacro tracef
   "Trace level logging using format."
   {:arglists '([fmt & fmt-args] [throwable fmt & fmt-args])}
@@ -310,7 +360,7 @@
                :error (.isErrorEnabled log#)
                :fatal (.isFatalEnabled log#)
                (throw (IllegalArgumentException. (str level#)))))
-           (impl-write! [log# level# e# msg#]
+           (impl-write! [log# level# e# marker# msg#]
              (condp = level#
                :trace (.trace log# msg# e#)
                :debug (.debug log# msg# e#)
@@ -345,15 +395,15 @@
               :error (.isErrorEnabled log#)
               :fatal (.isErrorEnabled log#)
               (throw (IllegalArgumentException. (str level#)))))
-          (impl-write! [^org.slf4j.Logger log# level# ^Throwable e# msg#]
+          (impl-write! [^org.slf4j.Logger log# level# ^Throwable e# marker# msg#]
             (let [^String msg# (str msg#)]
               (condp = level#
-                :trace (.trace log# msg# e#)
-                :debug (.debug log# msg# e#)
-                :info  (.info  log# msg# e#)
-                :warn  (.warn  log# msg# e#)
-                :error (.error log# msg# e#)
-                :fatal (.error log# msg# e#)
+                :trace (.trace log# msg# marker# e#)
+                :debug (.debug log# msg# marker# e#)
+                :info  (.info  log# msg# marker# e#)
+                :warn  (.warn  log# msg# marker# e#)
+                :error (.error log# msg# marker# e#)
+                :fatal (.error log# msg# marker# e#)
                 (throw (IllegalArgumentException. (str level#)))))))
         (reify LogFactory
           (impl-name [_#]
@@ -382,7 +432,7 @@
                (or
                  (levels# level#)
                  (throw (IllegalArgumentException. (str level#))))))
-           (impl-write! [log# level# e# msg#]
+           (impl-write! [log# level# e# marker# msg#]
              (let [level# (or
                             (levels# level#)
                             (throw (IllegalArgumentException. (str level#))))]
@@ -416,7 +466,7 @@
                (or
                  (levels# level#)
                  (throw (IllegalArgumentException. (str level#))))))
-           (impl-write! [log# level# ^Throwable e# msg#]
+           (impl-write! [log# level# ^Throwable e# marker# msg#]
              (let [^java.util.logging.Level level#
                    (or
                      (levels# level#)

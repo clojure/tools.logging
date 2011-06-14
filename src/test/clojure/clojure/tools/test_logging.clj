@@ -1,6 +1,7 @@
 (ns clojure.tools.test-logging
   [:use clojure.test]
-  [:require [clojure.tools.logging :as log]])
+  [:require [clojure.tools.logging :as log]]
+  [:import org.slf4j.MarkerFactory])
 
 (def ^{:dynamic true} *entries* (atom []))
 
@@ -10,8 +11,8 @@
     (impl-get-log [_ log-ns]
       (reify log/Log
         (impl-enabled? [_ level] (contains? enabled-set level))
-        (impl-write! [_ lvl ex msg]
-          (swap! *entries* conj [(str log-ns) lvl ex msg]))))))
+        (impl-write! [_ lvl ex m msg]
+          (swap! *entries* conj [(str log-ns) lvl ex m msg]))))))
 
 (use-fixtures :once
   (fn [f]
@@ -30,6 +31,7 @@
   (is (= ["clojure.tools.test-logging"
           :debug
           nil
+          nil
           "foo"]
         (peek @*entries*))))
 
@@ -39,6 +41,7 @@
     (is (= ["clojure.tools.test-logging"
             :debug
             e
+            nil
             "foo"]
           (peek @*entries*)))))
 
@@ -48,6 +51,7 @@
     (is (= ["other.ns"
             :debug
             e
+            nil
             "foo"]
           (peek @*entries*)))))
 
@@ -65,6 +69,7 @@
     (is (= ["clojure.tools.test-logging"
             :info
             nil
+            nil
             "foo"]
           (peek @*entries*)))
     (is (true? @flag))))
@@ -80,6 +85,7 @@
     (await log/*logging-agent*)
     (is (= ["clojure.tools.test-logging"
             :error
+            nil
             nil
             "foo"]
           (peek @*entries*)))
@@ -98,6 +104,7 @@
     (is (= ["clojure.tools.test-logging"
             :error
             nil
+            nil
             "foo"]
           (peek @*entries*)))
     (is (true? @flag))))
@@ -113,6 +120,7 @@
     (await log/*logging-agent*)
     (is (= ["clojure.tools.test-logging"
             :debug
+            nil
             nil
             "foo"]
           (peek @*entries*)))
@@ -131,6 +139,7 @@
     (is (= ["clojure.tools.test-logging"
             :info
             nil
+            nil
             "foo"]
           (peek @*entries*)))
     (is (false? @flag))))
@@ -143,6 +152,7 @@
   (is (= ["clojure.tools.test-logging"
           :debug
           nil
+          nil
           "foo bar"]
         (peek @*entries*))))
 
@@ -151,6 +161,7 @@
   (is (= ["clojure.tools.test-logging"
           :debug
           nil
+          nil
           "hello"]
         (peek @*entries*))))
 
@@ -158,6 +169,7 @@
   (log/logp :debug "hello" "world")
   (is (= ["clojure.tools.test-logging"
           :debug
+          nil
           nil
           "hello world"]
         (peek @*entries*))))
@@ -168,6 +180,7 @@
     (is (= ["clojure.tools.test-logging"
             :debug
             nil
+            nil
             (print-str e)]
           (peek @*entries*)))))
 
@@ -177,6 +190,7 @@
     (is (= ["clojure.tools.test-logging"
             :debug
             e
+            nil
             "hello"]
           (peek @*entries*)))))
 
@@ -186,13 +200,36 @@
     (is (= ["clojure.tools.test-logging"
             :debug
             e
+            nil
             "hello world"]
+          (peek @*entries*)))))
+
+(deftest logm-msg1
+  (let [m (MarkerFactory/getMarker "a")]
+    (log/logm :debug m "hello")
+    (is (= ["clojure.tools.test-logging"
+            :debug
+            nil
+            m
+            "hello"]
+        (peek @*entries*)))))
+
+(deftest logm-with-ex
+  (let [m (MarkerFactory/getMarker "a")
+        e (Exception.)]
+    (log/logm :debug m e "hello")
+    (is (= ["clojure.tools.test-logging"
+            :debug
+            e
+            m
+            "hello"]
           (peek @*entries*)))))
 
 (deftest logf-msg1
   (log/logf :debug "hello")
   (is (= ["clojure.tools.test-logging"
           :debug
+          nil
           nil
           "hello"]
         (peek @*entries*))))
@@ -201,6 +238,7 @@
   (log/logf :debug "%s %s" "hello" "world")
   (is (= ["clojure.tools.test-logging"
           :debug
+          nil
           nil
           "hello world"]
         (peek @*entries*))))
@@ -214,6 +252,7 @@
     (is (= ["clojure.tools.test-logging"
             :debug
             e
+            nil
             "hello world"]
           (peek @*entries*)))))
 
@@ -229,6 +268,7 @@
   (is (= ["clojure.tools.test-logging"
           :debug
           nil
+          nil
           (format "(+ 4 5)%n=> 9")]
         (peek @*entries*))))
 
@@ -236,6 +276,7 @@
   (log/spy :fatal (+ 4 5))
   (is (= ["clojure.tools.test-logging"
           :fatal
+          nil
           nil
           (format "(+ 4 5)%n=> 9")]
         (peek @*entries*))))
@@ -247,11 +288,13 @@
   (is (= ["foobar"
           :info
           nil
+          nil
           "hello world"]
         (peek @*entries*)))
   (.println System/err "oh noes")
   (is (= ["foobar"
           :error
+          nil
           nil
           "oh noes"]
         (peek @*entries*)))
@@ -263,11 +306,13 @@
   (is (= ["foobar"
           :error
           nil
+          nil
           "hello world"]
         (peek @*entries*)))
   (.println System/err "oh noes")
   (is (= ["foobar"
           :fatal
+          nil
           nil
           "oh noes"]
         (peek @*entries*)))
@@ -278,6 +323,7 @@
   (is (= ["foobar"
           :info
           nil
+          nil
           "hello world"]
         (peek @*entries*))))
 
@@ -285,6 +331,7 @@
   (log/with-logs ["foobar" :fatal :fatal] (println "hello world"))
   (is (= ["foobar"
           :fatal
+          nil
           nil
           "hello world"]
         (peek @*entries*))))
@@ -294,6 +341,7 @@
   (are [f kw]
     (= ["clojure.tools.test-logging"
         kw
+        nil
         nil
         "hello world"]
       (do
@@ -312,6 +360,7 @@
       (= ["clojure.tools.test-logging"
           kw
           e
+          nil
           "hello world"]
         (do
           (f e "hello" "world")
@@ -327,6 +376,7 @@
   (are [f kw]
     (= ["clojure.tools.test-logging"
         kw
+        nil
         nil
         "hello world"]
       (do
@@ -345,6 +395,7 @@
       (= ["clojure.tools.test-logging"
           kw
           e
+          nil
           "hello world"]
         (do
           (f e "%s %s" "hello" "world")
