@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Overview - Logging Tools 0.1.2 API documentation</title>
+    <title>logging - Logging Tools 0.1.3 API documentation</title>
     <link href="static/favicon.png" rel="icon" />
     <link href="static/favicon.png" rel="shortcut icon" />
     <link media="all" type="text/css" href="static/clojure.css" rel="stylesheet" />
@@ -27,21 +27,13 @@ namespace.
       <div id="leftcolumn"><div style="text-align: center;"></div>
 <div class="menu">
   <div class="WikiCustomNav WikiElement wiki">
-    <span class="toc-header"><span id="project-name">Logging Tools</span> <span id="version">0.1.2</span> API</span><br />
+    <span class="toc-header"><span id="project-name">Logging Tools</span> <span id="version">0.1.3</span> API</span><br />
     <ul>
       <li><a class="wiki_link" href="index.html">Overview</a></li>
       <li><a class="wiki_link" href="api-index.html">API Index</a></li>
     </ul>
-    <span class="toc-header">Namespaces</span>
-    <ul id="left-sidebar-list">
-      <li><a href="logging-api.html" class="wiki_link">logging</a></li>
-    </ul>
-    <div class="BranchTOC">
-      <span class="toc-header">Other Versions</span>
-      <ul id="left-sidebar-branch-list">
-        
-      </ul>
-    </div>
+    
+    
     <a href="http://clojure.org" class="wiki_link">Clojure Home</a>
   </div>
 </div>
@@ -53,39 +45,573 @@ namespace.
                 <div id="right-sidebar"><div id="toc">
   <h1 class="nopad">Table of Contents</h1>
   <div style="margin-left: 1em;" class="toc-section">
-    <a href="#logging">logging</a>
-    
+    <a href="#toc0">Overview</a>
+    <div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/*force*">*force*</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/*log-factory*">*log-factory*</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/*logging-agent*">*logging-agent*</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/*tx-agent-levels*">*tx-agent-levels*</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/Log">Log</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/LogFactory">LogFactory</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/commons-logging">commons-logging</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/debug">debug</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/debugf">debugf</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/enabled?">enabled?</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/error">error</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/errorf">errorf</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/fatal">fatal</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/fatalf">fatalf</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/find-factory">find-factory</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/impl-enabled?">impl-enabled?</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/impl-get-log">impl-get-log</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/impl-name">impl-name</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/impl-write!">impl-write!</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/info">info</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/infof">infof</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/java-util-logging">java-util-logging</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/log">log</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/log*">log*</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/log-capture!">log-capture!</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/log-stream">log-stream</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/log-uncapture!">log-uncapture!</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/log4j-logging">log4j-logging</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/logf">logf</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/logp">logp</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/slf4j-logging">slf4j-logging</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/spy">spy</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/trace">trace</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/tracef">tracef</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/warn">warn</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/warnf">warnf</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clojure.tools.logging/with-logs">with-logs</a>
+    </div>
     <br />
   </div>
 </div>
 </div>
-                <div id="content-tag"><h1 id="toc0">API Overview - <span id="header-project">Logging Tools</span> <span id="header-version">0.1.2</span> (<span id="header-status">in development</span>)</h1>
-<br />
-<div id="project-description">The logging library supports an interface to standard Java logging tools from Clojure.
-<p>
-This library is a contributed library to Clojure and can be found at
-<a href="https://github.com/clojure/tools.logging">https://github.com/clojure/tools.logging</a>.
-</p><p>
-Like all of Clojure and its contributed libraries, the logging library is licensed under the 
-<a href="http://opensource.org/licenses/eclipse-1.0.php">Eclipse Public License (EPL)</a>. 
-</p></div>
-<br />
-<div id="namespace-entry">
-  <br />
-  <hr />
-  <h2 id="logging">logging</h2>
-  <span id="author-line">by <span id="author-name">Alex Taggart</span><br /></span>
-  <a href="logging-api.html" id="api-link">Detailed API documentation</a><br />
-  <pre id="namespace-docstr">Logging macros which delegate to a specific logging implementation. At
+                <div id="content-tag"><h1 id="overview">API for <span id="namespace-name">logging</span>
+  - <span id="header-project">Logging Tools</span> <span id="header-version">0.1.3</span> (<span id="header-status">in development</span>)
+  </h1>
+<span id="author-line">by <span id="author-name">Alex Taggart</span><br /></span>
+<br />Full namespace name: <span id="long-name">clojure.tools.logging</span>
+<p></p>
+<h2>Overview</h2>
+<pre id="namespace-docstr">Logging macros which delegate to a specific logging implementation. At
 runtime a specific implementation is selected from, in order, Apache
 commons-logging, slf4j, log4j, and finally java.util.logging.</pre>
+
+
+<br />
+<h2>Public Variables and Functions</h2>
+<div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/*force*">*force*</h2>
+  <span id="var-type">var</span><br />
+  <pre id="var-usage"></pre>
+  <pre id="var-docstr">Overrides the default rules for choosing between logging directly or via an
+agent. Defaults to nil. See log* for details.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L54" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/*log-factory*">*log-factory*</h2>
+  <span id="var-type">var</span><br />
+  <pre id="var-usage"></pre>
+  <pre id="var-docstr">An instance satisfying the LogFactory protocol. Used internally when needing
+to obtain an instance satisfying the Log protocol. Defaults to the value
+returned from find-factory. Can be rebound to provide alternate logging
+implementations</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L448" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/*logging-agent*">*logging-agent*</h2>
+  <span id="var-type">var</span><br />
+  <pre id="var-usage"></pre>
+  <pre id="var-docstr">The default agent used for performing logging when direct logging is
+disabled. See log* for details.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L44" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/*tx-agent-levels*">*tx-agent-levels*</h2>
+  <span id="var-type">var</span><br />
+  <pre id="var-usage"></pre>
+  <pre id="var-docstr">The set of levels that will require using an agent when logging from within a
+running transaction. Defaults to #{:info :warn}. See log* for details.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L49" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/Log">Log</h2>
+  <span id="var-type">var</span><br />
+  <pre id="var-usage"></pre>
+  <pre id="var-docstr">The protocol through which macros will interact with an underlying logging
+implementation.  Implementations should at least support the six specified
+logging levels if they wish to benefit from the level-specific macros.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L22" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/LogFactory">LogFactory</h2>
+  <span id="var-type">var</span><br />
+  <pre id="var-usage"></pre>
+  <pre id="var-docstr">The protocol through which macros will obtain an instance satisfying Log as
+well as providing information about the particular implementation being used.
+Implementations should be bound to *log-factory* in order to be picked up by
+this library.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L33" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/commons-logging">commons-logging</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (commons-logging)
+</pre>
+  <pre id="var-docstr">Returns a commons-logging-based implementation of the LogFactory protocol, or
+nil if not available. End-users should not need to call this.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L294" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/debug">debug</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (debug message &amp; more)
+       (debug throwable message &amp; more)
+</pre>
+  <pre id="var-docstr">Debug level logging using print-style args.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L225" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/debugf">debugf</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (debugf fmt &amp; fmt-args)
+       (debugf throwable fmt &amp; fmt-args)
+</pre>
+  <pre id="var-docstr">Debug level logging using format.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L261" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/enabled?">enabled?</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (enabled? level)
+       (enabled? level log-ns)
+</pre>
+  <pre id="var-docstr">Returns true if the specific logging level is enabled.  Use of this function
+should only be necessary if one needs to execute alternate code paths beyond
+whether the log should be written to.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L124" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/error">error</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (error message &amp; more)
+       (error throwable message &amp; more)
+</pre>
+  <pre id="var-docstr">Error level logging using print-style args.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L243" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/errorf">errorf</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (errorf fmt &amp; fmt-args)
+       (errorf throwable fmt &amp; fmt-args)
+</pre>
+  <pre id="var-docstr">Error level logging using format.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L279" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/fatal">fatal</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (fatal message &amp; more)
+       (fatal throwable message &amp; more)
+</pre>
+  <pre id="var-docstr">Fatal level logging using print-style args.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L249" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/fatalf">fatalf</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (fatalf fmt &amp; fmt-args)
+       (fatalf throwable fmt &amp; fmt-args)
+</pre>
+  <pre id="var-docstr">Fatal level logging using format.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L285" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/find-factory">find-factory</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (find-factory)
+</pre>
+  <pre id="var-docstr">Returns the first LogFactory found that is available from commons-logging,
+slf4j-logging, log4j-logging, or java-util-logging. End-users should not need
+to call this.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L435" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/impl-enabled?">impl-enabled?</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (impl-enabled? log level)
+</pre>
+  <pre id="var-docstr">Implementation-specific check if a particular level is enabled. End-users
+should not need to call this.</pre>
   
   
   
-  Public variables and functions:
-  <span id="var-link"><a href="logging-api.html#clojure.tools.logging/*force*" id="var-tag">*force*</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/*log-factory*" id="var-tag">*log-factory*</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/*logging-agent*" id="var-tag">*logging-agent*</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/*tx-agent-levels*" id="var-tag">*tx-agent-levels*</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/Log" id="var-tag">Log</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/LogFactory" id="var-tag">LogFactory</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/commons-logging" id="var-tag">commons-logging</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/debug" id="var-tag">debug</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/debugf" id="var-tag">debugf</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/enabled?" id="var-tag">enabled?</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/error" id="var-tag">error</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/errorf" id="var-tag">errorf</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/fatal" id="var-tag">fatal</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/fatalf" id="var-tag">fatalf</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/find-factory" id="var-tag">find-factory</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/impl-enabled?" id="var-tag">impl-enabled?</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/impl-get-log" id="var-tag">impl-get-log</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/impl-name" id="var-tag">impl-name</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/impl-write!" id="var-tag">impl-write!</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/info" id="var-tag">info</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/infof" id="var-tag">infof</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/java-util-logging" id="var-tag">java-util-logging</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/log" id="var-tag">log</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/log*" id="var-tag">log*</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/log-capture!" id="var-tag">log-capture!</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/log-stream" id="var-tag">log-stream</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/log-uncapture!" id="var-tag">log-uncapture!</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/log4j-logging" id="var-tag">log4j-logging</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/logf" id="var-tag">logf</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/logp" id="var-tag">logp</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/slf4j-logging" id="var-tag">slf4j-logging</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/spy" id="var-tag">spy</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/trace" id="var-tag">trace</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/tracef" id="var-tag">tracef</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/warn" id="var-tag">warn</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/warnf" id="var-tag">warnf</a> </span><span id="var-link"><a href="logging-api.html#clojure.tools.logging/with-logs" id="var-tag">with-logs</a> </span><br />
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/impl-get-log">impl-get-log</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (impl-get-log factory log-ns)
+</pre>
+  <pre id="var-docstr">Returns an implementation-specific Log by namespace. End-users should not
+need to call this.</pre>
   
+  
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/impl-name">impl-name</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (impl-name factory)
+</pre>
+  <pre id="var-docstr">Returns some text identifying the underlying implementation.</pre>
+  
+  
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/impl-write!">impl-write!</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (impl-write! log level throwable message)
+</pre>
+  <pre id="var-docstr">Implementation-specific write of a log message. End-users should not need
+to call this.</pre>
+  
+  
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/info">info</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (info message &amp; more)
+       (info throwable message &amp; more)
+</pre>
+  <pre id="var-docstr">Info level logging using print-style args.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L231" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/infof">infof</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (infof fmt &amp; fmt-args)
+       (infof throwable fmt &amp; fmt-args)
+</pre>
+  <pre id="var-docstr">Info level logging using format.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L267" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/java-util-logging">java-util-logging</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (java-util-logging)
+</pre>
+  <pre id="var-docstr">Returns a java.util.logging-based implementation of the LogFactory protocol,
+or nil if not available. End-users should not need to call this.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L399" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/log">log</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (log level message)
+       (log level throwable message)
+       (log log-ns level throwable message)
+       (log log-factory log-ns level throwable message)
+</pre>
+  <pre id="var-docstr">Evaluates and logs a message only if the specified level is enabled. See log*
+for more details.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L84" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/log*">log*</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (log* log level throwable message)
+</pre>
+  <pre id="var-docstr">Attempts to log a message, either directly or via an agent; does not check if
+the level is enabled.
+
+For performance reasons, an agent will only be used when invoked within a
+running transaction, and only for logging levels specified by
+*tx-agent-levels*. This allows those entries to only be written once the
+transaction commits, and are discarded if it is retried or aborted.  As
+corollary, other levels (e.g., :debug, :error) will be written even from
+failed transactions though at the cost of repeat messages during retries.
+
+One can override the above by setting *force* to :direct or :agent; all
+subsequent writes will be direct or via an agent, respectively.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L59" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/log-capture!">log-capture!</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (log-capture! log-ns)
+       (log-capture! log-ns out-level err-level)
+</pre>
+  <pre id="var-docstr">Captures System.out and System.err, piping all writes of those streams to
+the log. If unspecified, levels default to :info and :error, respectively.
+The specified log-ns value will be used to namespace all log entries.
+
+Note: use with-logs to redirect output of *out* or *err*.
+
+Warning: if the logging implementation is configured to output to System.out
+(as is the default with java.util.logging) then using this function will
+result in StackOverflowException when writing to the log.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L167" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/log-stream">log-stream</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (log-stream level log-ns)
+</pre>
+  <pre id="var-docstr">Creates a PrintStream that will output to the log at the specified level.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L149" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/log-uncapture!">log-uncapture!</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (log-uncapture!)
+</pre>
+  <pre id="var-docstr">Restores System.out and System.err to their original values.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L187" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/log4j-logging">log4j-logging</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (log4j-logging)
+</pre>
+  <pre id="var-docstr">Returns a log4j-based implementation of the LogFactory protocol, or nil if
+not available. End-users should not need to call this.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L365" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/logf">logf</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (logf level fmt &amp; fmt-args)
+       (logf level throwable fmt &amp; fmt-args)
+</pre>
+  <pre id="var-docstr">Logs a message using a format string and args. Can optionally take a
+throwable as its second arg. See level-specific macros, e.g., debugf.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L111" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/logp">logp</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (logp level message &amp; more)
+       (logp level throwable message &amp; more)
+</pre>
+  <pre id="var-docstr">Logs a message using print style args. Can optionally take a throwable as its
+second arg. See level-specific macros, e.g., debug.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L98" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/slf4j-logging">slf4j-logging</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (slf4j-logging)
+</pre>
+  <pre id="var-docstr">Returns a SLF4J-based implementation of the LogFactory protocol, or nil if
+not available. End-users should not need to call this.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L329" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/spy">spy</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (spy expr)
+       (spy level expr)
+</pre>
+  <pre id="var-docstr">Evaluates expr and writes the form and its result to the log. Returns the
+result of expr. Defaults to debug log level.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L133" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/trace">trace</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (trace message &amp; more)
+       (trace throwable message &amp; more)
+</pre>
+  <pre id="var-docstr">Trace level logging using print-style args.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L219" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/tracef">tracef</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (tracef fmt &amp; fmt-args)
+       (tracef throwable fmt &amp; fmt-args)
+</pre>
+  <pre id="var-docstr">Trace level logging using format.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L255" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/warn">warn</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (warn message &amp; more)
+       (warn throwable message &amp; more)
+</pre>
+  <pre id="var-docstr">Warn level logging using print-style args.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L237" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/warnf">warnf</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (warnf fmt &amp; fmt-args)
+       (warnf throwable fmt &amp; fmt-args)
+</pre>
+  <pre id="var-docstr">Warn level logging using format.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L273" id="var-source">Source</a>
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clojure.tools.logging/with-logs">with-logs</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (with-logs log-ns &amp; body)
+       (with-logs [log-ns out-level err-level] &amp; body)
+</pre>
+  <pre id="var-docstr">Evaluates exprs in a context in which *out* and *err* write to the log. The
+specified log-ns value will be used to namespace all log entries.
+
+By default *out* and *err* write to :info and :error, respectively.</pre>
+  
+  
+  <a href="https://github.com/clojure/tools.logging/blob/687c1833c59ad1204c2a41cf0ed1f53be4a0fa8d/src/main/clojure/clojure/tools/logging.clj#L196" id="var-source">Source</a>
 </div>
+
+
 </div>
               </div>
             </div>
