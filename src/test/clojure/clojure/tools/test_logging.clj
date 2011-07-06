@@ -189,6 +189,16 @@
             "hello world"]
           (peek @*entries*)))))
 
+(deftest logf-msg-no-optimize
+  (let [a "foo %s"
+        b "bar"]
+    (logger/logf :debug a b))
+  (is (= ["clojure.tools.test-logging"
+          :debug
+          nil
+          "foo bar"]
+        (peek @*entries*))))
+
 (deftest logf-msg1
   (logger/logf :debug "hello")
   (is (= ["clojure.tools.test-logging"

@@ -119,7 +119,7 @@
        (if (impl-enabled? logger# ~level)
          (if (instance? Throwable ~x) ; type check only when enabled
            (log* logger# ~level ~x (format ~@more))
-           (log* logger# ~level (format ~x ~@more)))))))
+           (log* logger# ~level nil (format ~x ~@more)))))))
 
 (defmacro enabled?
   "Returns true if the specific logging level is enabled.  Use of this function
