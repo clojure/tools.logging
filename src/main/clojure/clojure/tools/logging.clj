@@ -37,7 +37,7 @@
   this library."
   (impl-name [factory]
     "Returns some text identifying the underlying implementation.")
-  (impl-get-logger [factory log-ns]
+  (impl-get-logger [factory logger-ns]
     "Returns an implementation-specific Logger by namespace. End-users should not
     need to call this."))
 
@@ -88,10 +88,10 @@
     `(log ~level nil ~message))
   ([level throwable message]
     `(log ~*ns* ~level ~throwable ~message))
-  ([log-ns level throwable message]
-    `(log *logger-factory* ~log-ns ~level ~throwable ~message))
-  ([logger-factory log-ns level throwable message]
-    `(let [logger# (impl-get-logger ~logger-factory ~log-ns)]
+  ([logger-ns level throwable message]
+    `(log *logger-factory* ~logger-ns ~level ~throwable ~message))
+  ([logger-factory logger-ns level throwable message]
+    `(let [logger# (impl-get-logger ~logger-factory ~logger-ns)]
        (if (impl-enabled? logger# ~level)
          (log* logger# ~level ~throwable ~message)))))
 
@@ -124,15 +124,15 @@
 (defmacro enabled?
   "Returns true if the specific logging level is enabled.  Use of this function
   should only be necessary if one needs to execute alternate code paths beyond
-  whether the logger should be written to."
+  whether the log should be written to."
   ([level]
     `(enabled? ~level ~*ns*))
-  ([level log-ns]
-    `(impl-enabled? (impl-get-logger *logger-factory* ~log-ns) ~level)))
+  ([level logger-ns]
+    `(impl-enabled? (impl-get-logger *logger-factory* ~logger-ns) ~level)))
 
 (defmacro spy
-  "Evaluates expr and writes the form and its result to the logger. Returns the
-  result of expr. Defaults to debug log level."
+  "Evaluates expr and may write the form and its result to the log. Returns the
+  result of expr. Defaults to :debug log level."
   ([expr]
     `(spy :debug ~expr))
   ([level expr]
@@ -147,9 +147,9 @@
        a#)))
 
 (defn log-stream
-  "Creates a PrintStream that will output to the logger at the specified level."
-  [level log-ns]
-  (let [logger (impl-get-logger *logger-factory* log-ns)]
+  "Creates a PrintStream that will output to the log at the specified level."
+  [level logger-ns]
+  (let [logger (impl-get-logger *logger-factory* logger-ns)]
     (java.io.PrintStream.
       (proxy [java.io.ByteArrayOutputStream] []
         (flush []
@@ -166,24 +166,24 @@
       monitor (Object.)] ; sync monitor for calling setOut/setErr
   (defn log-capture!
     "Captures System.out and System.err, piping all writes of those streams to
-    the logger. If unspecified, levels default to :info and :error, respectively.
-    The specified log-ns value will be used to namespace all log entries.
+    the log. If unspecified, levels default to :info and :error, respectively.
+    The specified logger-ns value will be used to namespace all log entries.
 
     Note: use with-logs to redirect output of *out* or *err*.
 
     Warning: if the logging implementation is configured to output to System.out
     (as is the default with java.util.logging) then using this function will
-    result in StackOverflowException when writing to the logger."
+    result in StackOverflowException when writing to the log."
     ; Implementation Notes:
     ; - only set orig when nil to preserve original out/err
     ; - no enabled? check before making streams since that may change later
-    ([log-ns]
-      (log-capture! log-ns :info :error))
-    ([log-ns out-level err-level]
+    ([logger-ns]
+      (log-capture! logger-ns :info :error))
+    ([logger-ns out-level err-level]
       (locking monitor
         (compare-and-set! orig nil [System/out System/err])
-        (System/setOut  (log-stream out-level log-ns))
-        (System/setErr (log-stream err-level log-ns)))))
+        (System/setOut  (log-stream out-level logger-ns))
+        (System/setErr (log-stream err-level logger-ns)))))
   (defn log-uncapture!
     "Restores System.out and System.err to their original values."
     []
@@ -194,23 +194,23 @@
         (System/setErr err)))))
 
 (defmacro with-logs
-  "Evaluates exprs in a context in which *out* and *err* write to the logger. The
-  specified log-ns value will be used to namespace all log entries.
+  "Evaluates exprs in a context in which *out* and *err* write to the log. The
+  specified logger-ns value will be used to namespace all log entries.
 
   By default *out* and *err* write to :info and :error, respectively."
-  {:arglists '([log-ns & body]
-               [[log-ns out-level err-level] & body])}
+  {:arglists '([logger-ns & body]
+               [[logger-ns out-level err-level] & body])}
   [arg & body]
   ; Implementation Notes:
   ; - no enabled? check before making writers since that may change later
-  (let [[log-ns out-level err-level] (if (vector? arg)
+  (let [[logger-ns out-level err-level] (if (vector? arg)
                                        arg
                                        [arg :info :error])]
-    (if (and log-ns (seq body))
+    (if (and logger-ns (seq body))
       `(binding [*out* (java.io.OutputStreamWriter.
-                         (log-stream ~out-level ~log-ns))
+                         (log-stream ~out-level ~logger-ns))
                  *err* (java.io.OutputStreamWriter.
-                         (log-stream ~err-level ~log-ns))]
+                         (log-stream ~err-level ~logger-ns))]
          ~@body))))
 
 
@@ -322,8 +322,8 @@
          (reify LoggerFactory
            (impl-name [_#]
              "org.apache.commons.logging")
-           (impl-get-logger [_# log-ns#]
-             (org.apache.commons.logging.LogFactory/getLog (str log-ns#))))))
+           (impl-get-logger [_# logger-ns#]
+             (org.apache.commons.logging.LogFactory/getLog (str logger-ns#))))))
     (catch Exception e nil)))
 
 (defn slf4j-logging
@@ -358,8 +358,8 @@
         (reify LoggerFactory
           (impl-name [_#]
             "org.slf4j")
-          (impl-get-logger [_# log-ns#]
-            (org.slf4j.LoggerFactory/getLogger ^String (str log-ns#))))))
+          (impl-get-logger [_# logger-ns#]
+            (org.slf4j.LoggerFactory/getLogger ^String (str logger-ns#))))))
     (catch Exception e nil)))
 
 (defn log4j-logging
@@ -392,8 +392,8 @@
          (reify LoggerFactory
            (impl-name [_#]
              "org.apache.log4j")
-           (impl-get-logger [_# log-ns#]
-             (org.apache.log4j.Logger/getLogger ^String (str log-ns#))))))
+           (impl-get-logger [_# logger-ns#]
+             (org.apache.log4j.Logger/getLogger ^String (str logger-ns#))))))
     (catch Exception e nil)))
 
 (defn java-util-logging
@@ -428,8 +428,8 @@
          (reify LoggerFactory
            (impl-name [_#]
              "java.util.logging")
-           (impl-get-logger [_# log-ns#]
-             (java.util.logging.Logger/getLogger (str log-ns#))))))
+           (impl-get-logger [_# logger-ns#]
+             (java.util.logging.Logger/getLogger (str logger-ns#))))))
     (catch Exception e nil)))
 
 (defn find-factory
