@@ -17,29 +17,13 @@
   clojure.tools.logging
   [:use
    [clojure.string :only [trim-newline]]
-   [clojure.pprint :only [code-dispatch pprint with-pprint-dispatch]]])
-
-(defprotocol Logger
-  "The protocol through which macros will interact with an underlying logging
-  implementation.  Implementations should at least support the six specified
-  logging levels if they wish to benefit from the level-specific macros."
-  (impl-enabled? [logger level]
-    "Implementation-specific check if a particular level is enabled. End-users
-    should not need to call this.")
-  (impl-write! [logger level throwable message]
-    "Implementation-specific write of a log message. End-users should not need
-    to call this."))
-
-(defprotocol LoggerFactory
-  "The protocol through which macros will obtain an instance satisfying Logger as
-  well as providing information about the particular implementation being used.
-  Implementations should be bound to *logger-factory* in order to be picked up by
-  this library."
-  (impl-name [factory]
-    "Returns some text identifying the underlying implementation.")
-  (impl-get-logger [factory logger-ns]
-    "Returns an implementation-specific Logger by namespace. End-users should not
-    need to call this."))
+   [clojure.pprint :only [code-dispatch pprint with-pprint-dispatch]]]
+  [:require [clojure.tools.logging
+             [commons-logging :as cl]
+             [impl :as impl]
+             [java-util-logging :as jul]
+             [log4j :as log4j]
+             [slf4j :as slf4j]]])
 
 (def ^{:doc
   "The default agent used for performing logging when direct logging is
@@ -76,10 +60,10 @@
         (= *force* :agent) true
         (= *force* :direct) false)
     (send-off *logging-agent*
-      (fn [_#] (impl-write! logger level throwable message)))
-    (impl-write! logger level throwable message)))
+      (fn [_#] (impl/write! logger level throwable message)))
+    (impl/write! logger level throwable message)))
 
-(declare ^{:dynamic true} *logger-factory*) ; default LoggerFactory instance for calling impl-get-logger
+(declare ^{:dynamic true} *logger-factory*) ; default LoggerFactory instance for calling impl/get-logger
 
 (defmacro log
   "Evaluates and logs a message only if the specified level is enabled. See log*
@@ -91,8 +75,8 @@
   ([logger-ns level throwable message]
     `(log *logger-factory* ~logger-ns ~level ~throwable ~message))
   ([logger-factory logger-ns level throwable message]
-    `(let [logger# (impl-get-logger ~logger-factory ~logger-ns)]
-       (if (impl-enabled? logger# ~level)
+    `(let [logger# (impl/get-logger ~logger-factory ~logger-ns)]
+       (if (impl/enabled? logger# ~level)
          (log* logger# ~level ~throwable ~message)))))
 
 (defmacro logp
@@ -102,8 +86,8 @@
   [level x & more]
   (if (or (instance? String x) (nil? more)) ; optimize for common case
     `(log ~level (print-str ~x ~@more))
-    `(let [logger# (impl-get-logger *logger-factory* ~*ns*)]
-       (if (impl-enabled? logger# ~level)
+    `(let [logger# (impl/get-logger *logger-factory* ~*ns*)]
+       (if (impl/enabled? logger# ~level)
          (if (instance? Throwable ~x) ; type check only when enabled
            (log* logger# ~level ~x (print-str ~@more))
            (log* logger# ~level nil (print-str ~x ~@more)))))))
@@ -115,20 +99,20 @@
   [level x & more]
   (if (or (instance? String x) (nil? more)) ; optimize for common case
     `(log ~level (format ~x ~@more))
-    `(let [logger# (impl-get-logger *logger-factory* ~*ns*)]
-       (if (impl-enabled? logger# ~level)
+    `(let [logger# (impl/get-logger *logger-factory* ~*ns*)]
+       (if (impl/enabled? logger# ~level)
          (if (instance? Throwable ~x) ; type check only when enabled
            (log* logger# ~level ~x (format ~@more))
            (log* logger# ~level nil (format ~x ~@more)))))))
 
 (defmacro enabled?
-  "Returns true if the specific logging level is enabled.  Use of this function
+  "Returns true if the specific logging level is enabled.  Use of this macro
   should only be necessary if one needs to execute alternate code paths beyond
   whether the log should be written to."
   ([level]
     `(enabled? ~level ~*ns*))
   ([level logger-ns]
-    `(impl-enabled? (impl-get-logger *logger-factory* ~logger-ns) ~level)))
+    `(impl/enabled? (impl/get-logger *logger-factory* ~logger-ns) ~level)))
 
 (defmacro spy
   "Evaluates expr and may write the form and its result to the log. Returns the
@@ -149,7 +133,7 @@
 (defn log-stream
   "Creates a PrintStream that will output to the log at the specified level."
   [level logger-ns]
-  (let [logger (impl-get-logger *logger-factory* logger-ns)]
+  (let [logger (impl/get-logger *logger-factory* logger-ns)]
     (java.io.PrintStream.
       (proxy [java.io.ByteArrayOutputStream] []
         (flush []
@@ -288,167 +272,20 @@
   [& args]
   `(logf :fatal ~@args))
 
-
-;; Implementations of Logger and LoggerFactory protocols:
-
-(defn commons-logging
-  "Returns a commons-logging-based implementation of the LoggerFactory protocol, or
-  nil if not available. End-users should not need to call this."
-  []
-  (try
-    (Class/forName "org.apache.commons.logging.Log")
-    (eval
-      '(do
-         (extend-type org.apache.commons.logging.Log
-           Logger
-           (impl-enabled? [logger# level#]
-             (condp = level#
-               :trace (.isTraceEnabled logger#)
-               :debug (.isDebugEnabled logger#)
-               :info  (.isInfoEnabled  logger#)
-               :warn  (.isWarnEnabled  logger#)
-               :error (.isErrorEnabled logger#)
-               :fatal (.isFatalEnabled logger#)
-               (throw (IllegalArgumentException. (str level#)))))
-           (impl-write! [logger# level# e# msg#]
-             (condp = level#
-               :trace (.trace logger# msg# e#)
-               :debug (.debug logger# msg# e#)
-               :info  (.info  logger# msg# e#)
-               :warn  (.warn  logger# msg# e#)
-               :error (.error logger# msg# e#)
-               :fatal (.fatal logger# msg# e#)
-               (throw (IllegalArgumentException. (str level#))))))
-         (reify LoggerFactory
-           (impl-name [_#]
-             "org.apache.commons.logging")
-           (impl-get-logger [_# logger-ns#]
-             (org.apache.commons.logging.LogFactory/getLog (str logger-ns#))))))
-    (catch Exception e nil)))
-
-(defn slf4j-logging
-  "Returns a SLF4J-based implementation of the LoggerFactory protocol, or nil if
-  not available. End-users should not need to call this."
-  []
-  (try
-    (Class/forName "org.slf4j.Logger")
-    (eval
-      '(do
-        (extend-type org.slf4j.Logger
-          Logger
-          (impl-enabled? [logger# level#]
-            (condp = level#
-              :trace (.isTraceEnabled logger#)
-              :debug (.isDebugEnabled logger#)
-              :info  (.isInfoEnabled  logger#)
-              :warn  (.isWarnEnabled  logger#)
-              :error (.isErrorEnabled logger#)
-              :fatal (.isErrorEnabled logger#)
-              (throw (IllegalArgumentException. (str level#)))))
-          (impl-write! [^org.slf4j.Logger logger# level# ^Throwable e# msg#]
-            (let [^String msg# (str msg#)]
-              (condp = level#
-                :trace (.trace logger# msg# e#)
-                :debug (.debug logger# msg# e#)
-                :info  (.info  logger# msg# e#)
-                :warn  (.warn  logger# msg# e#)
-                :error (.error logger# msg# e#)
-                :fatal (.error logger# msg# e#)
-                (throw (IllegalArgumentException. (str level#)))))))
-        (reify LoggerFactory
-          (impl-name [_#]
-            "org.slf4j")
-          (impl-get-logger [_# logger-ns#]
-            (org.slf4j.LoggerFactory/getLogger ^String (str logger-ns#))))))
-    (catch Exception e nil)))
-
-(defn log4j-logging
-  "Returns a log4j-based implementation of the LoggerFactory protocol, or nil if
-  not available. End-users should not need to call this."
-  []
-  (try
-    (Class/forName "org.apache.log4j.Logger")
-    (eval
-      '(let [levels# {:trace org.apache.log4j.Level/TRACE
-                      :debug org.apache.log4j.Level/DEBUG
-                      :info  org.apache.log4j.Level/INFO
-                      :warn  org.apache.log4j.Level/WARN
-                      :error org.apache.log4j.Level/ERROR
-                      :fatal org.apache.log4j.Level/FATAL}]
-         (extend-type org.apache.log4j.Logger
-           Logger
-           (impl-enabled? [logger# level#]
-             (.isEnabledFor logger#
-               (or
-                 (levels# level#)
-                 (throw (IllegalArgumentException. (str level#))))))
-           (impl-write! [logger# level# e# msg#]
-             (let [level# (or
-                            (levels# level#)
-                            (throw (IllegalArgumentException. (str level#))))]
-               (if-not e#
-                 (.log logger# level# msg#)
-                 (.log logger# level# msg# e#)))))
-         (reify LoggerFactory
-           (impl-name [_#]
-             "org.apache.log4j")
-           (impl-get-logger [_# logger-ns#]
-             (org.apache.log4j.Logger/getLogger ^String (str logger-ns#))))))
-    (catch Exception e nil)))
-
-(defn java-util-logging
-  "Returns a java.util.logging-based implementation of the LoggerFactory protocol,
-  or nil if not available. End-users should not need to call this."
-  []
-  (try
-    (Class/forName "java.util.logging.Logger")
-    (eval
-      '(let [levels# {:trace java.util.logging.Level/FINEST
-                      :debug java.util.logging.Level/FINE
-                      :info  java.util.logging.Level/INFO
-                      :warn  java.util.logging.Level/WARNING
-                      :error java.util.logging.Level/SEVERE
-                      :fatal java.util.logging.Level/SEVERE}]
-         (extend-type java.util.logging.Logger
-           Logger
-           (impl-enabled? [logger# level#]
-             (.isLoggable logger#
-               (or
-                 (levels# level#)
-                 (throw (IllegalArgumentException. (str level#))))))
-           (impl-write! [logger# level# ^Throwable e# msg#]
-             (let [^java.util.logging.Level level#
-                   (or
-                     (levels# level#)
-                     (throw (IllegalArgumentException. (str level#))))
-                   ^String msg# (str msg#)]
-               (if e#
-                 (.log logger# level# msg# e#)
-                 (.log logger# level# msg#)))))
-         (reify LoggerFactory
-           (impl-name [_#]
-             "java.util.logging")
-           (impl-get-logger [_# logger-ns#]
-             (java.util.logging.Logger/getLogger (str logger-ns#))))))
-    (catch Exception e nil)))
-
-(defn find-factory
-  "Returns the first LoggerFactory found that is available from commons-logging,
-  slf4j-logging, log4j-logging, or java-util-logging. End-users should not need
-  to call this."
-  []
-  (or (commons-logging)
-    (slf4j-logging)
-    (log4j-logging)
-    (java-util-logging)
-    (throw ; this should never happen in 1.5+
-      (RuntimeException.
-        "Valid logging implementation could not be found."))))
+(defn- find-factory []
+  (or (cl/load-factory)
+      (slf4j/load-factory)
+      (log4j/load-factory)
+      (jul/load-factory)
+      (throw ; this should never happen in 1.5+
+        (RuntimeException.
+          "Valid logging implementation could not be found."))))
 
 (def ^{:doc
-  "An instance satisfying the LoggerFactory protocol. Used internally when needing
-  to obtain an instance satisfying the Logger protocol. Defaults to the value
-  returned from find-factory. Can be rebound to provide alternate logging
-  implementations" :dynamic true}
+  "An instance satisfying the LoggerFactory protocol. Used internally when
+  needing to obtain an instance satisfying the Logger protocol. Defaults to the
+  first LoggerFactory found that is available from commons-logging,
+  slf4j-logging, log4j-logging, or java-util-logging. Can be rebound to provide
+  alternate logging implementations" :dynamic true}
   *logger-factory*
   (find-factory))
