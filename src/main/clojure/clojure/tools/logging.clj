@@ -12,8 +12,8 @@
 ;; remove this notice, or any other, from this software.
 (ns ^{:author "Alex Taggart"
       :doc "Logging macros which delegate to a specific logging implementation. At
-            runtime a specific implementation is selected from, in order, Apache
-            commons-logging, slf4j, log4j, and finally java.util.logging."}
+            runtime a specific implementation is selected from, in order, slf4j,
+            Apache commons-logging, slf4j, log4j, and finally java.util.logging."}
   clojure.tools.logging
   [:use
    [clojure.string :only [trim-newline]]
@@ -273,8 +273,8 @@
   `(logf :fatal ~@args))
 
 (defn- find-factory []
-  (or (cl/load-factory)
-      (slf4j/load-factory)
+  (or (slf4j/load-factory)
+      (cl/load-factory)
       (log4j/load-factory)
       (jul/load-factory)
       (throw ; this should never happen in 1.5+
@@ -284,8 +284,8 @@
 (def ^{:doc
   "An instance satisfying the LoggerFactory protocol. Used internally when
   needing to obtain an instance satisfying the Logger protocol. Defaults to the
-  first LoggerFactory found that is available from commons-logging,
-  slf4j-logging, log4j-logging, or java-util-logging. Can be rebound to provide
+  first LoggerFactory found that is available from slf4j-logging,
+  commons-logging, log4j-logging, or java-util-logging. Can be rebound to provide
   alternate logging implementations" :dynamic true}
   *logger-factory*
   (find-factory))
