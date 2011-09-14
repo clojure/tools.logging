@@ -18,7 +18,7 @@
   logging levels if they wish to work from the level-specific macros."
   (enabled? [logger level]
     "Check if a particular level is enabled for the given Logger.")
-  (write! [logger level throwable message]
+  (write! [logger level throwable marker message]
     "Writes a log message to the given Logger."))
 
 (defprotocol LoggerFactory

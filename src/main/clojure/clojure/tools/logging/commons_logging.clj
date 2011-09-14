@@ -28,7 +28,7 @@
                :error (.isErrorEnabled logger#)
                :fatal (.isFatalEnabled logger#)
                (throw (IllegalArgumentException. (str level#)))))
-           (write! [logger# level# e# msg#]
+           (write! [logger# level# e# marker# msg#]
              (condp = level#
                :trace (.trace logger# msg# e#)
                :debug (.debug logger# msg# e#)

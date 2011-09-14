@@ -29,7 +29,7 @@
                (or
                  (levels# level#)
                  (throw (IllegalArgumentException. (str level#))))))
-           (write! [logger# level# e# msg#]
+           (write! [logger# level# e# marker# msg#]
              (let [level# (or
                             (levels# level#)
                             (throw (IllegalArgumentException. (str level#))))]

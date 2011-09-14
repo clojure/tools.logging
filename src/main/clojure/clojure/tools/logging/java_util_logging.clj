@@ -29,7 +29,7 @@
                (or
                  (levels# level#)
                  (throw (IllegalArgumentException. (str level#))))))
-           (write! [logger# level# ^Throwable e# msg#]
+           (write! [logger# level# ^Throwable e# marker# msg#]
              (let [^java.util.logging.Level level#
                    (or
                      (levels# level#)
