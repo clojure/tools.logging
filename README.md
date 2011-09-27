@@ -6,9 +6,9 @@ Logging levels are specified by clojure keywords corresponding to the values use
 
     :trace, :debug, :info, :warn, :error, :fatal
 
-Logging occurs with the `log` macro, or the level-specific convenience macros, which write either directly or via an agent.  The log macros will not evaluate their 'message' unless the specific logging level is in effect. Alternately, you can use the `spy` macro when you have code that needs to be evaluated, and also want to output the code and its result to the log.
+Logging occurs with the `log` macro, or the level-specific convenience macros, which write either directly or via an agent.  The log macros will not evaluate their message arguments unless the specific logging level is in effect. Alternately, you can use the `spy` macro when you have code that needs to be evaluated, and also want to output the code and its result to the log.
 
-Unless otherwise specified, the current namespace (as identified by `*ns*`) will be used as the log-ns (similar to how the java class name is usually used).  Note: your logger configuration should display the name that was passed to the logging implementation, and not perform stack-inspection, otherwise you'll see some ugly and unhelpful text in your logs.
+Unless otherwise specified, the current namespace (as identified by `*ns*`) will be used as the log-ns (similar to how the java class name is usually used).  Note: your logging configuration should display the name that was passed to the logging implementation, and not perform stack-inspection, otherwise you'll see some ugly and unhelpful text in your logs.
 
 Use the `enabled?` macro to write conditional code against the logging level (beyond simply whether or not to call log, which is handled automatically).
 
@@ -37,14 +37,14 @@ For those new to using a java logging library, the following is a very basic con
 
 The above will print messages to the console for `:debug` or higher if one is in the `user` namespace, and `:warn` or higher in all other namespaces.
 
-### "Installation"
+### Installation
 
 Logging is available in Maven central.  Add it to your Maven project's `pom.xml`:
 
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>tools.logging</artifactId>
-      <version>0.2.0</version>
+      <version>0.2.2</version>
     </dependency>
 
 or your leiningen project.clj:
@@ -60,7 +60,7 @@ Please note the changelog below.
 2. Run the maven build; run either:
     1. `mvn install`: This will produce a logging jar file in the `target`
 directory, and run all tests with the most recently-released build
-of Clojure (currently 1.2.0).
+of Clojure.
 
 ## Thanks
 
