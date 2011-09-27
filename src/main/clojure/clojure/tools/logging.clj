@@ -18,12 +18,7 @@
   [:use
    [clojure.string :only [trim-newline]]
    [clojure.pprint :only [code-dispatch pprint with-pprint-dispatch]]]
-  [:require [clojure.tools.logging
-             [commons-logging :as cl]
-             [impl :as impl]
-             [java-util-logging :as jul]
-             [log4j :as log4j]
-             [slf4j :as slf4j]]])
+  [:require [clojure.tools.logging.impl :as impl]])
 
 (def ^{:doc
   "The default agent used for performing logging when direct logging is
@@ -54,11 +49,11 @@
   One can override the above by setting *force* to :direct or :agent; all
   subsequent writes will be direct or via an agent, respectively."
   [logger level throwable message]
-  (if (cond
-        (nil? *force*) (and (clojure.lang.LockingTransaction/isRunning)
-                         (*tx-agent-levels* level))
-        (= *force* :agent) true
-        (= *force* :direct) false)
+  (if (case *force*
+        :agent  true
+        :direct false
+        nil     (and (clojure.lang.LockingTransaction/isRunning)
+                     (*tx-agent-levels* level)))
     (send-off *logging-agent*
       (fn [_#] (impl/write! logger level throwable message)))
     (impl/write! logger level throwable message)))
@@ -273,19 +268,16 @@
   `(logf :fatal ~@args))
 
 (defn- find-factory []
-  (or (slf4j/load-factory)
-      (cl/load-factory)
-      (log4j/load-factory)
-      (jul/load-factory)
+  (or (impl/slf4j-factory)
+      (impl/cl-factory)
+      (impl/log4j-factory)
+      (impl/jul-factory)
       (throw ; this should never happen in 1.5+
         (RuntimeException.
           "Valid logging implementation could not be found."))))
 
 (def ^{:doc
   "An instance satisfying the LoggerFactory protocol. Used internally when
-  needing to obtain an instance satisfying the Logger protocol. Defaults to the
-  first LoggerFactory found that is available from slf4j-logging,
-  commons-logging, log4j-logging, or java-util-logging. Can be rebound to provide
-  alternate logging implementations" :dynamic true}
+  needing to obtain an instance satisfying the Logger protocol." :dynamic true}
   *logger-factory*
   (find-factory))
