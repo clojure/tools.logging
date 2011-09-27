@@ -267,17 +267,9 @@
   [& args]
   `(logf :fatal ~@args))
 
-(defn- find-factory []
-  (or (impl/slf4j-factory)
-      (impl/cl-factory)
-      (impl/log4j-factory)
-      (impl/jul-factory)
-      (throw ; this should never happen in 1.5+
-        (RuntimeException.
-          "Valid logging implementation could not be found."))))
-
 (def ^{:doc
-  "An instance satisfying the LoggerFactory protocol. Used internally when
-  needing to obtain an instance satisfying the Logger protocol." :dynamic true}
+  "An instance satisfying the impl/LoggerFactory protocol. Used internally to
+   obtain an impl/Logger. Defaults to the value returned from impl/find-factory."
+  :dynamic true}
   *logger-factory*
-  (find-factory))
+  (impl/find-factory))
