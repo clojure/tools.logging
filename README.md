@@ -49,7 +49,7 @@ Logging is available in Maven central.  Add it to your Maven project's `pom.xml`
 
 or your leiningen project.clj:
 
-    [org.clojure/tools.logging "0.2.0"]
+    [org.clojure/tools.logging "0.2.2"]
 
 Please note the changelog below.
 
