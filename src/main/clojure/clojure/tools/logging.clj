@@ -49,11 +49,11 @@
   One can override the above by setting *force* to :direct or :agent; all
   subsequent writes will be direct or via an agent, respectively."
   [logger level throwable message]
-  (if (case *force*
-        :agent  true
-        :direct false
-        nil     (and (clojure.lang.LockingTransaction/isRunning)
-                     (*tx-agent-levels* level)))
+  (if (cond
+        (nil? *force*) (and (clojure.lang.LockingTransaction/isRunning)
+                            (*tx-agent-levels* level))
+        (= *force* :agent)  true
+        (= *force* :direct) false)
     (send-off *logging-agent*
       (fn [_#] (impl/write! logger level throwable message)))
     (impl/write! logger level throwable message)))
