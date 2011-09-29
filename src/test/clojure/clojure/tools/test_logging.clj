@@ -3,6 +3,15 @@
         clojure.tools.logging]
   [:require [clojure.tools.logging.impl :as impl]])
 
+(deftest test-impls
+  (are [lf] (binding [*logger-factory* lf]
+              (enabled? :fatal))
+       (impl/slf4j-factory)
+       (impl/cl-factory)
+       (impl/log4j-factory)
+       (impl/jul-factory)))
+
+
 (def ^{:dynamic true} *entries* (atom []))
 
 (defn test-factory [enabled-set]

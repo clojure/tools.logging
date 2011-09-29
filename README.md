@@ -44,12 +44,12 @@ Logging is available in Maven central.  Add it to your Maven project's `pom.xml`
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>tools.logging</artifactId>
-      <version>0.2.2</version>
+      <version>0.2.0</version>
     </dependency>
 
 or your leiningen project.clj:
 
-    [org.clojure/tools.logging "0.2.2"]
+    [org.clojure/tools.logging "0.2.0"]
 
 Please note the changelog below.
 
