@@ -55,14 +55,23 @@
            :write!
            (fn [^org.slf4j.Logger logger# level# ^Throwable e# msg#]
              (let [^String msg# (str msg#)]
-               (condp = level#
-                 :trace (.trace logger# msg# e#)
-                 :debug (.debug logger# msg# e#)
-                 :info  (.info  logger# msg# e#)
-                 :warn  (.warn  logger# msg# e#)
-                 :error (.error logger# msg# e#)
-                 :fatal (.error logger# msg# e#)
-                 (throw (IllegalArgumentException. (str level#))))))})
+               (if e#
+                 (condp = level#
+                   :trace (.trace logger# msg# e#)
+                   :debug (.debug logger# msg# e#)
+                   :info  (.info  logger# msg# e#)
+                   :warn  (.warn  logger# msg# e#)
+                   :error (.error logger# msg# e#)
+                   :fatal (.error logger# msg# e#)
+                   (throw (IllegalArgumentException. (str level#))))
+                 (condp = level#
+                   :trace (.trace logger# msg#)
+                   :debug (.debug logger# msg#)
+                   :info  (.info  logger# msg#)
+                   :warn  (.warn  logger# msg#)
+                   :error (.error logger# msg#)
+                   :fatal (.error logger# msg#)
+                   (throw (IllegalArgumentException. (str level#)))))))})
         (reify LoggerFactory
           (name [_#]
             "org.slf4j")
@@ -92,14 +101,23 @@
                 (throw (IllegalArgumentException. (str level#)))))
             :write!
             (fn [logger# level# e# msg#]
-              (condp = level#
-                :trace (.trace logger# msg# e#)
-                :debug (.debug logger# msg# e#)
-                :info  (.info  logger# msg# e#)
-                :warn  (.warn  logger# msg# e#)
-                :error (.error logger# msg# e#)
-                :fatal (.fatal logger# msg# e#)
-                (throw (IllegalArgumentException. (str level#)))))})
+              (if e#
+                (condp = level#
+                  :trace (.trace logger# msg# e#)
+                  :debug (.debug logger# msg# e#)
+                  :info  (.info  logger# msg# e#)
+                  :warn  (.warn  logger# msg# e#)
+                  :error (.error logger# msg# e#)
+                  :fatal (.fatal logger# msg# e#)
+                  (throw (IllegalArgumentException. (str level#))))
+                (condp = level#
+                  :trace (.trace logger# msg#)
+                  :debug (.debug logger# msg#)
+                  :info  (.info  logger# msg#)
+                  :warn  (.warn  logger# msg#)
+                  :error (.error logger# msg#)
+                  :fatal (.fatal logger# msg#)
+                  (throw (IllegalArgumentException. (str level#))))))})
          (reify LoggerFactory
            (name [_#]
              "org.apache.commons.logging")
@@ -133,9 +151,9 @@
               (let [level# (or
                              (levels# level#)
                              (throw (IllegalArgumentException. (str level#))))]
-                (if-not e#
-                  (.log logger# level# msg#)
-                  (.log logger# level# msg# e#))))})
+                (if e#
+                  (.log logger# level# msg# e#)
+                  (.log logger# level# msg#))))})
          (reify LoggerFactory
            (name [_#]
              "org.apache.log4j")
