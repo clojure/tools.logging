@@ -21,9 +21,10 @@ The following short example should give you what you need to get started:
     (ns example.core
       (:use [clojure.tools.logging :only (info error)]))
 
-    (defn divide [one two]
+    (defn divide [x x]
       (try
-        (info "Calculated" (/ one two))
+        (info "dividing" x "by" y)
+        (/ one two)
         (catch Exception ex
           (error ex "There was an error in calculation"))))
 
