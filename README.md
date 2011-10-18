@@ -21,7 +21,7 @@ The following short example should give you what you need to get started:
     (ns example.core
       (:use [clojure.tools.logging :only (info error)]))
 
-    (defn divide [x x]
+    (defn divide [x y]
       (try
         (info "dividing" x "by" y)
         (/ x y)
