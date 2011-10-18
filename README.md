@@ -24,7 +24,7 @@ The following short example should give you what you need to get started:
     (defn divide [x x]
       (try
         (info "dividing" x "by" y)
-        (/ one two)
+        (/ x y)
         (catch Exception ex
           (error ex "There was an error in calculation"))))
 
