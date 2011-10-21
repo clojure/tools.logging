@@ -16,6 +16,8 @@ You can redirect all java writes of `System.out` and `System.err` to the log sys
 
 ## Usage
 
+The latest API documentation can be found at http://clojure.github.com/tools.logging
+
 The following short example should give you what you need to get started:
 
     (ns example.core
