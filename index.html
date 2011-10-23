@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>logging - Logging Tools 0.2.4 API documentation</title>
+    <title>clojure.tools.logging - Logging Tools 0.2.4 API documentation</title>
     <link href="static/favicon.png" rel="icon" />
     <link href="static/favicon.png" rel="shortcut icon" />
     <link media="all" type="text/css" href="static/clojure.css" rel="stylesheet" />
@@ -22,7 +22,7 @@ namespace.
     <div id="AllContentContainer">
       <div id="Header">
 	<a id="Logo" href="index.html"><img alt="Clojure" height="100" width="100" src="static/clojure-icon.gif" /></a>
-	<h1><a title="page header title" id="page-header" href="index.html">Logging Tools</a></h1>
+	<h1><a title="page header title" id="page-header" href="index.html">tools.logging API Reference</a></h1>
       </div>
       <div id="leftcolumn"><div style="text-align: center;"></div>
 <div class="menu">
@@ -101,7 +101,7 @@ namespace.
     </div>
     <br />
   </div><div style="margin-left: 1em;" class="toc-section">
-    <a href="#logging.impl">logging.impl</a>
+    <a href="#clojure.tools.logging.impl">clojure.tools.logging.impl</a>
     <div style="margin-left: 1em;" class="toc-entry">
       <a href="#clojure.tools.logging.impl/Logger">Logger</a>
     </div><div style="margin-left: 1em;" class="toc-entry">
@@ -129,7 +129,7 @@ namespace.
   </div>
 </div>
 </div>
-                <div id="content-tag"><h1 id="overview">API for <span id="namespace-name">logging</span>
+                <div id="content-tag"><h1 id="overview">API for <span id="namespace-name">clojure.tools.logging</span>
   - <span id="header-project">Logging Tools</span> <span id="header-version">0.2.4</span> (<span id="header-status">in development</span>)
   </h1>
 <span id="author-line">by <span id="author-name">Alex Taggart</span><br /></span>
@@ -479,7 +479,7 @@ By default *out* and *err* write to :info and :error, respectively.</pre>
   
   <a href="https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L175" id="var-source">Source</a>
 </div>
-<h2 id="namespace-name">logging.impl</h2>
+<h2 id="namespace-name">clojure.tools.logging.impl</h2>
 <pre id="namespace-docstr">Protocols used to allow access to logging implementations.
 This namespace only need be used by those providing logging
 implementations to be consumed by the core api.</pre>
@@ -496,7 +496,7 @@ implementation.  Implementations should at least support the six standard
 logging levels if they wish to work from the level-specific macros.</pre>
   
   
-  <a href="https://github.com/clojure/tools.logging/blob/f9cb0a7232d3a11cb7e74e4c13c3adc054e7e7a2/src/main/clojure/clojure/tools/logging/impl.clj#L16" id="var-source">Source</a>
+  <a href="https://github.com/clojure/tools.logging/blob/7694fd2067e3366b63b50dc698c32da17488ea10/src/main/clojure/clojure/tools/logging/impl.clj#L16" id="var-source">Source</a>
 </div><div id="var-entry">
   <hr />
   <h2 id="clojure.tools.logging.impl/LoggerFactory">LoggerFactory</h2>
@@ -508,7 +508,7 @@ Implementations should be bound to *logger-factory* in order to be picked up by
 this library.</pre>
   
   
-  <a href="https://github.com/clojure/tools.logging/blob/f9cb0a7232d3a11cb7e74e4c13c3adc054e7e7a2/src/main/clojure/clojure/tools/logging/impl.clj#L25" id="var-source">Source</a>
+  <a href="https://github.com/clojure/tools.logging/blob/7694fd2067e3366b63b50dc698c32da17488ea10/src/main/clojure/clojure/tools/logging/impl.clj#L25" id="var-source">Source</a>
 </div><div id="var-entry">
   <hr />
   <h2 id="clojure.tools.logging.impl/cl-factory">cl-factory</h2>
@@ -519,7 +519,7 @@ this library.</pre>
 nil if not available.</pre>
   
   
-  <a href="https://github.com/clojure/tools.logging/blob/f9cb0a7232d3a11cb7e74e4c13c3adc054e7e7a2/src/main/clojure/clojure/tools/logging/impl.clj#L73" id="var-source">Source</a>
+  <a href="https://github.com/clojure/tools.logging/blob/7694fd2067e3366b63b50dc698c32da17488ea10/src/main/clojure/clojure/tools/logging/impl.clj#L82" id="var-source">Source</a>
 </div><div id="var-entry">
   <hr />
   <h2 id="clojure.tools.logging.impl/enabled?">enabled?</h2>
@@ -540,7 +540,7 @@ nil if not available.</pre>
 log4j-factory, and jul-factory.</pre>
   
   
-  <a href="https://github.com/clojure/tools.logging/blob/f9cb0a7232d3a11cb7e74e4c13c3adc054e7e7a2/src/main/clojure/clojure/tools/logging/impl.clj#L184" id="var-source">Source</a>
+  <a href="https://github.com/clojure/tools.logging/blob/7694fd2067e3366b63b50dc698c32da17488ea10/src/main/clojure/clojure/tools/logging/impl.clj#L202" id="var-source">Source</a>
 </div><div id="var-entry">
   <hr />
   <h2 id="clojure.tools.logging.impl/get-logger">get-logger</h2>
@@ -561,7 +561,7 @@ log4j-factory, and jul-factory.</pre>
 or nil if not available.</pre>
   
   
-  <a href="https://github.com/clojure/tools.logging/blob/f9cb0a7232d3a11cb7e74e4c13c3adc054e7e7a2/src/main/clojure/clojure/tools/logging/impl.clj#L146" id="var-source">Source</a>
+  <a href="https://github.com/clojure/tools.logging/blob/7694fd2067e3366b63b50dc698c32da17488ea10/src/main/clojure/clojure/tools/logging/impl.clj#L164" id="var-source">Source</a>
 </div><div id="var-entry">
   <hr />
   <h2 id="clojure.tools.logging.impl/log4j-factory">log4j-factory</h2>
@@ -572,7 +572,7 @@ or nil if not available.</pre>
 not available.</pre>
   
   
-  <a href="https://github.com/clojure/tools.logging/blob/f9cb0a7232d3a11cb7e74e4c13c3adc054e7e7a2/src/main/clojure/clojure/tools/logging/impl.clj#L110" id="var-source">Source</a>
+  <a href="https://github.com/clojure/tools.logging/blob/7694fd2067e3366b63b50dc698c32da17488ea10/src/main/clojure/clojure/tools/logging/impl.clj#L128" id="var-source">Source</a>
 </div><div id="var-entry">
   <hr />
   <h2 id="clojure.tools.logging.impl/name">name</h2>
@@ -593,7 +593,7 @@ not available.</pre>
 not available.</pre>
   
   
-  <a href="https://github.com/clojure/tools.logging/blob/f9cb0a7232d3a11cb7e74e4c13c3adc054e7e7a2/src/main/clojure/clojure/tools/logging/impl.clj#L35" id="var-source">Source</a>
+  <a href="https://github.com/clojure/tools.logging/blob/7694fd2067e3366b63b50dc698c32da17488ea10/src/main/clojure/clojure/tools/logging/impl.clj#L35" id="var-source">Source</a>
 </div><div id="var-entry">
   <hr />
   <h2 id="clojure.tools.logging.impl/write!">write!</h2>
@@ -613,7 +613,7 @@ not available.</pre>
           </div>
 	</div>
 	<div id="foot">
-	  <div style="text-align: center;" id="copyright">No copyright info </div>
+	  <div style="text-align: center;" id="copyright">Copyright 2007-2011 by Rich Hickey and the various contributors</div>
 	</div>
       </div>
       <div id="DesignedBy">Logo &amp; site design by <a title="Visit Tom Hickey's website." href="http://www.tomhickey.com">Tom Hickey</a>.<br />
