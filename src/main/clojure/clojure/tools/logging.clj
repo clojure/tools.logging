@@ -13,7 +13,7 @@
 (ns ^{:author "Alex Taggart"
       :doc "Logging macros which delegate to a specific logging implementation. At
             runtime a specific implementation is selected from, in order, slf4j,
-            Apache commons-logging, slf4j, log4j, and finally java.util.logging."}
+            Apache commons-logging, log4j, and finally java.util.logging."}
   clojure.tools.logging
   [:use
    [clojure.string :only [trim-newline]]
