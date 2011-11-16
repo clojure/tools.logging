@@ -210,3 +210,14 @@
       (throw ; this should never happen in 1.5+
         (RuntimeException.
           "Valid logging implementation could not be found."))))
+
+(defn get-factory
+  "Gets a specific logging implementation.
+  Useful when more than one implemetation is available on the classpath."
+  [impl]
+	(condp = impl
+	  :slf4j (slf4j-factory)
+	  :cl    (cl-factory)
+	  :log4j (log4j-factory)
+	  :jul   (jul-factory)
+	  (throw (RuntimeException. (printf "No logging factory for implementation %s.%n" (name impl))))))

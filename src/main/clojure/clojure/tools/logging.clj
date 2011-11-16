@@ -271,5 +271,9 @@
   "An instance satisfying the impl/LoggerFactory protocol. Used internally to
    obtain an impl/Logger. Defaults to the value returned from impl/find-factory."
   :dynamic true}
-  *logger-factory*
-  (impl/find-factory))
+  *logger-factory*)
+
+(defn init-factory
+  "Allows to choose either default or specific logging factory."
+  ([] (set! *logger-factory* (impl/find-factory)))
+  ([factory-keyword] (set! *logger-factory* (impl/get-factory factory-keyword))))

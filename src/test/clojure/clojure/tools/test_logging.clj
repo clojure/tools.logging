@@ -11,6 +11,13 @@
        (impl/log4j-factory)
        (impl/jul-factory)))
 
+(deftest test-get-factory
+  (are [lf] (binding [*logger-factory* lf]
+              (enabled? :fatal))
+       (impl/get-factory :slf4j)
+       (impl/get-factory :cl)
+       (impl/get-factory :log4j)
+       (impl/get-factory :jul)))
 
 (def ^{:dynamic true} *entries* (atom []))
 
