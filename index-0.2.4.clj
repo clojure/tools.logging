@@ -1,12 +1,12 @@
 {:namespaces
  ({:source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging/clojure.tools.logging-api.html",
    :name "clojure.tools.logging",
    :author "Alex Taggart",
    :doc
-   "Logging macros which delegate to a specific logging implementation. At\nruntime a specific implementation is selected from, in order, slf4j,\nApache commons-logging, slf4j, log4j, and finally java.util.logging."}
+   "Logging macros which delegate to a specific logging implementation. At\nruntime a specific implementation is selected from, in order, slf4j,\nApache commons-logging, log4j, and finally java.util.logging."}
   {:source-url
    "https://github.com/clojure/tools.logging/blob/7694fd2067e3366b63b50dc698c32da17488ea10/src/main/clojure/clojure/tools/logging/impl.clj",
    :wiki-url
@@ -19,10 +19,10 @@
  ({:name "*force*",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L33",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L33",
    :dynamic true,
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/*force*",
    :doc
@@ -33,10 +33,10 @@
   {:name "*logger-factory*",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L270",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L270",
    :dynamic true,
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/*logger-factory*",
    :doc
@@ -47,10 +47,10 @@
   {:name "*logging-agent*",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L23",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L23",
    :dynamic true,
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/*logging-agent*",
    :doc
@@ -61,10 +61,10 @@
   {:name "*tx-agent-levels*",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L28",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L28",
    :dynamic true,
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/*tx-agent-levels*",
    :doc
@@ -76,9 +76,9 @@
    :name "debug",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L204",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L204",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/debug",
    :doc "Debug level logging using print-style args.",
@@ -89,9 +89,9 @@
    :name "debugf",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L240",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L240",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/debugf",
    :doc "Debug level logging using format.",
@@ -102,9 +102,9 @@
    :name "enabled?",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L103",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L103",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/enabled?",
    :doc
@@ -116,9 +116,9 @@
    :name "error",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L222",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L222",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/error",
    :doc "Error level logging using print-style args.",
@@ -129,9 +129,9 @@
    :name "errorf",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L258",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L258",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/errorf",
    :doc "Error level logging using format.",
@@ -142,9 +142,9 @@
    :name "fatal",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L228",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L228",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/fatal",
    :doc "Fatal level logging using print-style args.",
@@ -155,9 +155,9 @@
    :name "fatalf",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L264",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L264",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/fatalf",
    :doc "Fatal level logging using format.",
@@ -168,9 +168,9 @@
    :name "info",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L210",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L210",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/info",
    :doc "Info level logging using print-style args.",
@@ -181,9 +181,9 @@
    :name "infof",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L246",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L246",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/infof",
    :doc "Info level logging using format.",
@@ -198,9 +198,9 @@
    :name "log",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L63",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L63",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/log",
    :doc
@@ -212,9 +212,9 @@
    :name "log*",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L38",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L38",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/log*",
    :doc
@@ -226,9 +226,9 @@
    :name "log-capture!",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L146",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L146",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/log-capture!",
    :doc
@@ -240,9 +240,9 @@
    :name "log-stream",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L128",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L128",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/log-stream",
    :doc
@@ -254,9 +254,9 @@
    :name "log-uncapture!",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L166",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L166",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/log-uncapture!",
    :doc "Restores System.out and System.err to their original values.",
@@ -267,9 +267,9 @@
    :name "logf",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L90",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L90",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/logf",
    :doc
@@ -281,9 +281,9 @@
    :name "logp",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L77",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L77",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/logp",
    :doc
@@ -295,9 +295,9 @@
    :name "spy",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L112",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L112",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/spy",
    :doc
@@ -309,9 +309,9 @@
    :name "trace",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L198",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L198",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/trace",
    :doc "Trace level logging using print-style args.",
@@ -322,9 +322,9 @@
    :name "tracef",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L234",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L234",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/tracef",
    :doc "Trace level logging using format.",
@@ -335,9 +335,9 @@
    :name "warn",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L216",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L216",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/warn",
    :doc "Warn level logging using print-style args.",
@@ -348,9 +348,9 @@
    :name "warnf",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L252",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L252",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/warnf",
    :doc "Warn level logging using format.",
@@ -362,9 +362,9 @@
    :name "with-logs",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj#L175",
+   "https://github.com/clojure/tools.logging/blob/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj#L175",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/427e3a37f6be3bd93010d7e1119255d4a36500ff/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/0056f6210120a80fc03736fdcd7bf329833bb6b0/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/with-logs",
    :doc
