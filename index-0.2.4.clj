@@ -372,32 +372,6 @@
    :var-type "macro",
    :line 175,
    :file "src/main/clojure/clojure/tools/logging.clj"}
-  {:file "src/main/clojure/clojure/tools/logging/impl.clj",
-   :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/7694fd2067e3366b63b50dc698c32da17488ea10/src/main/clojure/clojure/tools/logging/impl.clj",
-   :source-url
-   "https://github.com/clojure/tools.logging/blob/7694fd2067e3366b63b50dc698c32da17488ea10/src/main/clojure/clojure/tools/logging/impl.clj#L16",
-   :wiki-url
-   "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging.impl/Logger",
-   :namespace "clojure.tools.logging.impl",
-   :line 16,
-   :var-type "var",
-   :doc
-   "The protocol through which the core api will interact with an underlying logging\nimplementation.  Implementations should at least support the six standard\nlogging levels if they wish to work from the level-specific macros.",
-   :name "Logger"}
-  {:file "src/main/clojure/clojure/tools/logging/impl.clj",
-   :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/7694fd2067e3366b63b50dc698c32da17488ea10/src/main/clojure/clojure/tools/logging/impl.clj",
-   :source-url
-   "https://github.com/clojure/tools.logging/blob/7694fd2067e3366b63b50dc698c32da17488ea10/src/main/clojure/clojure/tools/logging/impl.clj#L25",
-   :wiki-url
-   "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging.impl/LoggerFactory",
-   :namespace "clojure.tools.logging.impl",
-   :line 25,
-   :var-type "var",
-   :doc
-   "The protocol through which the core api will obtain an instance satisfying Logger\nas well as providing information about the particular implementation being used.\nImplementations should be bound to *logger-factory* in order to be picked up by\nthis library.",
-   :name "LoggerFactory"}
   {:arglists ([]),
    :name "cl-factory",
    :namespace "clojure.tools.logging.impl",
@@ -412,16 +386,6 @@
    :var-type "function",
    :line 82,
    :file "src/main/clojure/clojure/tools/logging/impl.clj"}
-  {:file nil,
-   :raw-source-url nil,
-   :source-url nil,
-   :wiki-url
-   "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging.impl/enabled?",
-   :namespace "clojure.tools.logging.impl",
-   :var-type "function",
-   :arglists ([logger level]),
-   :doc "Check if a particular level is enabled for the given Logger.",
-   :name "enabled?"}
   {:arglists ([]),
    :name "find-factory",
    :namespace "clojure.tools.logging.impl",
@@ -436,16 +400,6 @@
    :var-type "function",
    :line 202,
    :file "src/main/clojure/clojure/tools/logging/impl.clj"}
-  {:file nil,
-   :raw-source-url nil,
-   :source-url nil,
-   :wiki-url
-   "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging.impl/get-logger",
-   :namespace "clojure.tools.logging.impl",
-   :var-type "function",
-   :arglists ([factory logger-ns]),
-   :doc "Returns an implementation-specific Logger by namespace.",
-   :name "get-logger"}
   {:arglists ([]),
    :name "jul-factory",
    :namespace "clojure.tools.logging.impl",
@@ -474,16 +428,6 @@
    :var-type "function",
    :line 128,
    :file "src/main/clojure/clojure/tools/logging/impl.clj"}
-  {:file nil,
-   :raw-source-url nil,
-   :source-url nil,
-   :wiki-url
-   "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging.impl/name",
-   :namespace "clojure.tools.logging.impl",
-   :var-type "function",
-   :arglists ([factory]),
-   :doc "Returns some text identifying the underlying implementation.",
-   :name "name"}
   {:arglists ([]),
    :name "slf4j-factory",
    :namespace "clojure.tools.logging.impl",
@@ -498,6 +442,42 @@
    :var-type "function",
    :line 35,
    :file "src/main/clojure/clojure/tools/logging/impl.clj"}
+  {:file "src/main/clojure/clojure/tools/logging/impl.clj",
+   :raw-source-url
+   "https://github.com/clojure/tools.logging/raw/7694fd2067e3366b63b50dc698c32da17488ea10/src/main/clojure/clojure/tools/logging/impl.clj",
+   :source-url
+   "https://github.com/clojure/tools.logging/blob/7694fd2067e3366b63b50dc698c32da17488ea10/src/main/clojure/clojure/tools/logging/impl.clj#L16",
+   :wiki-url
+   "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging.impl/Logger",
+   :namespace "clojure.tools.logging.impl",
+   :line 16,
+   :var-type "protocol",
+   :doc
+   "The protocol through which the core api will interact with an underlying logging\nimplementation.  Implementations should at least support the six standard\nlogging levels if they wish to work from the level-specific macros.",
+   :name "Logger"}
+  {:file "src/main/clojure/clojure/tools/logging/impl.clj",
+   :raw-source-url
+   "https://github.com/clojure/tools.logging/raw/7694fd2067e3366b63b50dc698c32da17488ea10/src/main/clojure/clojure/tools/logging/impl.clj",
+   :source-url
+   "https://github.com/clojure/tools.logging/blob/7694fd2067e3366b63b50dc698c32da17488ea10/src/main/clojure/clojure/tools/logging/impl.clj#L25",
+   :wiki-url
+   "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging.impl/LoggerFactory",
+   :namespace "clojure.tools.logging.impl",
+   :line 25,
+   :var-type "protocol",
+   :doc
+   "The protocol through which the core api will obtain an instance satisfying Logger\nas well as providing information about the particular implementation being used.\nImplementations should be bound to *logger-factory* in order to be picked up by\nthis library.",
+   :name "LoggerFactory"}
+  {:file nil,
+   :raw-source-url nil,
+   :source-url nil,
+   :wiki-url
+   "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging.impl/enabled?",
+   :namespace "clojure.tools.logging.impl",
+   :var-type "function",
+   :arglists ([logger level]),
+   :doc "Check if a particular level is enabled for the given Logger.",
+   :name "enabled?"}
   {:file nil,
    :raw-source-url nil,
    :source-url nil,
@@ -507,4 +487,24 @@
    :var-type "function",
    :arglists ([logger level throwable message]),
    :doc "Writes a log message to the given Logger.",
-   :name "write!"})}
+   :name "write!"}
+  {:file nil,
+   :raw-source-url nil,
+   :source-url nil,
+   :wiki-url
+   "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging.impl/get-logger",
+   :namespace "clojure.tools.logging.impl",
+   :var-type "function",
+   :arglists ([factory logger-ns]),
+   :doc "Returns an implementation-specific Logger by namespace.",
+   :name "get-logger"}
+  {:file nil,
+   :raw-source-url nil,
+   :source-url nil,
+   :wiki-url
+   "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging.impl/name",
+   :namespace "clojure.tools.logging.impl",
+   :var-type "function",
+   :arglists ([factory]),
+   :doc "Returns some text identifying the underlying implementation.",
+   :name "name"})}
