@@ -45,6 +45,7 @@
           {:enabled?
            (fn [logger# level#]
              (condp = level#
+               :noop  false
                :trace (.isTraceEnabled logger#)
                :debug (.isDebugEnabled logger#)
                :info  (.isInfoEnabled  logger#)
@@ -92,6 +93,7 @@
            {:enabled?
             (fn [logger# level#]
               (condp = level#
+                :noop false
                 :trace (.isTraceEnabled logger#)
                 :debug (.isDebugEnabled logger#)
                 :info  (.isInfoEnabled  logger#)
@@ -142,15 +144,16 @@
            Logger
            {:enabled?
             (fn [logger# level#]
-              (.isEnabledFor logger#
-                 (or
-                   (levels# level#)
-                   (throw (IllegalArgumentException. (str level#))))))
+              (and (not (= :noop level#)) 
+                   (.isEnabledFor logger#
+                     (or
+                       (levels# level#)
+                       (throw (IllegalArgumentException. (str  level#)))))))
             :write!
             (fn [logger# level# e# msg#]
               (let [level# (or
                              (levels# level#)
-                             (throw (IllegalArgumentException. (str level#))))]
+                             (throw (IllegalArgumentException. (str  level#))))]
                 (if e#
                   (.log logger# level# msg# e#)
                   (.log logger# level# msg#))))})
