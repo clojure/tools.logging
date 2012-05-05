@@ -43,7 +43,7 @@
         (extend org.slf4j.Logger
           Logger
           {:enabled?
-           (fn [logger# level#]
+           (fn [^org.slf4j.Logger logger# level#]
              (condp = level#
                :trace (.isTraceEnabled logger#)
                :debug (.isDebugEnabled logger#)
@@ -90,7 +90,7 @@
          (extend org.apache.commons.logging.Log
            Logger
            {:enabled?
-            (fn [logger# level#]
+            (fn [^org.apache.commons.logging.Log logger# level#]
               (condp = level#
                 :trace (.isTraceEnabled logger#)
                 :debug (.isDebugEnabled logger#)
@@ -100,7 +100,7 @@
                 :fatal (.isFatalEnabled logger#)
                 (throw (IllegalArgumentException. (str level#)))))
             :write!
-            (fn [logger# level# e# msg#]
+            (fn [^org.apache.commons.logging.Log logger# level# e# msg#]
               (if e#
                 (condp = level#
                   :trace (.trace logger# msg# e#)
@@ -141,13 +141,13 @@
          (extend org.apache.log4j.Logger
            Logger
            {:enabled?
-            (fn [logger# level#]
+            (fn [^org.apache.log4j.Logger logger# level#]
               (.isEnabledFor logger#
                  (or
                    (levels# level#)
                    (throw (IllegalArgumentException. (str level#))))))
             :write!
-            (fn [logger# level# e# msg#]
+            (fn [^org.apache.log4j.Logger logger# level# e# msg#]
               (let [level# (or
                              (levels# level#)
                              (throw (IllegalArgumentException. (str level#))))]
@@ -177,13 +177,13 @@
          (extend java.util.logging.Logger
            Logger
            {:enabled?
-            (fn [logger# level#]
+            (fn [^java.util.logging.Logger logger# level#]
               (.isLoggable logger#
                 (or
                   (levels# level#)
                   (throw (IllegalArgumentException. (str level#))))))
             :write!
-            (fn [logger# level# ^Throwable e# msg#]
+            (fn [^java.util.logging.Logger logger# level# ^Throwable e# msg#]
               (let [^java.util.logging.Level level#
                     (or
                       (levels# level#)
