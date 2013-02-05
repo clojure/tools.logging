@@ -83,9 +83,10 @@
     `(log ~level (print-str ~x ~@more))
     `(let [logger# (impl/get-logger *logger-factory* ~*ns*)]
        (if (impl/enabled? logger# ~level)
-         (if (instance? Throwable ~x) ; type check only when enabled
-           (log* logger# ~level ~x (print-str ~@more))
-           (log* logger# ~level nil (print-str ~x ~@more)))))))
+         (let [x# ~x]
+           (if (instance? Throwable x#) ; type check only when enabled
+             (log* logger# ~level x# (print-str ~@more))
+             (log* logger# ~level nil (print-str x# ~@more))))))))
 
 (defmacro logf
   "Logs a message using a format string and args. Can optionally take a
@@ -96,9 +97,10 @@
     `(log ~level (format ~x ~@more))
     `(let [logger# (impl/get-logger *logger-factory* ~*ns*)]
        (if (impl/enabled? logger# ~level)
-         (if (instance? Throwable ~x) ; type check only when enabled
-           (log* logger# ~level ~x (format ~@more))
-           (log* logger# ~level nil (format ~x ~@more)))))))
+         (let [x# ~x]
+           (if (instance? Throwable x#) ; type check only when enabled
+             (log* logger# ~level x# (format ~@more))
+             (log* logger# ~level nil (format x# ~@more))))))))
 
 (defmacro enabled?
   "Returns true if the specific logging level is enabled.  Use of this macro
