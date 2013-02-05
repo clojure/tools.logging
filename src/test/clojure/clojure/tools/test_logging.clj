@@ -34,6 +34,28 @@
     (f)
     (swap! *entries* (constantly []))))
 
+(deftest log-single-eval
+  (let [cnt (atom 0)]
+    (log :debug (swap! cnt inc))
+    (log :debug (Exception. (str (swap! cnt inc))) (swap! cnt inc))
+    (is (== 3 @cnt))))
+
+(deftest logp-single-eval
+  (let [cnt (atom 0)]
+    (logp :debug (str (swap! cnt inc)))
+    (logp :debug (str (swap! cnt inc)) :foo)
+    (logp :debug (Exception. (str (swap! cnt inc))) (str (swap! cnt inc)))
+    (logp :debug (Exception. (str (swap! cnt inc))) (str (swap! cnt inc)) :foo)
+    (is (== 6 @cnt))))
+
+(deftest logf-single-eval
+  (let [cnt (atom 0)]
+    (logf :debug (str (swap! cnt inc)))
+    (logf :debug (str (swap! cnt inc)) :foo)
+    (logf :debug (Exception. (str (swap! cnt inc))) (str (swap! cnt inc)))
+    (logf :debug (Exception. (str (swap! cnt inc))) (str (swap! cnt inc)) :foo)
+    (is (== 6 @cnt))))
+
 
 (deftest log-msg
   (log :debug "foo")
