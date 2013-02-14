@@ -36,7 +36,7 @@
   *force* nil)
 
 (def ^{:doc
-  "Overrides the namespace used in logging. Defaults to nil.See log for details."
+  "Overrides the namespace used in logging. Defaults to nil. See with-log for details."
   :dynamic true}
   *logger-ns* nil)
 
