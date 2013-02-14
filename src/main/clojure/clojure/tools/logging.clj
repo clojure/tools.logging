@@ -35,6 +35,8 @@
   agent. Defaults to nil. See log* for details." :dynamic true}
   *force* nil)
 
+(def ^{:dynamic true} *logger* nil)
+
 (defn log*
   "Attempts to log a message, either directly or via an agent; does not check if
   the level is enabled.
@@ -66,7 +68,7 @@
   ([level message]
     `(log ~level nil ~message))
   ([level throwable message]
-    `(log ~*ns* ~level ~throwable ~message))
+    `(log (or *logger* ~*ns*) ~level ~throwable ~message))
   ([logger-ns level throwable message]
     `(log *logger-factory* ~logger-ns ~level ~throwable ~message))
   ([logger-factory logger-ns level throwable message]
@@ -81,7 +83,7 @@
   [level x & more]
   (if (or (instance? String x) (nil? more)) ; optimize for common case
     `(log ~level (print-str ~x ~@more))
-    `(let [logger# (impl/get-logger *logger-factory* ~*ns*)]
+    `(let [logger# (impl/get-logger *logger-factory* (or *logger* ~*ns*))]
        (if (impl/enabled? logger# ~level)
          (let [x# ~x]
            (if (instance? Throwable x#) ; type check only when enabled
@@ -95,7 +97,7 @@
   [level x & more]
   (if (or (instance? String x) (nil? more)) ; optimize for common case
     `(log ~level (format ~x ~@more))
-    `(let [logger# (impl/get-logger *logger-factory* ~*ns*)]
+    `(let [logger# (impl/get-logger *logger-factory* (or *logger* ~*ns*))]
        (if (impl/enabled? logger# ~level)
          (let [x# ~x]
            (if (instance? Throwable x#) ; type check only when enabled
@@ -194,6 +196,11 @@
                          (log-stream ~err-level ~logger-ns))]
          ~@body))))
 
+(defmacro with-logger
+  [logger & body]
+  (if (and logger (seq body))
+    `(binding [*logger* ~logger]
+       ~@body)))
 
 ;; level-specific macros
 

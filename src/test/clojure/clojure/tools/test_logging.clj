@@ -397,3 +397,37 @@
       warnf :warn
       errorf :error
       fatalf :fatal)))
+
+(deftest logp-macro
+  (info "kukka")
+  (is (= ["clojure.tools.test-logging"
+          :info
+          nil
+          "kukka"]
+        (peek @*entries*))))
+
+(deftest logf-macro
+  (infof "kukka")
+  (is (= ["clojure.tools.test-logging"
+          :info
+          nil
+          "kukka"]
+        (peek @*entries*))))
+
+(deftest logp-macro-with-logger
+  (with-logger "kikka"
+    (info "kukka"))
+  (is (= ["kikka"
+          :info
+          nil
+          "kukka"]
+        (peek @*entries*))))
+
+(deftest logf-macro-with-logger
+  (with-logger "kikka"
+    (infof "kukka"))
+  (is (= ["kikka"
+          :info
+          nil
+          "kukka"]
+        (peek @*entries*))))
