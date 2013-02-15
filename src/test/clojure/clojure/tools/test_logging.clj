@@ -431,3 +431,23 @@
           nil
           "kukka"]
         (peek @*entries*))))
+
+(deftest logp-macro-exception-with-logger
+  (let [exception (RuntimeException. "bang")]
+    (with-logger "kikka"
+      (info exception "kukka"))
+    (is (= ["kikka"
+            :info
+            exception
+            "kukka"]
+           (peek @*entries*)))))
+
+(deftest logf-macro-exception-with-logger
+  (let [exception (RuntimeException. "bang")]
+    (with-logger "kikka"
+      (infof exception "kukka"))
+    (is (= ["kikka"
+            :info
+            exception
+            "kukka"]
+           (peek @*entries*)))))
