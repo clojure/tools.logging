@@ -191,7 +191,7 @@ Apache commons-logging, log4j, and finally java.util.logging.</pre>
     <br />
     <hr />
     <h2 id="clojure.tools.logging/*force*">*force*</h2>
-    <span id="var-type">var</span><br />
+    <span id="var-type">dynamic var</span><br />
     <pre id="var-usage"></pre>
     <pre id="var-docstr">Overrides the default rules for choosing between logging directly or via an
 agent. Defaults to nil. See log* for details.</pre>
@@ -202,7 +202,7 @@ agent. Defaults to nil. See log* for details.</pre>
     <br />
     <hr />
     <h2 id="clojure.tools.logging/*logger-factory*">*logger-factory*</h2>
-    <span id="var-type">var</span><br />
+    <span id="var-type">dynamic var</span><br />
     <pre id="var-usage"></pre>
     <pre id="var-docstr">An instance satisfying the impl/LoggerFactory protocol. Used internally to
 obtain an impl/Logger. Defaults to the value returned from impl/find-factory.</pre>
@@ -213,7 +213,7 @@ obtain an impl/Logger. Defaults to the value returned from impl/find-factory.</p
     <br />
     <hr />
     <h2 id="clojure.tools.logging/*logging-agent*">*logging-agent*</h2>
-    <span id="var-type">var</span><br />
+    <span id="var-type">dynamic var</span><br />
     <pre id="var-usage"></pre>
     <pre id="var-docstr">The default agent used for performing logging when direct logging is
 disabled. See log* for details.</pre>
@@ -224,7 +224,7 @@ disabled. See log* for details.</pre>
     <br />
     <hr />
     <h2 id="clojure.tools.logging/*tx-agent-levels*">*tx-agent-levels*</h2>
-    <span id="var-type">var</span><br />
+    <span id="var-type">dynamic var</span><br />
     <pre id="var-usage"></pre>
     <pre id="var-docstr">The set of levels that will require using an agent when logging from within a
 running transaction. Defaults to #{:info :warn}. See log* for details.</pre>
