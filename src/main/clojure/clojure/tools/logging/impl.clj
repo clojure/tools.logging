@@ -32,6 +32,18 @@
   (get-logger [factory logger-ns]
     "Returns an implementation-specific Logger by namespace."))
 
+(def disabled-logger
+  "A Logger that is not enabled and does nothing on write."
+  (reify Logger
+    (enabled? [_ _] false)
+    (write! [_ _ _ _])))
+
+(def disabled-logger-factory
+  "A LoggerFactory that always provides the disabled-logger."
+  (reify LoggerFactory
+    (name [_] "disabled")
+    (get-logger [_ _] disabled-logger)))
+
 (defn slf4j-factory
   "Returns a SLF4J-based implementation of the LoggerFactory protocol, or nil if
   not available."
