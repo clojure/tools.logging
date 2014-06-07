@@ -34,6 +34,20 @@
     (f)
     (swap! *entries* (constantly []))))
 
+(deftest log-yields-nil
+  (let [enabled-logger  (reify impl/Logger
+                          (enabled? [_ _] true)
+                          (write! [_ _ _ _] :non-nil))
+        disabled-logger (reify impl/Logger
+                          (enabled? [_ _] false)
+                          (write! [_ _ _ _] :non-nil))]
+    (binding [*force* :agent]
+      (is (nil? (log* enabled-logger :debug nil :msg)))
+      (is (nil? (log* disabled-logger :debug nil :msg))))
+    (binding [*force* :direct]
+      (is (nil? (log* enabled-logger :debug nil :msg)))
+      (is (nil? (log* disabled-logger :debug nil :msg))))))
+
 (deftest log-single-eval
   (let [cnt (atom 0)]
     (log :debug (swap! cnt inc))
