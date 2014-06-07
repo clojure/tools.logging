@@ -56,7 +56,8 @@
         (= *force* :direct) false)
     (send-off *logging-agent*
       (fn [_#] (impl/write! logger level throwable message)))
-    (impl/write! logger level throwable message)))
+    (impl/write! logger level throwable message))
+  nil)
 
 (declare ^{:dynamic true} *logger-factory*) ; default LoggerFactory instance for calling impl/get-logger
 
