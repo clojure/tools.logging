@@ -296,6 +296,22 @@
           (format "(+ 4 5)%n=> 9")]
         (peek @*entries*))))
 
+(deftest spyf-default
+  (spyf "result: %s" (+ 4 5))
+  (is (= ["clojure.tools.test-logging"
+          :debug
+          nil
+          (format "result: 9")]
+        (peek @*entries*))))
+
+(deftest spyf-level
+  (spyf :fatal "result: %s" (+ 4 5))
+  (is (= ["clojure.tools.test-logging"
+          :fatal
+          nil
+          (format "result: 9")]
+        (peek @*entries*))))
+
 (comment
 (deftest capturing
   (log-capture! "foobar")

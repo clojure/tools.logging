@@ -128,6 +128,16 @@
            (trim-newline s#)))
        a#)))
 
+(defmacro spyf
+  "Evaluates expr and may write (format fmt result) to the log. Returns the
+  result of expr. Defaults to :debug log level."
+  ([fmt expr]
+    `(spyf :debug ~fmt ~expr))
+  ([level fmt expr]
+    `(let [a# ~expr]
+       (log ~level (format ~fmt a#))
+       a#)))
+
 (defn log-stream
   "Creates a PrintStream that will output to the log at the specified level."
   [level logger-ns]
