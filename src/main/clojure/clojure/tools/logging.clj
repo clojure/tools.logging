@@ -47,7 +47,8 @@
   failed transactions though at the cost of repeat messages during retries.
 
   One can override the above by setting *force* to :direct or :agent; all
-  subsequent writes will be direct or via an agent, respectively."
+  subsequent writes will be direct or via an agent, respectively.
+  Returns nil."
   [logger level throwable message]
   (if (cond
         (nil? *force*) (and (clojure.lang.LockingTransaction/isRunning)
@@ -56,7 +57,8 @@
         (= *force* :direct) false)
     (send-off *logging-agent*
       (fn [_#] (impl/write! logger level throwable message)))
-    (impl/write! logger level throwable message)))
+    (impl/write! logger level throwable message))
+  nil)
 
 (declare ^{:dynamic true} *logger-factory*) ; default LoggerFactory instance for calling impl/get-logger
 

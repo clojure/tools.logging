@@ -34,6 +34,12 @@
     (f)
     (swap! *entries* (constantly []))))
 
+(deftest nil-return-regardless-of-mode
+  (binding [*force* :direct]
+    (is (nil? (log :debug "direct"))))
+  (binding [*force* :agent]
+    (is (nil? (log :debug "agent")))))
+
 (deftest log-single-eval
   (let [cnt (atom 0)]
     (log :debug (swap! cnt inc))
