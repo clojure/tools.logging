@@ -1,12 +1,12 @@
 {:namespaces
  ({:source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging/clojure.tools.logging-api.html",
    :name "clojure.tools.logging",
    :author "Alex Taggart",
    :doc
-   "Logging macros which delegate to a specific logging implementation. At\n runtime a specific implementation is selected from, in order, slf4j,\n Apache commons-logging, log4j, and finally java.util.logging.\n\nThe logging implementation can be expliticly determined by using \nbinding or alter-var-root to change the value of *logger-factory* to\nanother implementation of clojure.tools.logging.impl/LoggerFactory."}
+   "Logging macros which delegate to a specific logging implementation. At\nruntime a specific implementation is selected from, in order, slf4j,\nApache commons-logging, log4j, and finally java.util.logging.\n\nThe logging implementation can be expliticly determined by using\nbinding or alter-var-root to change the value of *logger-factory* to\nanother implementation of clojure.tools.logging.impl/LoggerFactory\n(see also the *-factory functions in the impl namespace)."}
   {:source-url
    "https://github.com/clojure/tools.logging/blob/26d5ebb12cf8b029644161faad9af2e5412efe94/src/main/clojure/clojure/tools/logging/impl.clj",
    :wiki-url
@@ -19,176 +19,176 @@
  ({:name "*force*",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L37",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L38",
    :dynamic true,
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/*force*",
    :doc
    "Overrides the default rules for choosing between logging directly or via an\nagent. Defaults to nil. See log* for details.",
    :var-type "var",
-   :line 37,
+   :line 38,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:name "*logger-factory*",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L287",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L288",
    :dynamic true,
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/*logger-factory*",
    :doc
    "An instance satisfying the impl/LoggerFactory protocol. Used internally to\nobtain an impl/Logger. Defaults to the value returned from impl/find-factory.",
    :var-type "var",
-   :line 287,
+   :line 288,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:name "*logging-agent*",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L27",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L28",
    :dynamic true,
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/*logging-agent*",
    :doc
    "The default agent used for performing logging when direct logging is\ndisabled. See log* for details.",
    :var-type "var",
-   :line 27,
+   :line 28,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:name "*tx-agent-levels*",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L32",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L33",
    :dynamic true,
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/*tx-agent-levels*",
    :doc
    "The set of levels that will require using an agent when logging from within a\nrunning transaction. Defaults to #{:info :warn}. See log* for details.",
    :var-type "var",
-   :line 32,
+   :line 33,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([message & more] [throwable message & more]),
    :name "debug",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L221",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L222",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/debug",
    :doc "Debug level logging using print-style args.",
    :var-type "macro",
-   :line 221,
+   :line 222,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([fmt & fmt-args] [throwable fmt & fmt-args]),
    :name "debugf",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L257",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L258",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/debugf",
    :doc "Debug level logging using format.",
    :var-type "macro",
-   :line 257,
+   :line 258,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([level] [level logger-ns]),
    :name "enabled?",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L110",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L111",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/enabled?",
    :doc
    "Returns true if the specific logging level is enabled.  Use of this macro\nshould only be necessary if one needs to execute alternate code paths beyond\nwhether the log should be written to.",
    :var-type "macro",
-   :line 110,
+   :line 111,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([message & more] [throwable message & more]),
    :name "error",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L239",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L240",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/error",
    :doc "Error level logging using print-style args.",
    :var-type "macro",
-   :line 239,
+   :line 240,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([fmt & fmt-args] [throwable fmt & fmt-args]),
    :name "errorf",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L275",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L276",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/errorf",
    :doc "Error level logging using format.",
    :var-type "macro",
-   :line 275,
+   :line 276,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([message & more] [throwable message & more]),
    :name "fatal",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L245",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L246",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/fatal",
    :doc "Fatal level logging using print-style args.",
    :var-type "macro",
-   :line 245,
+   :line 246,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([fmt & fmt-args] [throwable fmt & fmt-args]),
    :name "fatalf",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L281",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L282",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/fatalf",
    :doc "Fatal level logging using format.",
    :var-type "macro",
-   :line 281,
+   :line 282,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([message & more] [throwable message & more]),
    :name "info",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L227",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L228",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/info",
    :doc "Info level logging using print-style args.",
    :var-type "macro",
-   :line 227,
+   :line 228,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([fmt & fmt-args] [throwable fmt & fmt-args]),
    :name "infof",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L263",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L264",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/infof",
    :doc "Info level logging using format.",
    :var-type "macro",
-   :line 263,
+   :line 264,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists
    ([level message]
@@ -198,193 +198,193 @@
    :name "log",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L68",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L69",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/log",
    :doc
    "Evaluates and logs a message only if the specified level is enabled. See log*\nfor more details.",
    :var-type "macro",
-   :line 68,
+   :line 69,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([logger level throwable message]),
    :name "log*",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L42",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L43",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/log*",
    :doc
    "Attempts to log a message, either directly or via an agent; does not check if\nthe level is enabled.\n\nFor performance reasons, an agent will only be used when invoked within a\nrunning transaction, and only for logging levels specified by\n*tx-agent-levels*. This allows those entries to only be written once the\ntransaction commits, and are discarded if it is retried or aborted.  As\ncorollary, other levels (e.g., :debug, :error) will be written even from\nfailed transactions though at the cost of repeat messages during retries.\n\nOne can override the above by setting *force* to :direct or :agent; all\nsubsequent writes will be direct or via an agent, respectively.",
    :var-type "function",
-   :line 42,
+   :line 43,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([logger-ns] [logger-ns out-level err-level]),
    :name "log-capture!",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L163",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L164",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/log-capture!",
    :doc
    "Captures System.out and System.err, piping all writes of those streams to\nthe log. If unspecified, levels default to :info and :error, respectively.\nThe specified logger-ns value will be used to namespace all log entries.\n\nNote: use with-logs to redirect output of *out* or *err*.\n\nWarning: if the logging implementation is configured to output to System.out\n(as is the default with java.util.logging) then using this function will\nresult in StackOverflowException when writing to the log.",
    :var-type "function",
-   :line 163,
+   :line 164,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([level logger-ns]),
    :name "log-stream",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L145",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L146",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/log-stream",
    :doc
    "Creates a PrintStream that will output to the log at the specified level.",
    :var-type "function",
-   :line 145,
+   :line 146,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([]),
    :name "log-uncapture!",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L183",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L184",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/log-uncapture!",
    :doc "Restores System.out and System.err to their original values.",
    :var-type "function",
-   :line 183,
+   :line 184,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([level fmt & fmt-args] [level throwable fmt & fmt-args]),
    :name "logf",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L96",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L97",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/logf",
    :doc
    "Logs a message using a format string and args. Can optionally take a\nthrowable as its second arg. See level-specific macros, e.g., debugf.",
    :var-type "macro",
-   :line 96,
+   :line 97,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([level message & more] [level throwable message & more]),
    :name "logp",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L82",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L83",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/logp",
    :doc
    "Logs a message using print style args. Can optionally take a throwable as its\nsecond arg. See level-specific macros, e.g., debug.",
    :var-type "macro",
-   :line 82,
+   :line 83,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([expr] [level expr]),
    :name "spy",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L119",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L120",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/spy",
    :doc
    "Evaluates expr and may write the form and its result to the log. Returns the\nresult of expr. Defaults to :debug log level.",
    :var-type "macro",
-   :line 119,
+   :line 120,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([fmt expr] [level fmt expr]),
    :name "spyf",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L135",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L136",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/spyf",
    :doc
    "Evaluates expr and may write (format fmt result) to the log. Returns the\nresult of expr. Defaults to :debug log level.",
    :var-type "macro",
-   :line 135,
+   :line 136,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([message & more] [throwable message & more]),
    :name "trace",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L215",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L216",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/trace",
    :doc "Trace level logging using print-style args.",
    :var-type "macro",
-   :line 215,
+   :line 216,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([fmt & fmt-args] [throwable fmt & fmt-args]),
    :name "tracef",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L251",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L252",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/tracef",
    :doc "Trace level logging using format.",
    :var-type "macro",
-   :line 251,
+   :line 252,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([message & more] [throwable message & more]),
    :name "warn",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L233",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L234",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/warn",
    :doc "Warn level logging using print-style args.",
    :var-type "macro",
-   :line 233,
+   :line 234,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([fmt & fmt-args] [throwable fmt & fmt-args]),
    :name "warnf",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L269",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L270",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/warnf",
    :doc "Warn level logging using format.",
    :var-type "macro",
-   :line 269,
+   :line 270,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists
    ([logger-ns & body] [[logger-ns out-level err-level] & body]),
    :name "with-logs",
    :namespace "clojure.tools.logging",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj#L192",
+   "https://github.com/clojure/tools.logging/blob/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj#L193",
    :raw-source-url
-   "https://github.com/clojure/tools.logging/raw/0d701fda6eb4945389783a0c24d5884d41e5d8b5/src/main/clojure/clojure/tools/logging.clj",
+   "https://github.com/clojure/tools.logging/raw/9c5de9d406a64a5eda637447adf8458543f8ce36/src/main/clojure/clojure/tools/logging.clj",
    :wiki-url
    "http://clojure.github.com/tools.logging//clojure.tools.logging-api.html#clojure.tools.logging/with-logs",
    :doc
    "Evaluates exprs in a context in which *out* and *err* write to the log. The\nspecified logger-ns value will be used to namespace all log entries.\n\nBy default *out* and *err* write to :info and :error, respectively.",
    :var-type "macro",
-   :line 192,
+   :line 193,
    :file "src/main/clojure/clojure/tools/logging.clj"}
   {:arglists ([]),
    :name "cl-factory",
