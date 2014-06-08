@@ -21,39 +21,43 @@ The latest API documentation can be found at http://clojure.github.com/tools.log
 The following short example should give you what you need to get started:
 
 ```clojure
-    (ns example.math
-      (:use [clojure.tools.logging :as log]))
+(ns example.math
+  (:use [clojure.tools.logging :as log]))
 
-    (defn divide [x y]
-      (log/info "dividing" x "by" y)
-      (try
-        (log/spyf "result: %s" (/ x y)) ; yields the result
-        (catch Exception ex
-          (log/error ex "There was an error in calculation"))))
+(defn divide [x y]
+  (log/info "dividing" x "by" y)
+  (try
+    (log/spyf "result: %s" (/ x y)) ; yields the result
+    (catch Exception ex
+      (log/error ex "There was an error in calculation"))))
 ```
 
 Example repl output using the configuration below:
 
-    user=> (use 'my.example)
-    nil
-    user=> (divide 1 2)
-    INFO  example.math: dividing 1 by 2
-    DEBUG example.math: result is 1/2
-    1/2
-    user=> (divide 2 0)
-    INFO  example.math: dividing 2 by 0
-    ERROR example.math: There was an error in calculation
-    java.lang.ArithmeticException: Divide by zero
-    	at clojure.lang.Numbers.divide(Numbers.java:156)
-        ...
+```
+user=> (use 'my.example)
+nil
+user=> (divide 1 2)
+INFO  example.math: dividing 1 by 2
+DEBUG example.math: result is 1/2
+1/2
+user=> (divide 2 0)
+INFO  example.math: dividing 2 by 0
+ERROR example.math: There was an error in calculation
+java.lang.ArithmeticException: Divide by zero
+	at clojure.lang.Numbers.divide(Numbers.java:156)
+    ...
+```
 
 For those new to using a java logging library, the following is a very basic configuration for log4j. Place it in a file called `log4j.properties` and place that file (and the log4j JAR) on the classpath.
 
-    log4j.rootLogger=INFO, console
-    log4j.logger.example=DEBUG
-    log4j.appender.console=org.apache.log4j.ConsoleAppender
-    log4j.appender.console.layout=org.apache.log4j.PatternLayout
-    log4j.appender.console.layout.ConversionPattern=%-5p %c: %m%n
+```
+log4j.rootLogger=INFO, console
+log4j.logger.example=DEBUG
+log4j.appender.console=org.apache.log4j.ConsoleAppender
+log4j.appender.console.layout=org.apache.log4j.PatternLayout
+log4j.appender.console.layout.ConversionPattern=%-5p %c: %m%n
+```
 
 The above will print messages to the console for `:debug` or higher if one is in the `example` namespace, and `:info` or higher in all other namespaces.
 
@@ -61,15 +65,19 @@ The above will print messages to the console for `:debug` or higher if one is in
 
 Logging is available in Maven central.  Add it to your Maven project's `pom.xml`:
 
-    <dependency>
-      <groupId>org.clojure</groupId>
-      <artifactId>tools.logging</artifactId>
-      <version>0.2.6</version>
-    </dependency>
+```xml
+<dependency>
+  <groupId>org.clojure</groupId>
+  <artifactId>tools.logging</artifactId>
+  <version>0.2.6</version>
+</dependency>
+```
 
 or your leiningen project.clj:
 
-    [org.clojure/tools.logging "0.2.6"]
+```clojure
+[org.clojure/tools.logging "0.2.6"]
+```
 
 Please note the changelog below.
 
