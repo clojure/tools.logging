@@ -40,6 +40,11 @@
   agent. Defaults to nil. See log* for details." :dynamic true}
   *force* nil)
 
+(def ^{:doc
+  "Overrides the namespace used in logging. Defaults to nil. See with-log for details."
+  :dynamic true}
+  *logger-ns* nil)
+
 (defn log*
   "Attempts to log a message, either directly or via an agent; does not check if
   the level is enabled.
@@ -72,7 +77,7 @@
   ([level message]
     `(log ~level nil ~message))
   ([level throwable message]
-    `(log ~*ns* ~level ~throwable ~message))
+    `(log (or *logger-ns* ~*ns*) ~level ~throwable ~message))
   ([logger-ns level throwable message]
     `(log *logger-factory* ~logger-ns ~level ~throwable ~message))
   ([logger-factory logger-ns level throwable message]
@@ -87,7 +92,7 @@
   [level x & more]
   (if (or (instance? String x) (nil? more)) ; optimize for common case
     `(log ~level (print-str ~x ~@more))
-    `(let [logger# (impl/get-logger *logger-factory* ~*ns*)]
+    `(let [logger# (impl/get-logger *logger-factory* (or *logger-ns* ~*ns*))]
        (if (impl/enabled? logger# ~level)
          (let [x# ~x]
            (if (instance? Throwable x#) ; type check only when enabled
@@ -101,7 +106,7 @@
   [level x & more]
   (if (or (instance? String x) (nil? more)) ; optimize for common case
     `(log ~level (format ~x ~@more))
-    `(let [logger# (impl/get-logger *logger-factory* ~*ns*)]
+    `(let [logger# (impl/get-logger *logger-factory* (or *logger-ns* ~*ns*))]
        (if (impl/enabled? logger# ~level)
          (let [x# ~x]
            (if (instance? Throwable x#) ; type check only when enabled
@@ -210,6 +215,12 @@
                          (log-stream ~err-level ~logger-ns))]
          ~@body))))
 
+(defmacro with-logger
+  "Overrides the default namespace to be used in logging."
+  [^String logger-ns & body]
+  (if (and logger-ns (seq body))
+    `(binding [*logger-ns* ~logger-ns]
+       ~@body)))
 
 ;; level-specific macros
 
