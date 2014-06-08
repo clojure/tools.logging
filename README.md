@@ -22,7 +22,7 @@ The following short example should give you what you need to get started:
 
 ```clojure
 (ns example.math
-  (:use [clojure.tools.logging :as log]))
+  (:require [clojure.tools.logging :as log]))
 
 (defn divide [x y]
   (log/info "dividing" x "by" y)
