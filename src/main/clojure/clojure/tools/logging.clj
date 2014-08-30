@@ -20,10 +20,10 @@
             another implementation of clojure.tools.logging.impl/LoggerFactory
             (see also the *-factory functions in the impl namespace)."}
   clojure.tools.logging
-  [:use
+  (:use
    [clojure.string :only [trim-newline]]
-   [clojure.pprint :only [code-dispatch pprint with-pprint-dispatch]]]
-  [:require [clojure.tools.logging.impl :as impl]])
+   [clojure.pprint :only [code-dispatch pprint with-pprint-dispatch]])
+  (:require [clojure.tools.logging.impl :as impl]))
 
 (def ^{:doc
   "The default agent used for performing logging when direct logging is

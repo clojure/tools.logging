@@ -1,7 +1,7 @@
 (ns clojure.tools.test-logging
-  [:use clojure.test
-        clojure.tools.logging]
-  [:require [clojure.tools.logging.impl :as impl]])
+  (:use clojure.test
+        clojure.tools.logging)
+  (:require [clojure.tools.logging.impl :as impl]))
 
 (deftest test-impls
   (are [lf] (binding [*logger-factory* lf]
