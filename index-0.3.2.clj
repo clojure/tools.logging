@@ -13,7 +13,7 @@
    :wiki-url
    "http://clojure.github.io/tools.logging/index.html#clojure.tools.logging.impl",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/26d5ebb12cf8b029644161faad9af2e5412efe94/src/main/clojure/clojure/tools/logging/impl.clj"}),
+   "https://github.com/clojure/tools.logging/blob/fec4503b253ee1dab47f8613f6ef35e08b7e4707/src/main/clojure/clojure/tools/logging/impl.clj"}),
  :vars
  ({:raw-source-url
    "https://github.com/clojure/tools.logging/raw/f568ff26b381a850bb50e96c103bea8495cdf436/src/main/clojure/clojure/tools/logging.clj",
@@ -390,11 +390,11 @@
    :wiki-url
    "http://clojure.github.io/tools.logging//index.html#clojure.tools.logging/with-logs"}
   {:raw-source-url
-   "https://github.com/clojure/tools.logging/raw/26d5ebb12cf8b029644161faad9af2e5412efe94/src/main/clojure/clojure/tools/logging/impl.clj",
+   "https://github.com/clojure/tools.logging/raw/fec4503b253ee1dab47f8613f6ef35e08b7e4707/src/main/clojure/clojure/tools/logging/impl.clj",
    :name "cl-factory",
    :file "src/main/clojure/clojure/tools/logging/impl.clj",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/26d5ebb12cf8b029644161faad9af2e5412efe94/src/main/clojure/clojure/tools/logging/impl.clj#L94",
+   "https://github.com/clojure/tools.logging/blob/fec4503b253ee1dab47f8613f6ef35e08b7e4707/src/main/clojure/clojure/tools/logging/impl.clj#L94",
    :line 94,
    :var-type "function",
    :arglists ([]),
@@ -404,11 +404,11 @@
    :wiki-url
    "http://clojure.github.io/tools.logging//index.html#clojure.tools.logging.impl/cl-factory"}
   {:raw-source-url
-   "https://github.com/clojure/tools.logging/raw/26d5ebb12cf8b029644161faad9af2e5412efe94/src/main/clojure/clojure/tools/logging/impl.clj",
+   "https://github.com/clojure/tools.logging/raw/fec4503b253ee1dab47f8613f6ef35e08b7e4707/src/main/clojure/clojure/tools/logging/impl.clj",
    :name "disabled-logger",
    :file "src/main/clojure/clojure/tools/logging/impl.clj",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/26d5ebb12cf8b029644161faad9af2e5412efe94/src/main/clojure/clojure/tools/logging/impl.clj#L35",
+   "https://github.com/clojure/tools.logging/blob/fec4503b253ee1dab47f8613f6ef35e08b7e4707/src/main/clojure/clojure/tools/logging/impl.clj#L35",
    :line 35,
    :var-type "var",
    :arglists nil,
@@ -417,11 +417,11 @@
    :wiki-url
    "http://clojure.github.io/tools.logging//index.html#clojure.tools.logging.impl/disabled-logger"}
   {:raw-source-url
-   "https://github.com/clojure/tools.logging/raw/26d5ebb12cf8b029644161faad9af2e5412efe94/src/main/clojure/clojure/tools/logging/impl.clj",
+   "https://github.com/clojure/tools.logging/raw/fec4503b253ee1dab47f8613f6ef35e08b7e4707/src/main/clojure/clojure/tools/logging/impl.clj",
    :name "disabled-logger-factory",
    :file "src/main/clojure/clojure/tools/logging/impl.clj",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/26d5ebb12cf8b029644161faad9af2e5412efe94/src/main/clojure/clojure/tools/logging/impl.clj#L41",
+   "https://github.com/clojure/tools.logging/blob/fec4503b253ee1dab47f8613f6ef35e08b7e4707/src/main/clojure/clojure/tools/logging/impl.clj#L41",
    :line 41,
    :var-type "var",
    :arglists nil,
@@ -430,11 +430,11 @@
    :wiki-url
    "http://clojure.github.io/tools.logging//index.html#clojure.tools.logging.impl/disabled-logger-factory"}
   {:raw-source-url
-   "https://github.com/clojure/tools.logging/raw/26d5ebb12cf8b029644161faad9af2e5412efe94/src/main/clojure/clojure/tools/logging/impl.clj",
+   "https://github.com/clojure/tools.logging/raw/fec4503b253ee1dab47f8613f6ef35e08b7e4707/src/main/clojure/clojure/tools/logging/impl.clj",
    :name "find-factory",
    :file "src/main/clojure/clojure/tools/logging/impl.clj",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/26d5ebb12cf8b029644161faad9af2e5412efe94/src/main/clojure/clojure/tools/logging/impl.clj#L214",
+   "https://github.com/clojure/tools.logging/blob/fec4503b253ee1dab47f8613f6ef35e08b7e4707/src/main/clojure/clojure/tools/logging/impl.clj#L214",
    :line 214,
    :var-type "function",
    :arglists ([]),
@@ -444,11 +444,11 @@
    :wiki-url
    "http://clojure.github.io/tools.logging//index.html#clojure.tools.logging.impl/find-factory"}
   {:raw-source-url
-   "https://github.com/clojure/tools.logging/raw/26d5ebb12cf8b029644161faad9af2e5412efe94/src/main/clojure/clojure/tools/logging/impl.clj",
+   "https://github.com/clojure/tools.logging/raw/fec4503b253ee1dab47f8613f6ef35e08b7e4707/src/main/clojure/clojure/tools/logging/impl.clj",
    :name "jul-factory",
    :file "src/main/clojure/clojure/tools/logging/impl.clj",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/26d5ebb12cf8b029644161faad9af2e5412efe94/src/main/clojure/clojure/tools/logging/impl.clj#L176",
+   "https://github.com/clojure/tools.logging/blob/fec4503b253ee1dab47f8613f6ef35e08b7e4707/src/main/clojure/clojure/tools/logging/impl.clj#L176",
    :line 176,
    :var-type "function",
    :arglists ([]),
@@ -458,11 +458,11 @@
    :wiki-url
    "http://clojure.github.io/tools.logging//index.html#clojure.tools.logging.impl/jul-factory"}
   {:raw-source-url
-   "https://github.com/clojure/tools.logging/raw/26d5ebb12cf8b029644161faad9af2e5412efe94/src/main/clojure/clojure/tools/logging/impl.clj",
+   "https://github.com/clojure/tools.logging/raw/fec4503b253ee1dab47f8613f6ef35e08b7e4707/src/main/clojure/clojure/tools/logging/impl.clj",
    :name "log4j-factory",
    :file "src/main/clojure/clojure/tools/logging/impl.clj",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/26d5ebb12cf8b029644161faad9af2e5412efe94/src/main/clojure/clojure/tools/logging/impl.clj#L140",
+   "https://github.com/clojure/tools.logging/blob/fec4503b253ee1dab47f8613f6ef35e08b7e4707/src/main/clojure/clojure/tools/logging/impl.clj#L140",
    :line 140,
    :var-type "function",
    :arglists ([]),
@@ -472,11 +472,11 @@
    :wiki-url
    "http://clojure.github.io/tools.logging//index.html#clojure.tools.logging.impl/log4j-factory"}
   {:raw-source-url
-   "https://github.com/clojure/tools.logging/raw/26d5ebb12cf8b029644161faad9af2e5412efe94/src/main/clojure/clojure/tools/logging/impl.clj",
+   "https://github.com/clojure/tools.logging/raw/fec4503b253ee1dab47f8613f6ef35e08b7e4707/src/main/clojure/clojure/tools/logging/impl.clj",
    :name "slf4j-factory",
    :file "src/main/clojure/clojure/tools/logging/impl.clj",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/26d5ebb12cf8b029644161faad9af2e5412efe94/src/main/clojure/clojure/tools/logging/impl.clj#L47",
+   "https://github.com/clojure/tools.logging/blob/fec4503b253ee1dab47f8613f6ef35e08b7e4707/src/main/clojure/clojure/tools/logging/impl.clj#L47",
    :line 47,
    :var-type "function",
    :arglists ([]),
@@ -486,11 +486,11 @@
    :wiki-url
    "http://clojure.github.io/tools.logging//index.html#clojure.tools.logging.impl/slf4j-factory"}
   {:raw-source-url
-   "https://github.com/clojure/tools.logging/raw/26d5ebb12cf8b029644161faad9af2e5412efe94/src/main/clojure/clojure/tools/logging/impl.clj",
+   "https://github.com/clojure/tools.logging/raw/fec4503b253ee1dab47f8613f6ef35e08b7e4707/src/main/clojure/clojure/tools/logging/impl.clj",
    :name "Logger",
    :file "src/main/clojure/clojure/tools/logging/impl.clj",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/26d5ebb12cf8b029644161faad9af2e5412efe94/src/main/clojure/clojure/tools/logging/impl.clj#L16",
+   "https://github.com/clojure/tools.logging/blob/fec4503b253ee1dab47f8613f6ef35e08b7e4707/src/main/clojure/clojure/tools/logging/impl.clj#L16",
    :line 16,
    :var-type "protocol",
    :arglists nil,
@@ -500,11 +500,11 @@
    :wiki-url
    "http://clojure.github.io/tools.logging//index.html#clojure.tools.logging.impl/Logger"}
   {:raw-source-url
-   "https://github.com/clojure/tools.logging/raw/26d5ebb12cf8b029644161faad9af2e5412efe94/src/main/clojure/clojure/tools/logging/impl.clj",
+   "https://github.com/clojure/tools.logging/raw/fec4503b253ee1dab47f8613f6ef35e08b7e4707/src/main/clojure/clojure/tools/logging/impl.clj",
    :name "LoggerFactory",
    :file "src/main/clojure/clojure/tools/logging/impl.clj",
    :source-url
-   "https://github.com/clojure/tools.logging/blob/26d5ebb12cf8b029644161faad9af2e5412efe94/src/main/clojure/clojure/tools/logging/impl.clj#L25",
+   "https://github.com/clojure/tools.logging/blob/fec4503b253ee1dab47f8613f6ef35e08b7e4707/src/main/clojure/clojure/tools/logging/impl.clj#L25",
    :line 25,
    :var-type "protocol",
    :arglists nil,
