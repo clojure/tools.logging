@@ -1,6 +1,6 @@
 # Logging
 
-Logging macros which delegate to a specific logging implementation. At runtime a specific implementation is selected from, in order, slf4j, Apache commons-logging, log4j, and finally java.util.logging.
+Logging macros which delegate to a specific logging implementation. At runtime a specific implementation is selected from, in order, slf4j, Apache commons-logging, log4j2, log4j, and finally java.util.logging.
 
 Logging levels are specified by clojure keywords, in increasingly severe order:
 
