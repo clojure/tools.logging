@@ -154,15 +154,10 @@
            Logger
            {:enabled?
             (fn [^org.apache.log4j.Logger logger# level#]
-              (.isEnabledFor logger#
-                 (or
-                   (levels# level#)
-                   (throw (IllegalArgumentException. (str level#))))))
+              (.isEnabledFor logger# (get levels# level# level#)))
             :write!
             (fn [^org.apache.log4j.Logger logger# level# e# msg#]
-              (let [level# (or
-                             (levels# level#)
-                             (throw (IllegalArgumentException. (str level#))))]
+              (let [level# (get levels# level# level#)]
                 (if e#
                   (.log logger# level# msg# e#)
                   (.log logger# level# msg#))))})
@@ -190,16 +185,10 @@
            Logger
            {:enabled?
             (fn [^java.util.logging.Logger logger# level#]
-              (.isLoggable logger#
-                (or
-                  (levels# level#)
-                  (throw (IllegalArgumentException. (str level#))))))
+              (.isLoggable logger# (get levels# level# level#)))
             :write!
             (fn [^java.util.logging.Logger logger# level# ^Throwable e# msg#]
-              (let [^java.util.logging.Level level#
-                    (or
-                      (levels# level#)
-                      (throw (IllegalArgumentException. (str level#))))
+              (let [^java.util.logging.Level level# (get levels# level# level#)
                     ^String msg# (str msg#)]
                 (if e#
                   (.log logger# level# msg# e#)

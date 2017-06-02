@@ -1,1 +1,5 @@
+.classpath
+.lein-failures
+.project
+bin
 target
