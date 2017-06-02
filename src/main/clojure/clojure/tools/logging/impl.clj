@@ -168,6 +168,37 @@
              (org.apache.log4j.Logger/getLogger ^String (str logger-ns#))))))
     (catch Exception e nil)))
 
+(defn log4j2-factory
+  "Returns a Log4j2-based implementation of the LoggerFactory protocol, or nil if
+  not available."
+  []
+  (try
+    (Class/forName "org.apache.logging.log4j.Logger")
+    (eval
+      `(let [levels# {:trace org.apache.logging.log4j.Level/TRACE
+                      :debug org.apache.logging.log4j.Level/DEBUG
+                      :info  org.apache.logging.log4j.Level/INFO
+                      :warn  org.apache.logging.log4j.Level/WARN
+                      :error org.apache.logging.log4j.Level/ERROR
+                      :fatal org.apache.logging.log4j.Level/FATAL}]
+         (extend org.apache.logging.log4j.Logger
+           Logger
+           {:enabled?
+            (fn [^org.apache.logging.log4j.Logger logger# level#]
+              (.isEnabled logger# (get levels# level# level#)))
+            :write!
+            (fn [^org.apache.logging.log4j.Logger logger# level# e# msg#]
+              (let [level# (get levels# level# level#)]
+                (if e#
+                  (.log logger# level# msg# e#)
+                  (.log logger# level# msg#))))})
+         (reify LoggerFactory
+           (name [_#]
+             "org.apache.logging.log4j")
+           (get-logger [_# logger-ns#]
+             (org.apache.logging.log4j.LogManager/getLogger ^String (str logger-ns#))))))
+    (catch Exception e nil)))
+
 (defn jul-factory
   "Returns a java.util.logging-based implementation of the LoggerFactory protocol,
   or nil if not available."
@@ -202,10 +233,11 @@
 
 (defn find-factory
   "Returns the first non-nil value from slf4j-factory, cl-factory,
-   log4j-factory, and jul-factory."
+   log4j2-factory, log4j-factory, and jul-factory."
   []
   (or (slf4j-factory)
       (cl-factory)
+      (log4j2-factory)
       (log4j-factory)
       (jul-factory)
       (throw ; this should never happen in 1.5+

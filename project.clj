@@ -9,4 +9,6 @@
   :profiles {:test {:dependencies [[org.slf4j/slf4j-api "1.6.2"]
                                    [org.slf4j/slf4j-log4j12 "1.6.2"]
                                    [log4j "1.2.16"]
+                                   [org.apache.logging.log4j/log4j-api "2.8.2"]
+                                   [org.apache.logging.log4j/log4j-core "2.8.2"]
                                    [commons-logging "1.1.1"]]}})
