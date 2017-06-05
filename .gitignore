@@ -1,5 +1,7 @@
 .classpath
-.lein-failures
+.lein-*
+.nrepl-*
 .project
+.settings
 bin
 target

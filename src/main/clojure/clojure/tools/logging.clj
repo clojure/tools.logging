@@ -54,11 +54,11 @@
   One can override the above by setting *force* to :direct or :agent; all
   subsequent writes will be direct or via an agent, respectively."
   [logger level throwable message]
-  (if (cond
-        (nil? *force*) (and (clojure.lang.LockingTransaction/isRunning)
-                            (*tx-agent-levels* level))
-        (= *force* :agent)  true
-        (= *force* :direct) false)
+  (if (case *force*
+        :agent  true
+        :direct false
+        (and (clojure.lang.LockingTransaction/isRunning)
+             (*tx-agent-levels* level)))
     (send-off *logging-agent*
       (fn [_#] (impl/write! logger level throwable message)))
     (impl/write! logger level throwable message))
@@ -201,15 +201,13 @@
   ; Implementation Notes:
   ; - no enabled? check before making writers since that may change later
   (let [[logger-ns out-level err-level] (if (vector? arg)
-                                       arg
-                                       [arg :info :error])]
-    (if (and logger-ns (seq body))
-      `(binding [*out* (java.io.OutputStreamWriter.
-                         (log-stream ~out-level ~logger-ns))
-                 *err* (java.io.OutputStreamWriter.
-                         (log-stream ~err-level ~logger-ns))]
-         ~@body))))
-
+                                          arg
+                                          [arg :info :error])]
+    `(binding [*out* (java.io.OutputStreamWriter.
+                       (log-stream ~out-level ~logger-ns))
+               *err* (java.io.OutputStreamWriter.
+                       (log-stream ~err-level ~logger-ns))]
+       ~@body)))
 
 ;; level-specific macros
 
