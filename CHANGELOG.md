@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ([despite its flaws](https://www.youtube.com/watch?v=oyLBGkS5ICk)).
 
 ## [Unreleased]
+### Added
+- Add extensible support for testing logs in `clojure.tools.logging.test`.
 
 ## [0.4.0] - 2017-06-04
 ### Added
