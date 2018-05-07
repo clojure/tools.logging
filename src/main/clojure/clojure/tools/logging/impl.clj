@@ -184,14 +184,20 @@
          (extend org.apache.logging.log4j.Logger
            Logger
            {:enabled?
-            (fn [^org.apache.logging.log4j.Logger logger# level#]
-              (.isEnabled logger# (get levels# level# level#)))
+            (fn [logger# level#]
+              (.isEnabled ^org.apache.logging.log4j.Logger logger#
+                          ^org.apache.logging.log4j.Level  (get levels# level# level#)))
             :write!
             (fn [^org.apache.logging.log4j.Logger logger# level# e# msg#]
               (let [level# (get levels# level# level#)]
                 (if e#
-                  (.log logger# level# msg# e#)
-                  (.log logger# level# msg#))))})
+                  (.log ^org.apache.logging.log4j.Logger logger#
+                        ^org.apache.logging.log4j.Level  level#
+                        ^Object                          msg#
+                        ^Throwable                       e#)
+                  (.log ^org.apache.logging.log4j.Logger logger#
+                        ^org.apache.logging.log4j.Level  level#
+                        ^Object                          msg#))))})
          (reify LoggerFactory
            (name [_#]
              "org.apache.logging.log4j")

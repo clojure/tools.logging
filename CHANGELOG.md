@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.4.1] - 2018-05-07
+### Fixed
+- Fix inadvertent reflection when using log4j2.
+
 ## [0.4.0] - 2017-06-04
 ### Added
 - Allow arbitrary values for `level` in logging adapters.
@@ -59,7 +63,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial implementation of Clojure-aware logging abstraction. 
 
-[Unreleased]: https://github.com/clojure/tools.logging/compare/tools.logging-0.4.0...HEAD
+[Unreleased]: https://github.com/clojure/tools.logging/compare/tools.logging-0.4.1...HEAD
+[0.4.1]: https://github.com/clojure/tools.logging/compare/tools.logging-0.4.0...tools.logging-0.4.1
 [0.4.0]: https://github.com/clojure/tools.logging/compare/tools.logging-0.3.1...tools.logging-0.4.0
 [0.3.1]: https://github.com/clojure/tools.logging/compare/tools.logging-0.3.0...tools.logging-0.3.1
 [0.3.0]: https://github.com/clojure/tools.logging/compare/tools.logging-0.2.6...tools.logging-0.3.0
