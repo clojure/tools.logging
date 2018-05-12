@@ -223,7 +223,8 @@
            @log-entry))))
 
 (deftest logf-ex0
-  (is (thrown? ClassCastException (logf :debug (Exception.)))))
+  (is (nil? (logf :debug (Exception.))))
+  )
 
 (deftest logf-ex3
   (with-test-logging [#{:debug} log-entry]
