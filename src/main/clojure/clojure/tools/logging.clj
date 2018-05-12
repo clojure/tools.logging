@@ -86,13 +86,13 @@
   {:arglists '([level message & more] [level throwable message & more])}
   [level x & more]
   (if (or (instance? String x) (nil? more)) ; optimize for common case
-    `(log ~level (print-str ~x ~@more))
+    `(log ~level (str ~x ~@more))
     `(let [logger# (impl/get-logger *logger-factory* ~*ns*)]
        (if (impl/enabled? logger# ~level)
          (let [x# ~x]
            (if (instance? Throwable x#) ; type check only when enabled
-             (log* logger# ~level x# (print-str ~@more))
-             (log* logger# ~level nil (print-str x# ~@more))))))))
+             (log* logger# ~level x# (str ~@more))
+             (log* logger# ~level nil (str x# ~@more))))))))
 
 (defmacro logf
   "Logs a message using a format string and args. Can optionally take a
