@@ -6,7 +6,7 @@
   :source-paths ["src/main/clojure"]
   :test-paths ["src/test/clojure"]
   :dependencies [[org.clojure/clojure "1.3.0"]]
-  :aliases {"cloverage" ["with-profile" "dev,cloverage" "cloverage"]}
+  :aliases {"cloverage" ["with-profile" "dev,cloverage" "cloverage" "--fail-threshold" "100"]}
   :profiles {:cloverage {:plugins [[lein-cloverage "1.0.9"]]}
              :dev       {:dependencies [[org.clojure/clojure "1.8.0"]
                                         [org.clojure/test.check "0.9.0"]

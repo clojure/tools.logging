@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Add support for testing logs in `clojure.tools.logging.test`
 
+### Changed
+- Now passes the context classloader of current thread to `Class/forName` when
+  determining whether logging implementation classes are available on the
+  classpath. This was done to allow testing of the various `impl/*-factory`
+  functions, and seems consistent with clojure internals.
+
 ## [0.4.1] - 2018-05-07
 ### Fixed
 - Fix inadvertent reflection when using log4j2.
