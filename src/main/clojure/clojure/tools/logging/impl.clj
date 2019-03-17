@@ -44,12 +44,22 @@
     (name [_] "disabled")
     (get-logger [_ _] disabled-logger)))
 
+(defn class-found?
+  "Returns true if the Class associated with the given classname can be found
+   using the context ClassLoader for the current thread."
+  [name]
+  (try
+    (Class/forName name true (.. Thread currentThread getContextClassLoader))
+    true
+    (catch ClassNotFoundException _
+      false)))
+
+
 (defn slf4j-factory
   "Returns a SLF4J-based implementation of the LoggerFactory protocol, or nil if
   not available."
   []
-  (try
-    (Class/forName "org.slf4j.Logger")
+  (when (class-found? "org.slf4j.Logger")
     (eval
       `(do
         (extend org.slf4j.Logger
@@ -88,15 +98,13 @@
           (name [_#]
             "org.slf4j")
           (get-logger [_# logger-ns#]
-            (org.slf4j.LoggerFactory/getLogger ^String (str logger-ns#))))))
-    (catch Exception e nil)))
+            (org.slf4j.LoggerFactory/getLogger ^String (str logger-ns#))))))))
 
 (defn cl-factory
   "Returns a Commons Logging-based implementation of the LoggerFactory protocol, or
   nil if not available."
   []
-  (try
-    (Class/forName "org.apache.commons.logging.Log")
+  (when (class-found? "org.apache.commons.logging.Log")
     (eval
       `(do
          (extend org.apache.commons.logging.Log
@@ -134,15 +142,13 @@
            (name [_#]
              "org.apache.commons.logging")
            (get-logger [_# logger-ns#]
-             (org.apache.commons.logging.LogFactory/getLog (str logger-ns#))))))
-    (catch Exception e nil)))
+             (org.apache.commons.logging.LogFactory/getLog (str logger-ns#))))))))
 
 (defn log4j-factory
   "Returns a Log4j-based implementation of the LoggerFactory protocol, or nil if
   not available."
   []
-  (try
-    (Class/forName "org.apache.log4j.Logger")
+  (when (class-found? "org.apache.log4j.Logger")
     (eval
       `(let [levels# {:trace org.apache.log4j.Level/TRACE
                       :debug org.apache.log4j.Level/DEBUG
@@ -165,15 +171,13 @@
            (name [_#]
              "org.apache.log4j")
            (get-logger [_# logger-ns#]
-             (org.apache.log4j.Logger/getLogger ^String (str logger-ns#))))))
-    (catch Exception e nil)))
+             (org.apache.log4j.Logger/getLogger ^String (str logger-ns#))))))))
 
 (defn log4j2-factory
   "Returns a Log4j2-based implementation of the LoggerFactory protocol, or nil if
   not available."
   []
-  (try
-    (Class/forName "org.apache.logging.log4j.Logger")
+  (when (class-found? "org.apache.logging.log4j.Logger")
     (eval
       `(let [levels# {:trace org.apache.logging.log4j.Level/TRACE
                       :debug org.apache.logging.log4j.Level/DEBUG
@@ -202,15 +206,13 @@
            (name [_#]
              "org.apache.logging.log4j")
            (get-logger [_# logger-ns#]
-             (org.apache.logging.log4j.LogManager/getLogger ^String (str logger-ns#))))))
-    (catch Exception e nil)))
+             (org.apache.logging.log4j.LogManager/getLogger ^String (str logger-ns#))))))))
 
 (defn jul-factory
   "Returns a java.util.logging-based implementation of the LoggerFactory protocol,
   or nil if not available."
   []
-  (try
-    (Class/forName "java.util.logging.Logger")
+  (when (class-found? "java.util.logging.Logger")
     (eval
       `(let [levels# {:trace java.util.logging.Level/FINEST
                       :debug java.util.logging.Level/FINE
@@ -234,8 +236,7 @@
            (name [_#]
              "java.util.logging")
            (get-logger [_# logger-ns#]
-             (java.util.logging.Logger/getLogger (str logger-ns#))))))
-    (catch Exception e nil)))
+             (java.util.logging.Logger/getLogger (str logger-ns#))))))))
 
 (defn find-factory
   "Returns the first non-nil value from slf4j-factory, cl-factory,
