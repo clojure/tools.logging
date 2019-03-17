@@ -7,31 +7,41 @@
     [clojure.tools.logging.test :as log-test :refer [logged?
                                                      matches]]))
 
-; TODO: Improve tools.logging.test so that the ability to check the thread is
-;       not so hacky/out-of-band from the normal flow.
 
-
-(defn log-entry-with-thread [logger-ns level throwable message]
+(defn log-entry-with-thread
+  "Returns a log entry that also captures the current thread."
+  [logger-ns level throwable message]
   (assoc (log-test/->LogEntry logger-ns level throwable message)
          ::thread (Thread/currentThread)))
 
-(defn same-thread? [log-entry]
+(defn same-thread?
+  "Returns true if the thread that created the log entry is the current thread."
+  [log-entry]
+  (when-not (::thread log-entry)
+    (throw (ex-info "Log entry does not have a thread." log-entry)))
   (identical? (::thread log-entry)
               (Thread/currentThread)))
 
-(defn direct-logged? [logger-ns level throwable message]
+(defn direct-logged?
+  "Returns true if there is a matching entry that also was created with the
+  current thread, i.e., not via an agent."
+  [logger-ns level throwable message]
   (->> (log-test/matches logger-ns level throwable message)
     (filter same-thread?)
     seq
     boolean))
 
-(defn agent-logged? [logger-ns level throwable message]
+(defn agent-logged?
+  "Returns true if there is a matching entry that also was created with a thread
+  other than the current thread, i.e., via an agent."
+  [logger-ns level throwable message]
   (->> (log-test/matches logger-ns level throwable message)
     (remove same-thread?)
     seq
     boolean))
 
-(defmacro with-log [& body]
+(defmacro with-log
+  [& body]
   `(let [stateful-log# (log-test/atomic-log log-entry-with-thread)
          logger-factory# (log-test/logger-factory stateful-log# (constantly true))]
      (binding [log-test/*stateful-log*   stateful-log#
