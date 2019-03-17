@@ -27,7 +27,7 @@ The following short example should give you what you need to get started:
 (defn divide [x y]
   (log/info "dividing" x "by" y)
   (try
-    (log/spyf "result: %s" (/ x y)) ; yields the result
+    (log/spyf "result is %s" (/ x y)) ; yields the result
     (catch Exception ex
       (log/error ex "There was an error in calculation"))))
 ```
