@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ([despite its flaws](https://www.youtube.com/watch?v=oyLBGkS5ICk)).
 
 ## [Unreleased]
+
+## [0.5.0] - 2019-07-22
 ### Added
 - Add support for testing logs in `clojure.tools.logging.test`
 
@@ -71,7 +73,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial implementation of Clojure-aware logging abstraction. 
 
-[Unreleased]: https://github.com/clojure/tools.logging/compare/tools.logging-0.4.1...HEAD
+[Unreleased]: https://github.com/clojure/tools.logging/compare/tools.logging-0.5.0...HEAD
+[0.5.0]: https://github.com/clojure/tools.logging/compare/tools.logging-0.4.1...tools.logging-0.5.0
 [0.4.1]: https://github.com/clojure/tools.logging/compare/tools.logging-0.4.0...tools.logging-0.4.1
 [0.4.0]: https://github.com/clojure/tools.logging/compare/tools.logging-0.3.1...tools.logging-0.4.0
 [0.3.1]: https://github.com/clojure/tools.logging/compare/tools.logging-0.3.0...tools.logging-0.3.1
