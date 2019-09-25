@@ -1,69 +1,19 @@
 # Logging
 
-Logging macros which delegate to a specific logging implementation. At runtime a specific implementation is selected from, in order, slf4j, Apache commons-logging, log4j2, log4j, and finally java.util.logging.
+Logging macros which delegate to a specific logging implementation, selected
+at runtime when the `clojure.tools.logging` namespace is first loaded.
 
-Logging levels are specified by clojure keywords, in increasingly severe order:
+## Installation
 
-```clojure
-:trace, :debug, :info, :warn, :error, :fatal
-```
+Lastest stable release is [0.5.0]
 
-Logging occurs with the `log` macro, or the level-specific convenience macros (e.g., `debug`, `debugf`). Only when the specified logging level is enabled will the message arguments be evaluated and the underlying logging implementation be invoked. By default that invocation will occur via an agent when inside a running STM transaction.
-
-Unless otherwise specified, the current namespace (as identified by `*ns*`) will be used as the log-ns (similar to how the java class name is usually used).  Note: you should configure your logging implementation to display the name that was passed to it; if it instead performs stack-inspection you'll see some ugly and unhelpful text in your logs.
-
-You can redirect all java writes of `System.out` and `System.err` to the log system by calling `log-capture!`.  To bind `*out*` and `*err*` to the log system invoke `with-logs`.  In both cases a log-ns value must be specified in order to namespace the output.
-
-## Usage
-
-The latest API documentation can be found at http://clojure.github.com/tools.logging
-
-The following short example should give you what you need to get started:
+Leiningen:
 
 ```clojure
-(ns example.math
-  (:require [clojure.tools.logging :as log]))
-
-(defn divide [x y]
-  (log/info "dividing" x "by" y)
-  (try
-    (log/spyf "result is %s" (/ x y)) ; yields the result
-    (catch Exception ex
-      (log/error ex "There was an error in calculation"))))
+[org.clojure/tools.logging "0.5.0"]
 ```
 
-Example repl output using the configuration below:
-
-```
-user=> (use 'my.example)
-nil
-user=> (divide 1 2)
-INFO  example.math: dividing 1 by 2
-DEBUG example.math: result is 1/2
-1/2
-user=> (divide 2 0)
-INFO  example.math: dividing 2 by 0
-ERROR example.math: There was an error in calculation
-java.lang.ArithmeticException: Divide by zero
-	at clojure.lang.Numbers.divide(Numbers.java:156)
-    ...
-```
-
-For those new to using a java logging library, the following is a very basic configuration for log4j. Place it in a file called `log4j.properties` and place that file (and the log4j JAR) on the classpath.
-
-```
-log4j.rootLogger=INFO, console
-log4j.logger.example=DEBUG
-log4j.appender.console=org.apache.log4j.ConsoleAppender
-log4j.appender.console.layout=org.apache.log4j.PatternLayout
-log4j.appender.console.layout.ConversionPattern=%-5p %c: %m%n
-```
-
-The above will print messages to the console for `:debug` or higher if one is in the `example` namespace, and `:info` or higher in all other namespaces.
-
-### Installation
-
-Logging is available in Maven central.  Add it to your Maven project's `pom.xml`:
+Maven:
 
 ```xml
 <dependency>
@@ -73,28 +23,79 @@ Logging is available in Maven central.  Add it to your Maven project's `pom.xml`
 </dependency>
 ```
 
-or your leiningen project.clj:
+Gradle:
 
 ```clojure
-[org.clojure/tools.logging "0.5.0"]
+compile "org.clojure:tools.logging:0.5.0"
 ```
 
-Please note the changelog below.
 
-### Building Logging
+## Usage
 
-0. Clone the repo
-1. Make sure you have maven installed
-2. Run the maven build; run either:
-    1. `mvn install`: This will produce a logging jar file in the `target`
-directory, and run all tests with the most recently-released build
-of Clojure.
+[Latest API Documentation](http://clojure.github.com/tools.logging)
+
+Logging occurs with the `log` macro, or the level-specific convenience macros
+(e.g., `debug`, `debugf`). Only when the specified logging level is enabled will
+the message arguments be evaluated and the underlying logging implementation be
+invoked. By default that invocation will occur via an agent when inside a running
+STM transaction.
+
+### Namespacing of log entries
+
+Unless otherwise specified, the current namespace (as identified by `*ns*`) will
+be used as the log-ns. This value can be emitted in the log entry, and used by most
+logging implementations when using namespace-specific logging levels.
+
+Note: You should configure your logging implementation to display the name that
+was passed to it. If it instead performs stack-inspection you'll see some ugly
+and unhelpful text in your logs.
+
+### Redirecting output to logs
+
+You can redirect all java writes of `System.out` and `System.err` to the log
+system by calling `log-capture!`.  To bind `*out*` and `*err*` to the log system
+invoke `with-logs`.  In both cases a log-ns value must be specified in order to
+namespace the output.
+
+## Configuration
+
+_NOTE: Logging configuration (e.g., setting of logging levels, formatting) is
+specific to the underlying logging implementation, and is out of scope for this
+library._
+
+### Selecting a logging implementation
+
+To control which logging implementation is used, set the `clojure.tools.logging.factory`
+system property to the fully-qualified name of a no-arg function that returns an
+instance of `clojure.tools.logging.impl/LoggerFactory`. There are a number of
+factory functions provided in the `clojure.tools.logging.impl` namespace.
+
+[Leiningen example]:
+
+```clojure
+:jvm-opts ["-Dclojure.tools.logging.factory=clojure.tools.logging.impl/slf4j-factory"]
+```
+
+If the system property is unset, an implementation will be automatically chosen
+based on whichever of the following implementations is successfully loaded first:
+
+1. [SLF4J]
+2. [Apache Commons Logging]
+3. [Log4J 2]
+4. [Log4J]
+5. [java.util.logging]
+
+The above approach is problematic given that applications often inadvertently pull
+in multiple logging implementations as transitive dependencies. As such, it is
+_strongly_ advised that you set the system property.
+
 
 ## Thanks
 
 * Chris Dean
 * Phil Hagelberg
 * Richard Newman
+* Sean Corfield
 * Timothy Pratley
 
 ## License
@@ -102,3 +103,12 @@ of Clojure.
 Copyright © 2009 Alex Taggart
 
 Licensed under the EPL. (See the file epl.html.)
+
+
+[0.5.0]: https://github.com/clojure/tools.logging/tree/tools.logging-0.5.0
+[Leiningen example]: https://github.com/technomancy/leiningen/blob/master/doc/TUTORIAL.md#setting-jvm-options
+[SLF4J]: http://www.slf4j.org/
+[Apache Commons Logging]: https://commons.apache.org/logging
+[Log4J 2]: https://logging.apache.org/log4j/2.x/
+[Log4J]: http://logging.apache.org/log4j/1.2/
+[java.util.logging]: https://docs.oracle.com/en/java/javase/13/docs/api/java.logging/java/util/logging/package-summary.html 

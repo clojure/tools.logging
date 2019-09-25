@@ -11,14 +11,13 @@
 ;; agreeing to be bound by the terms of this license.  You must not
 ;; remove this notice, or any other, from this software.
 (ns ^{:author "Alex Taggart"
-      :doc "Logging macros which delegate to a specific logging implementation. At
-            runtime a specific implementation is selected by invoking
-            clojure.tools.logging.impl/find-factory.
+      :doc "Logging macros which delegate to a specific logging implementation.
 
-            The logging implementation can be explicitly provided by using
-            binding or alter-var-root to change the value of *logger-factory* to
-            another implementation of clojure.tools.logging.impl/LoggerFactory
-            (see also the *-factory functions in the impl namespace)."}
+  A logging implementation is selected at runtime when this namespace is first
+  loaded. For more details, see the documentation for *logger-factory*.
+
+  If you want to test that your code emits specific log messages, see the
+  clojure.tools.logging.test namespace."}
   clojure.tools.logging
   (:use
    [clojure.string :only [trim-newline]]
@@ -283,9 +282,42 @@
   [& args]
   `(logf :fatal ~@args))
 
-(def ^{:doc
-  "An instance satisfying the impl/LoggerFactory protocol. Used internally to
-   obtain an impl/Logger. Defaults to the value returned from impl/find-factory."
-  :dynamic true}
-  *logger-factory*
-  (impl/find-factory))
+(defn- call-str [str]
+  (let [fq-sym (symbol str)
+        ns-str (or (namespace fq-sym)
+                   (throw (RuntimeException.
+                            (format "The value of the clojure.tools.logging.factory system property is not fully-qualified: %s"
+                                    (pr-str str)))))
+        ns-sym (symbol ns-str)
+        _      (try
+                 (require ns-sym)
+                 (catch Exception ex
+                   (throw (RuntimeException.
+                            (format "Could not resolve namespace for %s. Either it does not exist or it has a (circular) dependency on clojure.tools.logging."
+                                    (pr-str str))))))
+        fn-sym (symbol (name fq-sym))
+        fn-var (ns-resolve ns-sym fn-sym)]
+    (if fn-var
+      (fn-var)
+      (throw (RuntimeException.
+               (format "Could not resolve var for %s."
+                       (pr-str str)))))))
+
+(defn- find-factory []
+  (if-let [factory-fn-str (System/getProperty "clojure.tools.logging.factory")]
+    (call-str factory-fn-str)
+    (impl/find-factory)))
+
+(def ^:dynamic *logger-factory*
+  "An instance satisfying the clojure.tools.logging.impl/LoggerFactory protocol,
+  which allows uniform access to an underlying logging implementation.
+
+  The default value will be obtained by invoking a no-arg function named by the
+  \"clojure.tools.logging.factory\" system property, or if unset, by invoking
+  clojure.tools.logging.impl/find-factory.
+
+  After loading, this var can be programmatically changed to a different
+  LoggerFactory implementation via binding or alter-var-root.
+
+  See the various factory functions in clojure.tools.logger.impl."
+  (find-factory))
