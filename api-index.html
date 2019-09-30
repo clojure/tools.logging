@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Index - Logging Tools 0.3.2 API documentation</title>
+    <title>Index - tools.logging 0.5.1-SNAPSHOT API documentation</title>
     <link rel="icon" href="static/favicon.png" />
     <link rel="shortcut icon" href="static/favicon.png" />
     <link rel="stylesheet" href="static/clojure.css" type="text/css" media="all" />
@@ -25,14 +25,14 @@ namespace.
       <div id="leftcolumn"><div style="text-align: center;"></div>
 <div class="menu">
   <div class="WikiCustomNav WikiElement wiki">
-    <span class="toc-header"><span id="project-name">Logging Tools</span> <span id="version">0.3.2</span> API</span><br />
+    <span class="toc-header"><span id="project-name">tools.logging</span> <span id="version">0.5.1-SNAPSHOT</span> API</span><br />
     <ul>
       <li><a href="index.html" class="wiki_link">Overview</a></li>
       <li><a href="api-index.html" class="wiki_link">API Index</a></li>
     </ul>
     
     
-    <a class="wiki_link" href="http://clojure.org">Clojure Home</a>
+    <a class="wiki_link" href="https://clojure.org">Clojure Home</a>
   </div>
 </div>
 </div>
@@ -41,9 +41,9 @@ namespace.
 	  <div class="contentBox"><div class="innerContentBox">
               <div class="wiki wikiPage" id="content_view">
                 <div id="right-sidebar"></div>
-                <div id="content-tag"><h1 id="overview">Index of Public Functions and Variables - <span id="header-project">Logging Tools</span> <span id="header-version">0.3.2</span><span id="header-status-block"> (<span id="header-status">in development</span>)</span></h1>
+                <div id="content-tag"><h1 id="overview">Index of Public Functions and Variables - <span id="header-project">tools.logging</span> <span id="header-version">0.5.1-SNAPSHOT</span><span id="header-status-block"> (<span id="header-status">in development</span>)</span></h1>
 This page has an alphabetical index of all the documented functions and variables
-in <span class="project-name-span">Logging Tools</span>.
+in <span class="project-name-span">tools.logging</span>.
 
 <!-- TODO: enable this functionality on github?
 
@@ -70,7 +70,9 @@ Shortcuts:<br />
 <div id="index-body">
   <h2 id="A"><span id="section-head">A</span></h2>
   <pre>
-
+<span id="section-content"> <a href="index.html#clojure.tools.logging.test/append!">append!</a><span id="line-content">                      function      clojure.tools.logging.test Returns this log with a new log entry appe...
+</span></span><span id="section-content"> <a href="index.html#clojure.tools.logging.test/atomic-log">atomic-log</a><span id="line-content">                   function      clojure.tools.logging.test Returns a StatefulLog, appending to an ato...
+</span></span>
   </pre>
 </div><div id="index-body">
   <h2 id="B"><span id="section-head">B</span></h2>
@@ -81,6 +83,7 @@ Shortcuts:<br />
   <h2 id="C"><span id="section-head">C</span></h2>
   <pre>
 <span id="section-content"> <a href="index.html#clojure.tools.logging.impl/cl-factory">cl-factory</a><span id="line-content">                   function      clojure.tools.logging.impl Returns a Commons Logging-based implementa...
+</span></span><span id="section-content"> <a href="index.html#clojure.tools.logging.impl/class-found?">class-found?</a><span id="line-content">                 function      clojure.tools.logging.impl Returns true if the Class associated with ...
 </span></span>
   </pre>
 </div><div id="index-body">
@@ -97,6 +100,7 @@ Shortcuts:<br />
   <pre>
 <span id="section-content"> <a href="index.html#clojure.tools.logging/enabled?">enabled?</a><span id="line-content">                     macro         clojure.tools.logging Returns true if the specific logging level is e...
 </span></span><span id="section-content"> <a href="index.html#clojure.tools.logging.impl/enabled?">enabled?</a><span id="line-content">                     function      clojure.tools.logging.impl Check if a particular level is enabled for...
+</span></span><span id="section-content"> <a href="index.html#clojure.tools.logging.test/entries">entries</a><span id="line-content">                      function      clojure.tools.logging.test Returns a vector of the entries in this lo...
 </span></span><span id="section-content"> <a href="index.html#clojure.tools.logging/error">error</a><span id="line-content">                        macro         clojure.tools.logging Error level logging using print-style args..
 </span></span><span id="section-content"> <a href="index.html#clojure.tools.logging/errorf">errorf</a><span id="line-content">                       macro         clojure.tools.logging Error level logging using format..
 </span></span>
@@ -144,14 +148,19 @@ Shortcuts:<br />
   <pre>
 <span id="section-content"> <a href="index.html#clojure.tools.logging/*logger-factory*">*logger-factory*</a><span id="line-content">             dynamic var   clojure.tools.logging An instance satisfying the impl/LoggerFactory p...
 </span></span><span id="section-content"> <a href="index.html#clojure.tools.logging/*logging-agent*">*logging-agent*</a><span id="line-content">              dynamic var   clojure.tools.logging The default agent used for performing logging w...
+</span></span><span id="section-content"> <a href="index.html#clojure.tools.logging.test/-&gt;LogEntry">-&gt;LogEntry</a><span id="line-content">                   function      clojure.tools.logging.test Positional factory function for class cloj...
 </span></span><span id="section-content"> <a href="index.html#clojure.tools.logging/log">log</a><span id="line-content">                          macro         clojure.tools.logging Evaluates and logs a message only if the specif...
 </span></span><span id="section-content"> <a href="index.html#clojure.tools.logging/log*">log*</a><span id="line-content">                         function      clojure.tools.logging Attempts to log a message, either directly or v...
 </span></span><span id="section-content"> <a href="index.html#clojure.tools.logging/log-capture!">log-capture!</a><span id="line-content">                 function      clojure.tools.logging Captures System.out and System.err, piping all ...
 </span></span><span id="section-content"> <a href="index.html#clojure.tools.logging/log-stream">log-stream</a><span id="line-content">                   function      clojure.tools.logging Creates a PrintStream that will output to the l...
 </span></span><span id="section-content"> <a href="index.html#clojure.tools.logging/log-uncapture!">log-uncapture!</a><span id="line-content">               function      clojure.tools.logging Restores System.out and System.err to their ori...
 </span></span><span id="section-content"> <a href="index.html#clojure.tools.logging.impl/log4j-factory">log4j-factory</a><span id="line-content">                function      clojure.tools.logging.impl Returns a Log4j-based implementation of th...
+</span></span><span id="section-content"> <a href="index.html#clojure.tools.logging.impl/log4j2-factory">log4j2-factory</a><span id="line-content">               function      clojure.tools.logging.impl Returns a Log4j2-based implementation of t...
+</span></span><span id="section-content"> <a href="index.html#clojure.tools.logging.test/LogEntry">LogEntry</a><span id="line-content">                     record        clojure.tools.logging.test 
 </span></span><span id="section-content"> <a href="index.html#clojure.tools.logging/logf">logf</a><span id="line-content">                         macro         clojure.tools.logging Logs a message using a format string and args. ...
+</span></span><span id="section-content"> <a href="index.html#clojure.tools.logging.test/logged?">logged?</a><span id="line-content">                      function      clojure.tools.logging.test Returns true if the log contains matching ...
 </span></span><span id="section-content"> <a href="index.html#clojure.tools.logging.impl/Logger">Logger</a><span id="line-content">                       protocol      clojure.tools.logging.impl The protocol through which the core api wi...
+</span></span><span id="section-content"> <a href="index.html#clojure.tools.logging.test/logger-factory">logger-factory</a><span id="line-content">               function      clojure.tools.logging.test Returns a LoggerFactory that will append l...
 </span></span><span id="section-content"> <a href="index.html#clojure.tools.logging.impl/LoggerFactory">LoggerFactory</a><span id="line-content">                protocol      clojure.tools.logging.impl The protocol through which the core api wi...
 </span></span><span id="section-content"> <a href="index.html#clojure.tools.logging/logp">logp</a><span id="line-content">                         macro         clojure.tools.logging Logs a message using print style args. Can opti...
 </span></span>
@@ -159,7 +168,13 @@ Shortcuts:<br />
 </div><div id="index-body">
   <h2 id="M"><span id="section-head">M</span></h2>
   <pre>
-
+<span id="section-content"> <a href="index.html#clojure.tools.logging.test/map-&gt;LogEntry">map-&gt;LogEntry</a><span id="line-content">                function      clojure.tools.logging.test Factory function for class clojure.tools.l...
+</span></span><span id="section-content"> <a href="index.html#clojure.tools.logging.test/match-level?">match-level?</a><span id="line-content">                 multimethod   clojure.tools.logging.test Returns true if expected matches the actua...
+</span></span><span id="section-content"> <a href="index.html#clojure.tools.logging.test/match-logger-ns?">match-logger-ns?</a><span id="line-content">             multimethod   clojure.tools.logging.test Returns true if expected matches the actua...
+</span></span><span id="section-content"> <a href="index.html#clojure.tools.logging.test/match-message?">match-message?</a><span id="line-content">               multimethod   clojure.tools.logging.test Returns true if expected matches the actua...
+</span></span><span id="section-content"> <a href="index.html#clojure.tools.logging.test/match-throwable?">match-throwable?</a><span id="line-content">             multimethod   clojure.tools.logging.test Returns true if expected matches the actua...
+</span></span><span id="section-content"> <a href="index.html#clojure.tools.logging.test/matches">matches</a><span id="line-content">                      function      clojure.tools.logging.test Returns matching log entries, otherwise ni...
+</span></span>
   </pre>
 </div><div id="index-body">
   <h2 id="N"><span id="section-head">N</span></h2>
@@ -190,15 +205,18 @@ Shortcuts:<br />
 </div><div id="index-body">
   <h2 id="S"><span id="section-head">S</span></h2>
   <pre>
-<span id="section-content"> <a href="index.html#clojure.tools.logging.impl/slf4j-factory">slf4j-factory</a><span id="line-content">                function      clojure.tools.logging.impl Returns a SLF4J-based implementation of th...
+<span id="section-content"> <a href="index.html#clojure.tools.logging.test/*stateful-log*">*stateful-log*</a><span id="line-content">               dynamic var   clojure.tools.logging.test The instance of StatefulLog used by with-l...
+</span></span><span id="section-content"> <a href="index.html#clojure.tools.logging.impl/slf4j-factory">slf4j-factory</a><span id="line-content">                function      clojure.tools.logging.impl Returns a SLF4J-based implementation of th...
 </span></span><span id="section-content"> <a href="index.html#clojure.tools.logging/spy">spy</a><span id="line-content">                          macro         clojure.tools.logging Evaluates expr and may write the form and its r...
 </span></span><span id="section-content"> <a href="index.html#clojure.tools.logging/spyf">spyf</a><span id="line-content">                         macro         clojure.tools.logging Evaluates expr and may write (format fmt result...
+</span></span><span id="section-content"> <a href="index.html#clojure.tools.logging.test/StatefulLog">StatefulLog</a><span id="line-content">                  protocol      clojure.tools.logging.test 
 </span></span>
   </pre>
 </div><div id="index-body">
   <h2 id="T"><span id="section-head">T</span></h2>
   <pre>
 <span id="section-content"> <a href="index.html#clojure.tools.logging/*tx-agent-levels*">*tx-agent-levels*</a><span id="line-content">            dynamic var   clojure.tools.logging The set of levels that will require using an ag...
+</span></span><span id="section-content"> <a href="index.html#clojure.tools.logging.test/the-log">the-log</a><span id="line-content">                      function      clojure.tools.logging.test Returns the vector of current log entries....
 </span></span><span id="section-content"> <a href="index.html#clojure.tools.logging/trace">trace</a><span id="line-content">                        macro         clojure.tools.logging Trace level logging using print-style args..
 </span></span><span id="section-content"> <a href="index.html#clojure.tools.logging/tracef">tracef</a><span id="line-content">                       macro         clojure.tools.logging Trace level logging using format..
 </span></span>
@@ -252,7 +270,7 @@ Shortcuts:<br />
           </div>
 	</div>
 	<div id="foot">
-	  <div id="copyright" style="text-align: center;">Copyright 2007-2017 by Rich Hickey and the various contributors</div>
+	  <div id="copyright" style="text-align: center;">Copyright 2007-2018 by Rich Hickey and the various contributors</div>
 	</div>
       </div>
       <div id="DesignedBy">Logo &amp; site design by <a href="http://www.tomhickey.com" title="Visit Tom Hickey's website.">Tom Hickey</a>.<br />
