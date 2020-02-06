@@ -108,6 +108,32 @@
              (log* logger# ~level x# (format ~@more))
              (log* logger# ~level nil (format x# ~@more))))))))
 
+(defmacro logd
+  "Logs a message composed of a text description and a data map to support
+  structured logging. The text description must be a literal string, with all
+  dynamic information placed in the data map. Can optionally take a throwable as
+  its second arg. See level-specific macros, e.g., debugd.
+
+  Implementation note: The text and data parts are used to create an instance of
+  StructuredMessage, which is then passed as the message arg to Logger/write!.
+  By default, all provided Logger implementations in clojure.tools.logging.impl
+  will assoc the text to the data at the ::description key, then pass that map
+  to the underlying logging implementation. Use custom Loggers to do more
+  interesting things with the StructuredMessage."
+  {:arglists '([level description data] [level throwable fmt & fmt-args])}
+  ([level description data]
+   `(logd level nil description data))
+  ([level throwable description data]
+   (when-not (string? description)
+     (throw (IllegalArgumentException. "The description must be a literal string.")))
+   `(let [logger# (impl/get-logger *logger-factory* ~*ns*)]
+      (if (impl/enabled? logger# ~level)
+        (let [description# ~description
+              data#        ~data
+              throwable#   ~throwable
+              msg#         (impl/->StructuredMessage description# data#)]
+          (log* logger# ~level throwable# msg#))))))
+
 (defmacro enabled?
   "Returns true if the specific logging level is enabled.  Use of this macro
   should only be necessary if one needs to execute alternate code paths beyond
@@ -246,6 +272,42 @@
   {:arglists '([message & more] [throwable message & more])}
   [& args]
   `(logp :fatal ~@args))
+
+(defmacro traced
+  "Trace level logging using structured data."
+  {:arglists '([description data] [throwable description data])}
+  [& args]
+  `(logd :trace ~@args))
+
+(defmacro debugd
+  "Debug level logging using structured data."
+  {:arglists '([description data] [throwable description data])}
+  [& args]
+  `(logd :debug ~@args))
+
+(defmacro infod
+  "Info level logging using structured data."
+  {:arglists '([description data] [throwable description data])}
+  [& args]
+  `(logd :info ~@args))
+
+(defmacro warnd
+  "Warn level logging using structured data."
+  {:arglists '([description data] [throwable description data])}
+  [& args]
+  `(logd :warn ~@args))
+
+(defmacro errord
+  "Error level logging using structured data."
+  {:arglists '([description data] [throwable description data])}
+  [& args]
+  `(logd :error ~@args))
+
+(defmacro fatald
+  "Fatal level logging using structured data."
+  {:arglists '([description data] [throwable description data])}
+  [& args]
+  `(logd :fatal ~@args))
 
 (defmacro tracef
   "Trace level logging using format."

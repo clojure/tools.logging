@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ([despite its flaws](https://www.youtube.com/watch?v=oyLBGkS5ICk)).
 
 ## [Unreleased]
+### Added
+- Add support for structured logging via `logd` and level-specific convenience
+  macros, e.g., `debugd`.
 
 ## [0.5.0] - 2019-07-22
 ### Added
