@@ -1,8 +1,8 @@
 (ns clojure.tools.test-logging
-  (:use clojure.test
-        clojure.tools.logging)
+  (:use clojure.test)
   (:require
     [clojure.set :as set]
+    [clojure.tools.logging :as log :refer :all]
     [clojure.tools.logging.impl :as impl]
     [clojure.tools.logging.test :as log-test :refer [logged?
                                                      matches]]))
@@ -357,3 +357,34 @@
       warnf :warn
       errorf :error
       fatalf :fatal)))
+
+
+(deftest test-call-str
+  (testing "throws exception if input is not fully-qualified"
+    (is (thrown-with-msg? RuntimeException #"fully-qualified"
+                          (#'log/call-str "foobar"))))
+
+  (testing "throws exception if ns does not exist"
+    (is (thrown-with-msg? RuntimeException #"resolve namespace"
+                          (#'log/call-str "missing.ns/some-fn"))))
+
+  (testing "throws exception if fn does not exist"
+    (is (thrown-with-msg? RuntimeException #"resolve var"
+                          (#'log/call-str "external.ns/does-not-exist-fn"))))
+
+  (testing "yields the right factory when specified"
+    (is (= "external.ns/good-fn"
+           (impl/name (#'log/call-str "external.ns/factory"))))))
+
+
+(deftest test-find-factory
+  (testing "when system property is unset, invokes impl/find-factory"
+    (System/clearProperty "clojure.tools.logging.factory")
+    (is (= (impl/name (impl/find-factory)) (impl/name (#'log/find-factory)))))
+
+  (testing "when system propery is set, yields the results"
+    (System/setProperty "clojure.tools.logging.factory" "external.ns/factory")
+    (is (= "external.ns/good-fn" (impl/name (#'log/find-factory)))))
+
+  (System/clearProperty "clojure.tools.logging.factory"))
+
