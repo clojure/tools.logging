@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ([despite its flaws](https://www.youtube.com/watch?v=oyLBGkS5ICk)).
 
 ## [Unreleased]
+### Added
+- Add support for printing message arguments readably in
+  `clojure.tools.logging.readable`.
 
 ## [0.6.0] - 2020-02-07
 ### Added
