@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>clojure.tools.logging - tools.logging 0.6.1-SNAPSHOT API documentation</title>
+    <title>clojure.tools.logging - tools.logging 1.0.1-SNAPSHOT API documentation</title>
     <link rel="icon" href="static/favicon.png" />
     <link rel="shortcut icon" href="static/favicon.png" />
     <link rel="stylesheet" href="static/clojure.css" type="text/css" media="all" />
@@ -25,7 +25,7 @@ namespace.
       <div id="leftcolumn"><div style="text-align: center;"></div>
 <div class="menu">
   <div class="WikiCustomNav WikiElement wiki">
-    <span class="toc-header"><span id="project-name">tools.logging</span> <span id="version">0.6.1-SNAPSHOT</span> API</span><br />
+    <span class="toc-header"><span id="project-name">tools.logging</span> <span id="version">1.0.1-SNAPSHOT</span> API</span><br />
     <ul>
       <li><a href="index.html" class="wiki_link">Overview</a></li>
       <li><a href="api-index.html" class="wiki_link">API Index</a></li>
@@ -183,6 +183,51 @@ namespace.
       
     </div>
   </div><div class="toc-section" style="margin-left: 1em;">
+    <a style="margin-top: 3px;" href="#clojure.tools.logging.readable">clojure.tools.logging.readable</a>
+    <div class="toc-entry" style="margin-left: 1em;">
+      <a href="#clojure.tools.logging.readable/debug" class="toc-entry-anchor">debug</a>
+      
+    </div><div class="toc-entry" style="margin-left: 1em;">
+      <a href="#clojure.tools.logging.readable/debugf" class="toc-entry-anchor">debugf</a>
+      
+    </div><div class="toc-entry" style="margin-left: 1em;">
+      <a href="#clojure.tools.logging.readable/error" class="toc-entry-anchor">error</a>
+      
+    </div><div class="toc-entry" style="margin-left: 1em;">
+      <a href="#clojure.tools.logging.readable/errorf" class="toc-entry-anchor">errorf</a>
+      
+    </div><div class="toc-entry" style="margin-left: 1em;">
+      <a href="#clojure.tools.logging.readable/fatal" class="toc-entry-anchor">fatal</a>
+      
+    </div><div class="toc-entry" style="margin-left: 1em;">
+      <a href="#clojure.tools.logging.readable/fatalf" class="toc-entry-anchor">fatalf</a>
+      
+    </div><div class="toc-entry" style="margin-left: 1em;">
+      <a href="#clojure.tools.logging.readable/info" class="toc-entry-anchor">info</a>
+      
+    </div><div class="toc-entry" style="margin-left: 1em;">
+      <a href="#clojure.tools.logging.readable/infof" class="toc-entry-anchor">infof</a>
+      
+    </div><div class="toc-entry" style="margin-left: 1em;">
+      <a href="#clojure.tools.logging.readable/logf" class="toc-entry-anchor">logf</a>
+      
+    </div><div class="toc-entry" style="margin-left: 1em;">
+      <a href="#clojure.tools.logging.readable/logp" class="toc-entry-anchor">logp</a>
+      
+    </div><div class="toc-entry" style="margin-left: 1em;">
+      <a href="#clojure.tools.logging.readable/trace" class="toc-entry-anchor">trace</a>
+      
+    </div><div class="toc-entry" style="margin-left: 1em;">
+      <a href="#clojure.tools.logging.readable/tracef" class="toc-entry-anchor">tracef</a>
+      
+    </div><div class="toc-entry" style="margin-left: 1em;">
+      <a href="#clojure.tools.logging.readable/warn" class="toc-entry-anchor">warn</a>
+      
+    </div><div class="toc-entry" style="margin-left: 1em;">
+      <a href="#clojure.tools.logging.readable/warnf" class="toc-entry-anchor">warnf</a>
+      
+    </div>
+  </div><div class="toc-section" style="margin-left: 1em;">
     <a style="margin-top: 3px;" href="#clojure.tools.logging.test">clojure.tools.logging.test</a>
     <div class="toc-entry" style="margin-left: 1em;">
       <a href="#clojure.tools.logging.test/StatefulLog" class="toc-entry-anchor">StatefulLog</a>
@@ -235,7 +280,7 @@ namespace.
 </div>
 </div>
                 <div id="content-tag"><h1 id="overview">API for <span id="clojure.tools.logging">clojure.tools.logging</span>
-  - <span id="header-project">tools.logging</span> <span id="header-version">0.6.1-SNAPSHOT</span><span id="header-status-block"> (<span id="header-status">in development</span>)</span>
+  - <span id="header-project">tools.logging</span> <span id="header-version">1.0.1-SNAPSHOT</span><span id="header-status-block"> (<span id="header-status">in development</span>)</span>
   </h1>
 <span id="author-line">by <span id="author-name">Alex Taggart</span><br /></span>
 <br />Full namespace name: <span id="long-name">clojure.tools.logging</span>
@@ -846,6 +891,219 @@ not available.</pre>
     
     
     <a id="var-source" href="https://github.com/clojure/tools.logging/blob/47be5addd8ef71847c834fe68d6de1059b157b5a/src/main/clojure/clojure/tools/logging/impl.clj#L58">Source</a>
+  </div>
+</div>
+
+<br />
+<h2 id="clojure.tools.logging.readable">clojure.tools.logging.readable</h2>
+<pre id="namespace-docstr">Logging macros that support printing message arguments readably.
+
+Examples:
+
+(require '[clojure.tools.logging :as log]
+         '[clojure.tools.logging.readable :as logr])
+
+(def x "bar")
+                                      ; Logged as...
+(log/debug "foo" x "baz")         ; foo bar baz
+(logr/debug "foo" x "baz")        ; foo "bar" baz
+(log/debugf "foo %s %s" x "baz")  ; foo bar baz
+(logr/debugf "foo %s %s" x "baz") ; foo "bar" "baz"
+</pre>
+
+
+<br />
+
+
+<div id="var-section">
+  <p></p>
+  <h2>Public Variables and Functions</h2>
+  <div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.tools.logging.readable/debug">debug</h2>
+    <span id="var-type">macro</span><br />
+    <pre id="var-usage">Usage: (debug message &amp; more)
+       (debug throwable message &amp; more)
+</pre>
+    <pre id="var-docstr">Debug level logging using print-style args. See logp for details.</pre>
+    <pre id="var-specs"></pre>
+    
+    
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L93">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.tools.logging.readable/debugf">debugf</h2>
+    <span id="var-type">macro</span><br />
+    <pre id="var-usage">Usage: (debugf fmt &amp; fmt-args)
+       (debugf throwable fmt &amp; fmt-args)
+</pre>
+    <pre id="var-docstr">Debug level logging using format. See logf for details.</pre>
+    <pre id="var-specs"></pre>
+    
+    
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L129">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.tools.logging.readable/error">error</h2>
+    <span id="var-type">macro</span><br />
+    <pre id="var-usage">Usage: (error message &amp; more)
+       (error throwable message &amp; more)
+</pre>
+    <pre id="var-docstr">Error level logging using print-style args. See logp for details.</pre>
+    <pre id="var-specs"></pre>
+    
+    
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L111">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.tools.logging.readable/errorf">errorf</h2>
+    <span id="var-type">macro</span><br />
+    <pre id="var-usage">Usage: (errorf fmt &amp; fmt-args)
+       (errorf throwable fmt &amp; fmt-args)
+</pre>
+    <pre id="var-docstr">Error level logging using format. See logf for details.</pre>
+    <pre id="var-specs"></pre>
+    
+    
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L147">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.tools.logging.readable/fatal">fatal</h2>
+    <span id="var-type">macro</span><br />
+    <pre id="var-usage">Usage: (fatal message &amp; more)
+       (fatal throwable message &amp; more)
+</pre>
+    <pre id="var-docstr">Fatal level logging using print-style args. See logp for details.</pre>
+    <pre id="var-specs"></pre>
+    
+    
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L117">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.tools.logging.readable/fatalf">fatalf</h2>
+    <span id="var-type">macro</span><br />
+    <pre id="var-usage">Usage: (fatalf fmt &amp; fmt-args)
+       (fatalf throwable fmt &amp; fmt-args)
+</pre>
+    <pre id="var-docstr">Fatal level logging using format. See logf for details.</pre>
+    <pre id="var-specs"></pre>
+    
+    
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L153">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.tools.logging.readable/info">info</h2>
+    <span id="var-type">macro</span><br />
+    <pre id="var-usage">Usage: (info message &amp; more)
+       (info throwable message &amp; more)
+</pre>
+    <pre id="var-docstr">Info level logging using print-style args. See logp for details.</pre>
+    <pre id="var-specs"></pre>
+    
+    
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L99">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.tools.logging.readable/infof">infof</h2>
+    <span id="var-type">macro</span><br />
+    <pre id="var-usage">Usage: (infof fmt &amp; fmt-args)
+       (infof throwable fmt &amp; fmt-args)
+</pre>
+    <pre id="var-docstr">Info level logging using format. See logf for details.</pre>
+    <pre id="var-specs"></pre>
+    
+    
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L135">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.tools.logging.readable/logf">logf</h2>
+    <span id="var-type">macro</span><br />
+    <pre id="var-usage">Usage: (logf level fmt &amp; fmt-args)
+       (logf level throwable fmt &amp; fmt-args)
+</pre>
+    <pre id="var-docstr">Logs a message using a format string and args, where all format args will be
+printed readably. Can optionally take a throwable as its second arg. See
+level-specific macros, e.g., debugf.</pre>
+    <pre id="var-specs"></pre>
+    
+    
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L66">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.tools.logging.readable/logp">logp</h2>
+    <span id="var-type">macro</span><br />
+    <pre id="var-usage">Usage: (logp level message &amp; more)
+       (logp level throwable message &amp; more)
+</pre>
+    <pre id="var-docstr">Logs a message using print style args, where message args that are not
+literal strings will be printed readably. Can optionally take a throwable as
+its second arg. See level-specific macros, e.g., debug.</pre>
+    <pre id="var-specs"></pre>
+    
+    
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L34">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.tools.logging.readable/trace">trace</h2>
+    <span id="var-type">macro</span><br />
+    <pre id="var-usage">Usage: (trace message &amp; more)
+       (trace throwable message &amp; more)
+</pre>
+    <pre id="var-docstr">Trace level logging using print-style args. See logp for details.</pre>
+    <pre id="var-specs"></pre>
+    
+    
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L87">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.tools.logging.readable/tracef">tracef</h2>
+    <span id="var-type">macro</span><br />
+    <pre id="var-usage">Usage: (tracef fmt &amp; fmt-args)
+       (tracef throwable fmt &amp; fmt-args)
+</pre>
+    <pre id="var-docstr">Trace level logging using format. See logf for details.</pre>
+    <pre id="var-specs"></pre>
+    
+    
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L123">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.tools.logging.readable/warn">warn</h2>
+    <span id="var-type">macro</span><br />
+    <pre id="var-usage">Usage: (warn message &amp; more)
+       (warn throwable message &amp; more)
+</pre>
+    <pre id="var-docstr">Warn level logging using print-style args. See logp for details.</pre>
+    <pre id="var-specs"></pre>
+    
+    
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L105">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.tools.logging.readable/warnf">warnf</h2>
+    <span id="var-type">macro</span><br />
+    <pre id="var-usage">Usage: (warnf fmt &amp; fmt-args)
+       (warnf throwable fmt &amp; fmt-args)
+</pre>
+    <pre id="var-docstr">Warn level logging using format. See logf for details.</pre>
+    <pre id="var-specs"></pre>
+    
+    
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L141">Source</a>
   </div>
 </div>
 
