@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add support for explicitly selecting a logger factory by setting the
  `"clojure.tools.logging.factory"` system property. For details, see the
  [README](https://github.com/clojure/tools.logging#configuration),
- and the documentation for [*logger-factory*](https://clojure.github.io/tools.logging/#clojure.tools.logging/*logger-factory*)
+ and the documentation for [\*logger-factory\*](https://clojure.github.io/tools.logging/#clojure.tools.logging/*logger-factory*)
 
 ## [0.5.0] - 2019-07-22
 ### Added
