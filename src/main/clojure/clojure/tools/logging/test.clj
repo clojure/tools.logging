@@ -227,7 +227,9 @@
 
 
 (defn matches
-  "Returns matching log entries, otherwise nil.
+  "Returns matching log entries, otherwise nil. See match-logger-ns?,
+  match-level?, match-throwable?, and match-message? for the default matching
+  behavior applied to the given args.
 
   Must be invoked within a context where *stateful-log* is bound to an instance
   of StatefulLog containing MatchableLogEntry items (e.g., inside with-log)."
@@ -239,7 +241,9 @@
 
 
 (defn logged?
-  "Returns true if the log contains matching entries.
+  "Returns true if the log contains matching entries. See match-logger-ns?,
+  match-level?, match-throwable?, and match-message? for the default matching
+  behavior applied to the given args.
 
   Must be invoked within a context where *stateful-log* is bound to an instance
   of StatefulLog containing MatchableLogEntry items (e.g., inside with-log)."
