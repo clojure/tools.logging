@@ -15,7 +15,7 @@
            '[clojure.tools.logging.readable :as logr])
 
   (def x \"bar\")
-                                        ; Logged as...
+                                    ; Logged as...
   (log/debug \"foo\" x \"baz\")         ; foo bar baz
   (logr/debug \"foo\" x \"baz\")        ; foo \"bar\" baz
   (log/debugf \"foo %s %s\" x \"baz\")  ; foo bar baz

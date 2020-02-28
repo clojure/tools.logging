@@ -18,9 +18,9 @@
     (with-log
       (log/info \"Hello World!\")
       (log/error (Exception. \"Did a thing\") \"Error: oops\")
-      (logged? 'user :info #\"Hello\")                             ; true
+      (logged? 'user :info #\"Hello\")                           ; true
       (logged? 'user :error [Throwable #\"thing\"] #\"Error:\")    ; true
-      (logged? 'user :debug \"Hi\"))                               ; false"}
+      (logged? 'user :debug \"Hi\"))                             ; false"}
     clojure.tools.logging.test
   (:import [clojure.lang Fn Keyword Namespace Symbol]
            java.util.Set
