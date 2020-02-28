@@ -10,16 +10,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2020-02-27
 ### Added
 - Add support for printing message arguments readably in
-  `clojure.tools.logging.readable`.
+  [`clojure.tools.logging.readable`](https://clojure.github.io/tools.logging/#clojure.tools.logging.readable).
 
 ## [0.6.0] - 2020-02-07
 ### Added
 - Add support for explicitly selecting a logger factory by setting the
- `clojure.tools.logging.factory` system property.
+ `"clojure.tools.logging.factory"` system property. For details, see the
+ [README](https://github.com/clojure/tools.logging#configuration),
+ and the documentation for [*logger-factory*](https://clojure.github.io/tools.logging/#clojure.tools.logging/*logger-factory*)
 
 ## [0.5.0] - 2019-07-22
 ### Added
-- Add support for testing logs in `clojure.tools.logging.test`
+- Add support for testing logs in [`clojure.tools.logging.test`](https://clojure.github.io/tools.logging/#clojure.tools.logging.test)
 
 ### Changed
 - Now passes the context classloader of current thread to `Class/forName` when
