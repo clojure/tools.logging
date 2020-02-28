@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ([despite its flaws](https://www.youtube.com/watch?v=oyLBGkS5ICk)).
 
 ## [Unreleased]
+
+## [1.0.0] - 2020-02-27
 ### Added
 - Add support for printing message arguments readably in
   `clojure.tools.logging.readable`.
@@ -81,7 +83,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial implementation of Clojure-aware logging abstraction. 
 
-[Unreleased]: https://github.com/clojure/tools.logging/compare/tools.logging-0.6.0...HEAD
+[Unreleased]: https://github.com/clojure/tools.logging/compare/tools.logging-1.0.0...HEAD
+[1.0.0]: https://github.com/clojure/tools.logging/compare/tools.logging-0.5.0...tools.logging-1.0.0
 [0.6.0]: https://github.com/clojure/tools.logging/compare/tools.logging-0.5.0...tools.logging-0.6.0
 [0.5.0]: https://github.com/clojure/tools.logging/compare/tools.logging-0.4.1...tools.logging-0.5.0
 [0.4.1]: https://github.com/clojure/tools.logging/compare/tools.logging-0.4.0...tools.logging-0.4.1
