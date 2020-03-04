@@ -7,7 +7,10 @@
 ;; remove this notice, or any other, from this software.
 
 (ns ^{:author "Alex Taggart"
-      :doc    "Logging macros that support printing message arguments readably.
+      :doc    "Logging macros that support printing message (some) arguments as
+  if wrapped in pr-str, the goal being to preserve their data representation
+  distinct from the explanatory text. See logp and logf for details regarding
+  which args are treated in this manner.
 
   Examples:
 
@@ -33,8 +36,9 @@
 
 (defmacro logp
   "Logs a message using print style args, where message args that are not
-  literal strings will be printed readably. Can optionally take a throwable as
-  its second arg. See level-specific macros, e.g., debug."
+  literal strings will be printed readably, as if wrapped in pr-str. Can
+  optionally take a throwable as its second arg. See level-specific macros,
+  e.g., debug."
   {:arglists '([level message & more] [level throwable message & more])}
   [level x & more]
   ; Why bind `*print-readably*` to true?
@@ -65,8 +69,8 @@
 
 (defmacro logf
   "Logs a message using a format string and args, where all format args will be
-  printed readably. Can optionally take a throwable as its second arg. See
-  level-specific macros, e.g., debugf."
+  printed readably, as if wrapped in pr-str. Can optionally take a throwable as
+  its second arg. See level-specific macros, e.g., debugf."
   {:arglists '([level fmt & fmt-args] [level throwable fmt & fmt-args])}
   [level x & more]
   (if (or (instance? String x) (nil? more)) ; optimize for non-exception case

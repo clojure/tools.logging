@@ -68,7 +68,8 @@ library._
 To control which logging implementation is used, set the `clojure.tools.logging.factory`
 system property to the fully-qualified name of a no-arg function that returns an
 instance of `clojure.tools.logging.impl/LoggerFactory`. There are a number of
-factory functions provided in the `clojure.tools.logging.impl` namespace.
+factory functions provided in the [`clojure.tools.logging.impl`](https://clojure.github.io/tools.logging/#clojure.tools.logging.impl/find-factory)
+namespace.
 
 [Leiningen example]:
 
