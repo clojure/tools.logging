@@ -896,7 +896,10 @@ not available.</pre>
 
 <br />
 <h2 id="clojure.tools.logging.readable">clojure.tools.logging.readable</h2>
-<pre id="namespace-docstr">Logging macros that support printing message arguments readably.
+<pre id="namespace-docstr">Logging macros that support printing message (some) arguments as
+if wrapped in pr-str, the goal being to preserve their data representation
+distinct from the explanatory text. See logp and logf for details regarding
+which args are treated in this manner.
 
 Examples:
 
@@ -904,7 +907,7 @@ Examples:
          '[clojure.tools.logging.readable :as logr])
 
 (def x "bar")
-                                      ; Logged as...
+                                  ; Logged as...
 (log/debug "foo" x "baz")         ; foo bar baz
 (logr/debug "foo" x "baz")        ; foo "bar" baz
 (log/debugf "foo %s %s" x "baz")  ; foo bar baz
@@ -930,7 +933,7 @@ Examples:
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L93">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/3f44502339effbef31bf9769ede1791ca7ccde9b/src/main/clojure/clojure/tools/logging/readable.clj#L97">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -943,7 +946,7 @@ Examples:
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L129">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/3f44502339effbef31bf9769ede1791ca7ccde9b/src/main/clojure/clojure/tools/logging/readable.clj#L133">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -956,7 +959,7 @@ Examples:
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L111">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/3f44502339effbef31bf9769ede1791ca7ccde9b/src/main/clojure/clojure/tools/logging/readable.clj#L115">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -969,7 +972,7 @@ Examples:
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L147">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/3f44502339effbef31bf9769ede1791ca7ccde9b/src/main/clojure/clojure/tools/logging/readable.clj#L151">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -982,7 +985,7 @@ Examples:
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L117">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/3f44502339effbef31bf9769ede1791ca7ccde9b/src/main/clojure/clojure/tools/logging/readable.clj#L121">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -995,7 +998,7 @@ Examples:
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L153">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/3f44502339effbef31bf9769ede1791ca7ccde9b/src/main/clojure/clojure/tools/logging/readable.clj#L157">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -1008,7 +1011,7 @@ Examples:
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L99">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/3f44502339effbef31bf9769ede1791ca7ccde9b/src/main/clojure/clojure/tools/logging/readable.clj#L103">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -1021,7 +1024,7 @@ Examples:
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L135">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/3f44502339effbef31bf9769ede1791ca7ccde9b/src/main/clojure/clojure/tools/logging/readable.clj#L139">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -1031,12 +1034,12 @@ Examples:
        (logf level throwable fmt &amp; fmt-args)
 </pre>
     <pre id="var-docstr">Logs a message using a format string and args, where all format args will be
-printed readably. Can optionally take a throwable as its second arg. See
-level-specific macros, e.g., debugf.</pre>
+printed readably, as if wrapped in pr-str. Can optionally take a throwable as
+its second arg. See level-specific macros, e.g., debugf.</pre>
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L66">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/3f44502339effbef31bf9769ede1791ca7ccde9b/src/main/clojure/clojure/tools/logging/readable.clj#L70">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -1046,12 +1049,13 @@ level-specific macros, e.g., debugf.</pre>
        (logp level throwable message &amp; more)
 </pre>
     <pre id="var-docstr">Logs a message using print style args, where message args that are not
-literal strings will be printed readably. Can optionally take a throwable as
-its second arg. See level-specific macros, e.g., debug.</pre>
+literal strings will be printed readably, as if wrapped in pr-str. Can
+optionally take a throwable as its second arg. See level-specific macros,
+e.g., debug.</pre>
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L34">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/3f44502339effbef31bf9769ede1791ca7ccde9b/src/main/clojure/clojure/tools/logging/readable.clj#L37">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -1064,7 +1068,7 @@ its second arg. See level-specific macros, e.g., debug.</pre>
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L87">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/3f44502339effbef31bf9769ede1791ca7ccde9b/src/main/clojure/clojure/tools/logging/readable.clj#L91">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -1077,7 +1081,7 @@ its second arg. See level-specific macros, e.g., debug.</pre>
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L123">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/3f44502339effbef31bf9769ede1791ca7ccde9b/src/main/clojure/clojure/tools/logging/readable.clj#L127">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -1090,7 +1094,7 @@ its second arg. See level-specific macros, e.g., debug.</pre>
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L105">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/3f44502339effbef31bf9769ede1791ca7ccde9b/src/main/clojure/clojure/tools/logging/readable.clj#L109">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -1103,7 +1107,7 @@ its second arg. See level-specific macros, e.g., debug.</pre>
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/4be7af97b1c61bc9ff2e0180c44cc349fa034abc/src/main/clojure/clojure/tools/logging/readable.clj#L141">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/3f44502339effbef31bf9769ede1791ca7ccde9b/src/main/clojure/clojure/tools/logging/readable.clj#L145">Source</a>
   </div>
 </div>
 
@@ -1118,9 +1122,9 @@ Usage example:
   (with-log
     (log/info "Hello World!")
     (log/error (Exception. "Did a thing") "Error: oops")
-    (logged? 'user :info #"Hello")                             ; true
+    (logged? 'user :info #"Hello")                           ; true
     (logged? 'user :error [Throwable #"thing"] #"Error:")    ; true
-    (logged? 'user :debug "Hi"))                               ; false</pre>
+    (logged? 'user :debug "Hi"))                             ; false</pre>
 
 
 <br />
@@ -1159,7 +1163,7 @@ Usage example:
     </div>
     
     
-    <a id="proto-source" href="https://github.com/clojure/tools.logging/blob/1ed724e97a4399089269741fd11c6dee2baa2c4b/src/main/clojure/clojure/tools/logging/test.clj#L175">Source</a>
+    <a id="proto-source" href="https://github.com/clojure/tools.logging/blob/eadcd49fe68f40f71cf392d07eea112eccf34162/src/main/clojure/clojure/tools/logging/test.clj#L175">Source</a>
   </div>
 </div>
 <div id="type-section">
@@ -1189,7 +1193,7 @@ Usage example:
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/1ed724e97a4399089269741fd11c6dee2baa2c4b/src/main/clojure/clojure/tools/logging/test.clj#L213">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/eadcd49fe68f40f71cf392d07eea112eccf34162/src/main/clojure/clojure/tools/logging/test.clj#L213">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -1201,7 +1205,7 @@ Usage example:
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/1ed724e97a4399089269741fd11c6dee2baa2c4b/src/main/clojure/clojure/tools/logging/test.clj#L165">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/eadcd49fe68f40f71cf392d07eea112eccf34162/src/main/clojure/clojure/tools/logging/test.clj#L165">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -1214,7 +1218,7 @@ log-entry-fn with the same args as append!</pre>
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/1ed724e97a4399089269741fd11c6dee2baa2c4b/src/main/clojure/clojure/tools/logging/test.clj#L183">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/eadcd49fe68f40f71cf392d07eea112eccf34162/src/main/clojure/clojure/tools/logging/test.clj#L183">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -1223,14 +1227,16 @@ log-entry-fn with the same args as append!</pre>
     <pre id="var-usage">Usage: (logged? logger-ns level message)
        (logged? logger-ns level throwable message)
 </pre>
-    <pre id="var-docstr">Returns true if the log contains matching entries.
+    <pre id="var-docstr">Returns true if the log contains matching entries. See match-logger-ns?,
+match-level?, match-throwable?, and match-message? for the default matching
+behavior applied to the given args.
 
 Must be invoked within a context where *stateful-log* is bound to an instance
 of StatefulLog containing MatchableLogEntry items (e.g., inside with-log).</pre>
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/1ed724e97a4399089269741fd11c6dee2baa2c4b/src/main/clojure/clojure/tools/logging/test.clj#L241">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/eadcd49fe68f40f71cf392d07eea112eccf34162/src/main/clojure/clojure/tools/logging/test.clj#L243">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -1243,7 +1249,7 @@ are enabled when (enabled-pred logger-ns level) is true.</pre>
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/1ed724e97a4399089269741fd11c6dee2baa2c4b/src/main/clojure/clojure/tools/logging/test.clj#L198">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/eadcd49fe68f40f71cf392d07eea112eccf34162/src/main/clojure/clojure/tools/logging/test.clj#L198">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -1255,7 +1261,7 @@ are enabled when (enabled-pred logger-ns level) is true.</pre>
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/1ed724e97a4399089269741fd11c6dee2baa2c4b/src/main/clojure/clojure/tools/logging/test.clj#L165">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/eadcd49fe68f40f71cf392d07eea112eccf34162/src/main/clojure/clojure/tools/logging/test.clj#L165">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -1274,7 +1280,7 @@ Provided methods' dispatch values and matching:
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/1ed724e97a4399089269741fd11c6dee2baa2c4b/src/main/clojure/clojure/tools/logging/test.clj#L64">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/eadcd49fe68f40f71cf392d07eea112eccf34162/src/main/clojure/clojure/tools/logging/test.clj#L64">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -1294,7 +1300,7 @@ Provided methods' dispatch values and matching:
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/1ed724e97a4399089269741fd11c6dee2baa2c4b/src/main/clojure/clojure/tools/logging/test.clj#L32">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/eadcd49fe68f40f71cf392d07eea112eccf34162/src/main/clojure/clojure/tools/logging/test.clj#L32">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -1313,7 +1319,7 @@ Provided methods' dispatch values and matching:
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/1ed724e97a4399089269741fd11c6dee2baa2c4b/src/main/clojure/clojure/tools/logging/test.clj#L133">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/eadcd49fe68f40f71cf392d07eea112eccf34162/src/main/clojure/clojure/tools/logging/test.clj#L133">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -1335,7 +1341,7 @@ Provided methods' dispatch values and matching:
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/1ed724e97a4399089269741fd11c6dee2baa2c4b/src/main/clojure/clojure/tools/logging/test.clj#L91">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/eadcd49fe68f40f71cf392d07eea112eccf34162/src/main/clojure/clojure/tools/logging/test.clj#L91">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -1344,14 +1350,16 @@ Provided methods' dispatch values and matching:
     <pre id="var-usage">Usage: (matches logger-ns level message)
        (matches logger-ns level throwable message)
 </pre>
-    <pre id="var-docstr">Returns matching log entries, otherwise nil.
+    <pre id="var-docstr">Returns matching log entries, otherwise nil. See match-logger-ns?,
+match-level?, match-throwable?, and match-message? for the default matching
+behavior applied to the given args.
 
 Must be invoked within a context where *stateful-log* is bound to an instance
 of StatefulLog containing MatchableLogEntry items (e.g., inside with-log).</pre>
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/1ed724e97a4399089269741fd11c6dee2baa2c4b/src/main/clojure/clojure/tools/logging/test.clj#L229">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/eadcd49fe68f40f71cf392d07eea112eccf34162/src/main/clojure/clojure/tools/logging/test.clj#L229">Source</a>
   </div><div id="var-entry">
     <br />
     <hr />
@@ -1366,7 +1374,7 @@ of StatefulLog containing MatchableLogEntry items (e.g., inside with-log).</pre>
     <pre id="var-specs"></pre>
     
     
-    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/1ed724e97a4399089269741fd11c6dee2baa2c4b/src/main/clojure/clojure/tools/logging/test.clj#L219">Source</a>
+    <a id="var-source" href="https://github.com/clojure/tools.logging/blob/eadcd49fe68f40f71cf392d07eea112eccf34162/src/main/clojure/clojure/tools/logging/test.clj#L219">Source</a>
   </div>
 </div>
 
