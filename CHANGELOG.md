@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ([despite its flaws](https://www.youtube.com/watch?v=oyLBGkS5ICk)).
 
 ## [Unreleased]
+### Added 
+- Add implementation of `spyf` to `clojure.tools.logging.readable`.
+
 ### Changed
 - Decreased the per-call overhead when using SLF4J, Commons Logging, and Log4j2.
   Previously, their associated `logger-factory` implementations were calling

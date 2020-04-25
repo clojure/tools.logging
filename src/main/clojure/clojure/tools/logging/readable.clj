@@ -159,3 +159,13 @@
   {:arglists '([fmt & fmt-args] [throwable fmt & fmt-args])}
   [& args]
   `(logf :fatal ~@args))
+
+(defmacro spyf
+  "Evaluates expr and may write (logf level fmt result) to the log. Returns the
+  result of expr. Defaults to :debug log level."
+  ([fmt expr]
+   `(spyf :debug ~fmt ~expr))
+  ([level fmt expr]
+   `(let [a# ~expr]
+      (logf ~level ~fmt a#)
+      a#)))

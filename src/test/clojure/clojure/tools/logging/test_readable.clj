@@ -188,6 +188,18 @@
       (is (logged? "clojure.tools.logging.test-readable" :debug e "hello \"world\"")))))
 
 
+(deftest spyf-default
+  (with-log
+    (spyf "result: %s" (str "hello" " " "world"))
+    (is (logged? "clojure.tools.logging.test-readable" :debug nil "result: \"hello world\""))))
+
+(deftest spyf-level
+  (doseq [level #{:trace :debug :info :warn :error :fatal}]
+    (with-log
+      (spyf level "result: %s" (str "hello" " " "world"))
+      (is (logged? "clojure.tools.logging.test-readable" level nil "result: \"hello world\"")))))
+
+
 (deftest println-style
   (are [f kw] (with-log
                 (f "hello" "world")
