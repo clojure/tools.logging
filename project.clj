@@ -15,4 +15,5 @@
                                         [log4j "1.2.16"]
                                         [org.apache.logging.log4j/log4j-api "2.8.2"]
                                         [org.apache.logging.log4j/log4j-core "2.8.2"]
-                                        [commons-logging "1.1.1"]]}})
+                                        [commons-logging "1.1.1"]
+                                        [criterium "0.4.5"]]}})

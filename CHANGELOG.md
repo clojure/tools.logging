@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ([despite its flaws](https://www.youtube.com/watch?v=oyLBGkS5ICk)).
 
 ## [Unreleased]
+### Changed
+- Decreased the per-call overhead when using SLF4J, Commons Logging, and Log4j2.
+  Previously, their associated `logger-factory` implementations were calling
+  library-specific static convenience methods for each call to `get-logger`.
+  These methods have some baked-in setup overhead, which now only occurs during
+  instantiation of the associated `logger-factory`.
 
 ## [1.0.0] - 2020-02-27
 ### Added

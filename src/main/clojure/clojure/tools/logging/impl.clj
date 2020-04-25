@@ -61,7 +61,8 @@
   []
   (when (class-found? "org.slf4j.Logger")
     (eval
-      `(do
+      `(let [; Same as is done inside LoggerFactory/getLogger(String).
+             factory# (org.slf4j.LoggerFactory/getILoggerFactory)]
         (extend org.slf4j.Logger
           Logger
           {:enabled?
@@ -98,7 +99,7 @@
           (name [_#]
             "org.slf4j")
           (get-logger [_# logger-ns#]
-            (org.slf4j.LoggerFactory/getLogger ^String (str logger-ns#))))))))
+            (.getLogger factory# ^String (str logger-ns#))))))))
 
 (defn cl-factory
   "Returns a Commons Logging-based implementation of the LoggerFactory protocol, or
@@ -106,7 +107,8 @@
   []
   (when (class-found? "org.apache.commons.logging.Log")
     (eval
-      `(do
+      `(let [; Same as is done inside LogFactory/getLog(String).
+             factory# (org.apache.commons.logging.LogFactory/getFactory)]
          (extend org.apache.commons.logging.Log
            Logger
            {:enabled?
@@ -142,7 +144,7 @@
            (name [_#]
              "org.apache.commons.logging")
            (get-logger [_# logger-ns#]
-             (org.apache.commons.logging.LogFactory/getLog (str logger-ns#))))))))
+             (.getInstance factory# (str logger-ns#))))))))
 
 (defn log4j-factory
   "Returns a Log4j-based implementation of the LoggerFactory protocol, or nil if
@@ -179,7 +181,9 @@
   []
   (when (class-found? "org.apache.logging.log4j.Logger")
     (eval
-      `(let [levels# {:trace org.apache.logging.log4j.Level/TRACE
+      `(let [; Same as is done inside LogManager/getLogger(String).
+             context# (org.apache.logging.log4j.LogManager/getContext false)
+             levels# {:trace org.apache.logging.log4j.Level/TRACE
                       :debug org.apache.logging.log4j.Level/DEBUG
                       :info  org.apache.logging.log4j.Level/INFO
                       :warn  org.apache.logging.log4j.Level/WARN
@@ -206,7 +210,7 @@
            (name [_#]
              "org.apache.logging.log4j")
            (get-logger [_# logger-ns#]
-             (org.apache.logging.log4j.LogManager/getLogger ^String (str logger-ns#))))))))
+             (.getLogger context# ^String (str logger-ns#))))))))
 
 (defn jul-factory
   "Returns a java.util.logging-based implementation of the LoggerFactory protocol,
