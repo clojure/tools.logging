@@ -90,6 +90,37 @@ The above approach is problematic given that applications often inadvertently pu
 in multiple logging implementations as transitive dependencies. As such, it is
 _strongly_ advised that you set the system property.
 
+### Log4J2
+
+A simple Log4j2 [configuration](https://logging.apache.org/log4j/2.x/manual/configuration.html):
+
+```properties
+status = warn
+monitorInterval = 5
+
+appender.console.type = Console
+appender.console.name = STDOUT
+appender.console.layout.type = PatternLayout
+appender.console.layout.pattern = %date %level %logger %message%n%throwable
+
+rootLogger.level = info
+rootLogger.appenderRef.stdout.ref = STDOUT
+```
+
+*Note:* The above [pattern](https://logging.apache.org/log4j/2.x/manual/layouts.html#Patterns)
+explicitly uses `%throwable` so that `clojure.lang.ExceptionInfo` exceptions
+will be printed with their data maps. If either `%xThrowable` (the default) or
+`%rThrowable` is used, the data maps will not be printed.
+
+## FAQ
+
+#### When logging an `ex-info` exception, why isn't the data map printed?
+
+This is likely because the logging implementation is printing the contents of
+`Throwable.getMessage()`, which returns just the message arg to `ex-info`.
+
+Logging implementations that print the contents of `toString()` or use `Throwable.printStackTrace(...)`
+will end up printing the data map.
 
 ## Thanks
 
