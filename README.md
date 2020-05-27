@@ -37,25 +37,25 @@ compile "org.clojure:tools.logging:1.1.0"
 Logging occurs with the `log` macro, or the level-specific convenience macros
 (e.g., `debug`, `debugf`). Only when the specified logging level is enabled will
 the message arguments be evaluated and the underlying logging implementation be
-invoked. By default that invocation will occur via an agent when inside a running
-STM transaction.
+invoked. By default, that invocation will occur via an agent when inside a
+running STM transaction.
 
 ### Namespacing of log entries
 
 Unless otherwise specified, the current namespace (as identified by `*ns*`) will
-be used as the log-ns. This value can be emitted in the log entry, and used by most
-logging implementations when using namespace-specific logging levels.
+be used as the "logger name" when interacting with logging implementations. Most
+logging implementations allow for varying configuration by logger name.
 
-Note: You should configure your logging implementation to display the name that
-was passed to it. If it instead performs stack-inspection you'll see some ugly
-and unhelpful text in your logs.
+Note: You should configure your logging implementation to display the logger
+name that was passed to it. If it instead the logging implementation performs
+stack-inspection you'll see some ugly and unhelpful text in your logs.
 
 ### Redirecting output to logs
 
 You can redirect all java writes of `System.out` and `System.err` to the log
 system by calling `log-capture!`.  To bind `*out*` and `*err*` to the log system
-invoke `with-logs`.  In both cases a log-ns value must be specified in order to
-namespace the output.
+invoke `with-logs`.  In both cases a logger name must be provided in lieu of
+using `*ns*`.
 
 ## Configuration
 
