@@ -7,6 +7,11 @@ at runtime when the `clojure.tools.logging` namespace is first loaded.
 
 Lastest stable release is [1.1.0]
 
+[CLI/`deps.edn`](https://clojure.org/reference/deps_and_cli) dependency information:
+```clojure
+org.clojure/tools.logging {:mvn/version "1.1.0"}
+```
+
 Leiningen:
 
 ```clojure
