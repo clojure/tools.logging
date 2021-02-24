@@ -37,7 +37,7 @@ compile "org.clojure:tools.logging:1.1.0"
 
 ## Usage
 
-[Latest API Documentation](http://clojure.github.com/tools.logging)
+[Latest API Documentation](https://clojure.github.io/tools.logging)
 
 Logging occurs with the `log` macro, or the level-specific convenience macros
 (e.g., `debug`, `debugf`). Only when the specified logging level is enabled will
