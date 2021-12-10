@@ -9,11 +9,11 @@
   :aliases {"cloverage" ["with-profile" "dev,cloverage" "cloverage" "--fail-threshold" "100"]}
   :profiles {:cloverage {:plugins [[lein-cloverage "1.0.9"]]}
              :dev       {:dependencies [[org.clojure/clojure "1.8.0"]
-                                        [org.clojure/test.check "0.9.0"]
-                                        [org.slf4j/slf4j-api "1.6.2"]
-                                        [org.slf4j/slf4j-log4j12 "1.6.2"]
-                                        [log4j "1.2.16"]
-                                        [org.apache.logging.log4j/log4j-api "2.8.2"]
-                                        [org.apache.logging.log4j/log4j-core "2.8.2"]
-                                        [commons-logging "1.1.1"]
-                                        [criterium "0.4.5"]]}})
+                                        [org.clojure/test.check "1.1.1"]
+                                        [org.slf4j/slf4j-api "1.7.32"]
+                                        [org.slf4j/slf4j-log4j12 "1.7.32"]
+                                        [log4j "1.2.17"]
+                                        [org.apache.logging.log4j/log4j-api "2.14.1"]
+                                        [org.apache.logging.log4j/log4j-core "2.14.1"]
+                                        [commons-logging "1.2"]
+                                        [criterium "0.4.6"]]}})
