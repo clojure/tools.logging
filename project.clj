@@ -12,8 +12,7 @@
                                         [org.clojure/test.check "1.1.1"]
                                         [org.slf4j/slf4j-api "1.7.32"]
                                         [org.slf4j/slf4j-log4j12 "1.7.32"]
-                                        [log4j "1.2.17"]
-                                        [org.apache.logging.log4j/log4j-api "2.14.1"]
-                                        [org.apache.logging.log4j/log4j-core "2.14.1"]
+                                        [org.apache.logging.log4j/log4j-api "2.15.0"]
+                                        [org.apache.logging.log4j/log4j-core "2.15.0"]
                                         [commons-logging "1.2"]
                                         [criterium "0.4.6"]]}})
