@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>tools.logging</artifactId>
-  <version>1.2.1-SNAPSHOT</version>
+  <version>1.2.1</version>
   <name>tools.logging</name>
 
   <parent>
@@ -20,7 +20,7 @@
     <connection>scm:git:git@github.com:clojure/tools.logging.git</connection>
     <developerConnection>scm:git:git@github.com:clojure/tools.logging.git</developerConnection>
     <url>git@github.com:clojure/tools.logging.git</url>
-    <tag>HEAD</tag>
+    <tag>v1.2.1</tag>
   </scm>
 
   <dependencies>
