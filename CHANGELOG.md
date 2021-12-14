@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Bumped log4j testing deps to 2.16.0
+
 ## [1.2.1] - 2021-12-10
 
 ### Changed
