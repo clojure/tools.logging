@@ -5,10 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html)
 ([despite its flaws](https://www.youtube.com/watch?v=oyLBGkS5ICk)).
 
-## [Unreleased]
+## [1.2.2] - 2021-12-14
 
 ### Changed
-- Bumped log4j testing deps to 2.16.0
+- Bumped log4j test deps to 2.16.0
 
 ## [1.2.1] - 2021-12-10
 
@@ -110,8 +110,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Initial implementation of Clojure-aware logging abstraction. 
 
 [Unreleased]: https://github.com/clojure/tools.logging/compare/tools.logging-1.1.0...HEAD
-[1.2.1]: https://github.com/clojure/tools.logging/compare/tools.logging-1.2.0...tools.logging-1.2.1
-[1.2.0]: https://github.com/clojure/tools.logging/compare/tools.logging-1.1.0...tools.logging-1.2.0
+[1.2.1]: https://github.com/clojure/tools.logging/compare/v1.2.1...v1.2.2
+[1.2.1]: https://github.com/clojure/tools.logging/compare/v1.2.0...v1.2.1
+[1.2.0]: https://github.com/clojure/tools.logging/compare/tools.logging-1.1.0...v1.2.0
 [1.1.0]: https://github.com/clojure/tools.logging/compare/tools.logging-1.0.0...tools.logging-1.1.0
 [1.0.0]: https://github.com/clojure/tools.logging/compare/tools.logging-0.6.0...tools.logging-1.0.0
 [0.6.0]: https://github.com/clojure/tools.logging/compare/tools.logging-0.5.0...tools.logging-0.6.0
