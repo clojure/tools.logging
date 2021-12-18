@@ -5,17 +5,17 @@ at runtime when the `clojure.tools.logging` namespace is first loaded.
 
 ## Installation
 
-Lastest stable release is [1.2.2]
+Lastest stable release is [1.2.3]
 
 [CLI/`deps.edn`](https://clojure.org/reference/deps_and_cli) dependency information:
 ```clojure
-org.clojure/tools.logging {:mvn/version "1.2.2"}
+org.clojure/tools.logging {:mvn/version "1.2.3"}
 ```
 
 Leiningen:
 
 ```clojure
-[org.clojure/tools.logging "1.2.2"]
+[org.clojure/tools.logging "1.2.3"]
 ```
 
 Maven:
@@ -24,14 +24,14 @@ Maven:
 <dependency>
   <groupId>org.clojure</groupId>
   <artifactId>tools.logging</artifactId>
-  <version>1.2.2</version>
+  <version>1.2.3</version>
 </dependency>
 ```
 
 Gradle:
 
 ```clojure
-compile "org.clojure:tools.logging:1.2.2"
+compile "org.clojure:tools.logging:1.2.3"
 ```
 
 
@@ -142,7 +142,7 @@ Copyright © 2009-2021 Rich Hickey, Alex Taggart, and contributors
 Licensed under the EPL. (See the file epl.html.)
 
 
-[1.2.2]: https://github.com/clojure/tools.logging/tree/v1.2.2
+[1.2.3]: https://github.com/clojure/tools.logging/tree/v1.2.3
 [Leiningen example]: https://github.com/technomancy/leiningen/blob/master/doc/TUTORIAL.md#setting-jvm-options
 [SLF4J]: http://www.slf4j.org/
 [Apache Commons Logging]: https://commons.apache.org/logging
