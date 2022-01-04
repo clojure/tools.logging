@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html)
 ([despite its flaws](https://www.youtube.com/watch?v=oyLBGkS5ICk)).
 
-## next
+## [1.2.4] - 2022-01-04
 
 ### Changed
 - Bumped log4j test deps to 2.17.1
@@ -120,6 +120,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Initial implementation of Clojure-aware logging abstraction. 
 
 [Unreleased]: https://github.com/clojure/tools.logging/compare/tools.logging-1.1.0...HEAD
+[1.2.4]: https://github.com/clojure/tools.logging/compare/v1.2.3...v1.2.4
 [1.2.3]: https://github.com/clojure/tools.logging/compare/v1.2.2...v1.2.3
 [1.2.2]: https://github.com/clojure/tools.logging/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/clojure/tools.logging/compare/v1.2.0...v1.2.1
