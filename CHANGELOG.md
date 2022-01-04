@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html)
 ([despite its flaws](https://www.youtube.com/watch?v=oyLBGkS5ICk)).
 
+## next
+
+### Changed
+- Bumped log4j test deps to 2.17.1
+
 ## [1.2.3] - 2021-12-18
 
 ### Changed
