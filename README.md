@@ -45,7 +45,7 @@ be used as the "logger name" when interacting with logging implementations. Most
 logging implementations allow for varying configuration by logger name.
 
 Note: You should configure your logging implementation to display the logger
-name that was passed to it. If it instead the logging implementation performs
+name that was passed to it. If, instead, the logging implementation performs
 stack-inspection you'll see some ugly and unhelpful text in your logs.
 
 ### Redirecting output to logs
