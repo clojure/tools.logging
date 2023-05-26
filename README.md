@@ -130,7 +130,7 @@ will end up printing the data map.
 
 ## License
 
-Copyright © 2009-2022 Rich Hickey, Alex Taggart, and contributors
+Copyright © 2009-2023 Rich Hickey, Alex Taggart, and contributors
 
 Licensed under the EPL. (See the file epl.html.)
 
