@@ -8,7 +8,7 @@
   :dependencies [[org.clojure/clojure "1.3.0"]]
   :aliases {"cloverage" ["with-profile" "dev,cloverage" "cloverage" "--fail-threshold" "100"]}
   :profiles {:cloverage {:plugins [[lein-cloverage "1.0.9"]]}
-             :dev       {:dependencies [[org.clojure/clojure "1.8.0"]
+             :dev       {:dependencies [[org.clojure/clojure "1.10.3"]
                                         [org.clojure/test.check "1.1.1"]
                                         [org.slf4j/slf4j-api "1.7.32"]
                                         [org.slf4j/slf4j-log4j12 "1.7.32"]

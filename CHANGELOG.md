@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - TLOG-28 - Moved slf4j test deps to 2.0.6
+- Bumped Clojure dep to 1.10.3
 
 ## [1.2.4] - 2022-01-04
 
