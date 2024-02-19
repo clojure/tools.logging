@@ -5,7 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :source-paths ["src/main/clojure"]
   :test-paths ["src/test/clojure"]
-  :dependencies [[org.clojure/clojure "1.3.0"]]
+  :dependencies [[org.clojure/clojure "1.9.0"]]
   :aliases {"cloverage" ["with-profile" "dev,cloverage" "cloverage" "--fail-threshold" "100"]}
   :profiles {:cloverage {:plugins [[lein-cloverage "1.0.9"]]}
              :dev       {:dependencies [[org.clojure/clojure "1.10.3"]
