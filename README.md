@@ -5,17 +5,17 @@ at runtime when the `clojure.tools.logging` namespace is first loaded.
 
 ## Installation
 
-Lastest stable release is [1.2.4]
+Lastest stable release is [1.3.0]
 
-[CLI/`deps.edn`](https://clojure.org/reference/deps_and_cli) dependency information:
+[CLI/`deps.edn`](https://clojure.org/reference/deps_edn) dependency information:
 ```clojure
-org.clojure/tools.logging {:mvn/version "1.2.4"}
+org.clojure/tools.logging {:mvn/version "1.3.0"}
 ```
 
 Leiningen:
 
 ```clojure
-[org.clojure/tools.logging "1.2.4"]
+[org.clojure/tools.logging "1.3.0"]
 ```
 
 Maven:
@@ -24,7 +24,7 @@ Maven:
 <dependency>
   <groupId>org.clojure</groupId>
   <artifactId>tools.logging</artifactId>
-  <version>1.2.4</version>
+  <version>1.3.0</version>
 </dependency>
 ```
 
@@ -130,15 +130,16 @@ will end up printing the data map.
 
 ## License
 
-Copyright © 2009-2023 Rich Hickey, Alex Taggart, and contributors
+Copyright © Rich Hickey, Alex Taggart, and contributors
 
 Licensed under the EPL. (See the file epl.html.)
 
 
+[1.3.0]: https://github.com/clojure/tools.logging/tree/v1.3.0
 [1.2.4]: https://github.com/clojure/tools.logging/tree/v1.2.4
 [Leiningen example]: https://github.com/technomancy/leiningen/blob/master/doc/TUTORIAL.md#setting-jvm-options
-[SLF4J]: http://www.slf4j.org/
+[SLF4J]: https://www.slf4j.org/
 [Apache Commons Logging]: https://commons.apache.org/logging
 [Log4J 2]: https://logging.apache.org/log4j/2.x/
-[Log4J]: http://logging.apache.org/log4j/1.2/
+[Log4J]: https://logging.apache.org/log4j/1.2/
 [java.util.logging]: https://docs.oracle.com/en/java/javase/13/docs/api/java.logging/java/util/logging/package-summary.html 
