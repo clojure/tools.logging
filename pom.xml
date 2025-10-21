@@ -3,6 +3,7 @@
   <artifactId>tools.logging</artifactId>
   <version>1.3.1-SNAPSHOT</version>
   <name>tools.logging</name>
+  <description>Clojure logging API.</description>
 
   <parent>
     <groupId>org.clojure</groupId>
