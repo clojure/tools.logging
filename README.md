@@ -5,17 +5,17 @@ at runtime when the `clojure.tools.logging` namespace is first loaded.
 
 ## Installation
 
-Lastest stable release is [1.3.0]
+Lastest stable release is [1.3.1]
 
 [CLI/`deps.edn`](https://clojure.org/reference/deps_edn) dependency information:
 ```clojure
-org.clojure/tools.logging {:mvn/version "1.3.0"}
+org.clojure/tools.logging {:mvn/version "1.3.1"}
 ```
 
 Leiningen:
 
 ```clojure
-[org.clojure/tools.logging "1.3.0"]
+[org.clojure/tools.logging "1.3.1"]
 ```
 
 Maven:
@@ -24,7 +24,7 @@ Maven:
 <dependency>
   <groupId>org.clojure</groupId>
   <artifactId>tools.logging</artifactId>
-  <version>1.3.0</version>
+  <version>1.3.1</version>
 </dependency>
 ```
 
@@ -135,6 +135,7 @@ Copyright © Rich Hickey, Alex Taggart, and contributors
 Licensed under the EPL. (See the file epl.html.)
 
 
+[1.3.1]: https://github.com/clojure/tools.logging/tree/v1.3.1
 [1.3.0]: https://github.com/clojure/tools.logging/tree/v1.3.0
 [1.2.4]: https://github.com/clojure/tools.logging/tree/v1.2.4
 [Leiningen example]: https://github.com/technomancy/leiningen/blob/master/doc/TUTORIAL.md#setting-jvm-options

@@ -5,10 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html)
 ([despite its flaws](https://www.youtube.com/watch?v=oyLBGkS5ICk)).
 
-## next
+## [1.3.1] - 2025-12-30
 
 ### Changed
 
+- Bumped parent pom to 1.4.0
 - Bumped deps to Clojure 1.11.4
 - Bumped test deps to latest
 
@@ -133,6 +134,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Initial implementation of Clojure-aware logging abstraction. 
 
 [Unreleased]: https://github.com/clojure/tools.logging/compare/tools.logging-1.1.0...HEAD
+[1.3.1]: https://github.com/clojure/tools.logging/compare/v1.3.0...v1.3.1
+[1.3.0]: https://github.com/clojure/tools.logging/compare/v1.2.4...v1.3.0
 [1.2.4]: https://github.com/clojure/tools.logging/compare/v1.2.3...v1.2.4
 [1.2.3]: https://github.com/clojure/tools.logging/compare/v1.2.2...v1.2.3
 [1.2.2]: https://github.com/clojure/tools.logging/compare/v1.2.1...v1.2.2
