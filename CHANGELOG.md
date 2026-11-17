@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html)
 ([despite its flaws](https://www.youtube.com/watch?v=oyLBGkS5ICk)).
 
+## [1.3.2] - 2026-11-17
+
+- Bumped parent pom to 1.4.5
+- Bumped Clojure to 1.12.6
+- Bumped test deps to latest
+
 ## [1.3.1] - 2025-12-30
 
 ### Changed

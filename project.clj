@@ -5,14 +5,14 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :source-paths ["src/main/clojure"]
   :test-paths ["src/test/clojure"]
-  :dependencies [[org.clojure/clojure "1.11.4"]]
+  :dependencies [[org.clojure/clojure "1.12.6"]]
   :aliases {"cloverage" ["with-profile" "dev,cloverage" "cloverage" "--fail-threshold" "100"]}
   :profiles {:cloverage {:plugins [[lein-cloverage "1.2.4"]]}
-             :dev       {:dependencies [[org.clojure/clojure "1.11.4"]
-                                        [org.clojure/test.check "1.1.2"]
-                                        [org.slf4j/slf4j-api "2.0.17"]
-                                        [org.slf4j/slf4j-log4j12 "2.0.17"]
-                                        [org.apache.logging.log4j/log4j-api "2.25.3"]
-                                        [org.apache.logging.log4j/log4j-core "2.25.3"]
-                                        [commons-logging "1.3.5"]
+             :dev       {:dependencies [[org.clojure/clojure "1.12.6"]
+                                        [org.clojure/test.check "1.1.3"]
+                                        [org.slf4j/slf4j-api "2.0.20"]
+                                        [org.slf4j/slf4j-log4j12 "2.0.20"]
+                                        [org.apache.logging.log4j/log4j-api "2.26.1"]
+                                        [org.apache.logging.log4j/log4j-core "2.26.1"]
+                                        [commons-logging "1.4.0"]
                                         [criterium "0.4.6"]]}})
